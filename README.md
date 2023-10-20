@@ -28,7 +28,13 @@ sudo apt-get install fonts-powerline
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-
+Installing LF
+```
+wget https://github.com/gokcehan/lf/releases/download/r8/lf-linux-amd64.tar.gz
+tar xvf lf-linux-amd64.tar.gz
+mv lf /usr/local/bin
+```
+The first command downloads it, the second unpacks it, the third moves it into an executable
 
 
 
