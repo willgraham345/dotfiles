@@ -1,0 +1,22 @@
+{
+  "promptDelete": false,
+  "mobileToolbarCommands": [
+    "switcher:open",
+    "insert-template",
+    "editor:insert-wikilink",
+    "editor:insert-tag",
+    "editor:cut",
+    "editor:paste",
+    "editor:swap-line-up",
+    "editor:swap-line-down",
+    "editor:unindent-list",
+    "editor:indent-list",
+    "editor:fold-all",
+    "editor:undo"
+  ],
+  "readableLineLength": false,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "showInlineTitle": true,
+  "vimMode": true
+}

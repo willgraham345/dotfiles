@@ -1,0 +1,232 @@
+{
+  "main": {
+    "id": "c4aced11534a8bcb",
+    "type": "split",
+    "children": [
+      {
+        "id": "ead4c70b93b2222b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "278992338af1d87e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AA Will's Notes and References/Software/Zephyr/Zephyr TOC.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9ef4a842f1cf5739",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AA Will's Notes and References/Software/Zephyr/Zephyr Networking CAN.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ae61cc3c13e1e8b9",
+    "type": "split",
+    "children": [
+      {
+        "id": "e66cce04c1b8ce96",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2bf47c2db7045d41",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "hadamard",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "aed25b5a52db645d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "ef481c7a729906c7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 365.5
+  },
+  "right": {
+    "id": "a1db1a20492ec29d",
+    "type": "split",
+    "children": [
+      {
+        "id": "900b665b1a2d6398",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b390f3a7d49ba6d6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "AA Will's Notes and References/Software/Zephyr/Zephyr Networking CAN.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f74baba9c3b734c7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "AA Will's Notes and References/Software/Zephyr/Zephyr Networking CAN.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2869de1394d9d0d3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "753f8a287e77c362",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "AA Will's Notes and References/Software/Zephyr/Zephyr Networking CAN.md"
+              }
+            }
+          },
+          {
+            "id": "d625672fad10748e",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "5ffdd2c273f539ea",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": true,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "9ef4a842f1cf5739",
+  "lastOpenFiles": [
+    "AA Will's Notes and References/Software/Zephyr/Zephyr TOC.md",
+    "AA Will's Notes and References/Software/Zephyr/Zephyr Networking CAN.md",
+    "AA Embedded Systems/Lecture Notes/07 Networking.md",
+    "AA Embedded Systems/Progress Lab 7.md",
+    "AA Research Notes/Publication Index.md",
+    "AA Research Notes/Review of Deep Learning concepts, CNN architectures, challenges, applications, future directions.md",
+    "AA Will's Notes and References/Software/WeBots/Webots PROTOSpawner Feature.md",
+    "AA Will's Notes and References/Software/WeBots/Webots TOC.md",
+    "AA Will's Notes and References/Software/WeBots/ROS2 Webots Spawning Through URDF.md",
+    "AA VLSI/Verilog/Verilog TOC.md",
+    "AA VLSI/Verilog/Verilog 1's and 2's Complement of a Binary Number.md",
+    "AA VLSI/Verilog/Verilog Number Systems and Base Conversions.md",
+    "AA VLSI/Project/Paper Notes Efficient Architecture VLSI for Discrete Haradaman Transform.md",
+    "Pasted image 20231024161507.png",
+    "AA VLSI/Lecture/Formula Sheet.md",
+    "AA VLSI/Verilog/Verilog Decoder.md",
+    "AA VLSI/Lecture/12 Logical Effort.md",
+    "Pasted image 20231024150628.png",
+    "AA Will's Notes and References/Programming/ROS/ROS2 Testing from CLI.md",
+    "AA Will's Notes and References/Programming/ROS/ROS2 Tests.md",
+    "AA Will's Notes and References/Programming/ROS/ROS2 launch_pytest.md",
+    "AA Will's Notes and References/Programming/Python/Python Testing PyTest Overview.md",
+    "AA Will's Notes and References/Programming/ROS/ROS2 TOC.md",
+    "AA Will's Notes and References/Software/Git/Git TOC.md",
+    "AA Will's Notes and References/Software/Git/Github Actions Syntax.md",
+    "AA Will's Notes and References/Software/Git/Github Actions Contexts.md",
+    "AA Will's Notes and References/Software/Git/Github Actions Background and Terms.md",
+    "thread_states.svg",
+    "Pasted image 20231023111850.png",
+    "Pasted image 20231023111846.png",
+    "Pasted image 20231020175728.png",
+    "Pasted image 20231019151910.png",
+    "Pasted image 20231019145737.png",
+    "Pasted image 20231016112031.png",
+    "Pasted image 20231016112025.png",
+    "AA Embedded Systems/Prelab 7.md",
+    "AA Research Notes/Electrical Engineering/Liquid_Memory_and_the_Future_of_Data_Storage.pdf",
+    "zz_Templates",
+    "AA Research Notes/Electrical Engineering",
+    "AA Will's Notes and References/Math and Physics",
+    "AA Will's Notes and References/Software/Fusion 360",
+    "Unconfirmed 116619.crdownload",
+    "AA Will's Notes and References/Software/WeBots",
+    "AA VLSI/Cheat_sheet.jpg.crdownload",
+    "AA VLSI/Project",
+    "AA VLSI/ASM FSM"
+  ]
+}

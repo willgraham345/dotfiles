@@ -100,7 +100,7 @@ source /opt/ros/humble/setup.zsh
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 
 # WeBots Variable Stuff
-export WEBOTS_HOME=/snap/webots/current/usr/share/webots
+export WEBOTS_HOME=/usr/local/bin/webots
 export LD_LIBRARY_PATH=$WEBOTS_HOME/lib/controller:$LD_LIBRARY_PATH
 
 
