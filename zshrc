@@ -92,6 +92,7 @@ alias gc="git commit -m"
 alias gf="git fetch"
 alias gk="gitkraken" #opens gitkraken
 alias gp="git push"
+alias gpu="git pull"
 alias gs="git status -v"
 alias gs_v="git status -vvv | less"
 alias gr_v="git remote -v"
@@ -104,7 +105,7 @@ source /opt/ros/humble/setup.zsh
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 
 # WeBots Variable Stuff
-export WEBOTS_HOME=/usr/local/bin/webots
+export WEBOTS_HOME=/usr/local/webots/webots
 export LD_LIBRARY_PATH=$WEBOTS_HOME/lib/controller:$LD_LIBRARY_PATH
 
 
