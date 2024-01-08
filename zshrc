@@ -85,7 +85,8 @@ source $ZSH/oh-my-zsh.sh
 # Keybindings
 bindkey '^ ' autosuggest-accept 
 
-# Aliases
+### Aliases ###
+# Git 
 alias ga="git add ."
 alias gbl="git branch --list"
 alias gc="git commit -m"
@@ -96,10 +97,17 @@ alias gpu="git pull"
 alias gs="git status -v"
 alias gs_v="git status -vvv | less"
 alias gr_v="git remote -v"
+
+### ROS ###
 alias cb="colcon build --symlink-install"
 alias cb_v="colcon build --event-handlers console_direct+ --symlink-install"
 alias rs_rb_src="colcon build --symlink-install;. install/local_setup.zsh"
 alias rosdep_install="rosdep install --from-paths . --ignore-packages-from-source --rosdistro humble -y"
+
+### Python ###
+alias c_p="clear && pytest"
+
+### Battery charge ###
 alias change_batt_config="echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold" # changes battery config to only charge to 80
 # ROS 2 Humble sourcing
 source /opt/ros/humble/setup.zsh
