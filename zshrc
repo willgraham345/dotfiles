@@ -141,6 +141,9 @@ lfcd () {
     fi
 }
 
+# Zoxide init
+eval "$(zoxide init --cmd t zsh)"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -171,4 +174,3 @@ lfcd () {
 # Powerline10k config
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$(zoxide init zsh)"
