@@ -143,6 +143,9 @@ lfcd () {
     fi
 }
 
+# Zoxide init
+eval "$(zoxide init --cmd t zsh)"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
