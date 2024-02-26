@@ -97,6 +97,7 @@ alias gpu="git pull"
 alias gs="git status -v"
 alias gs_v="git status -vvv | less"
 alias gr_v="git remote -v"
+alias ggv="git log --graph --decorate --online"
 
 ### ROS ###
 alias cb="colcon build --symlink-install"
