@@ -124,24 +124,7 @@ export LD_LIBRARY_PATH=$WEBOTS_HOME/lib/controller:$LD_LIBRARY_PATH
 export PATH=$PATH:/opt/modelsim_ase/bin
 
 # GO Language stuff
-export GOPATH=$HOME/golang
-export GOROOT=/usr/local/opt/go/libexec
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOPATH
-export PATH=$PATH:$GOROOT/bin
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
-}
+AMENT_PREFIX_PATH=/opt/ros/humble #This is for the mcap converter
 
 # Zoxide init
 eval "$(zoxide init --cmd t zsh)"
