@@ -102,7 +102,7 @@ alias ggv="git log --graph --decorate --online"
 ### ROS ###
 alias cb="colcon build --symlink-install"
 alias cb_v="colcon build --event-handlers console_direct+ --symlink-install"
-alias rs_rb_src="colcon build --symlink-install;. install/local_setup.zsh"
+alias rsrb="colcon build --symlink-install;. install/local_setup.zsh"
 alias rosdep_install="rosdep install --from-paths . --ignore-packages-from-source --rosdistro humble -y"
 
 ### Python ###
