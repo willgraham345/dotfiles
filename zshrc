@@ -119,6 +119,8 @@ source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 export WEBOTS_HOME=/usr/local/webots
 export LD_LIBRARY_PATH=$WEBOTS_HOME/lib/controller:$LD_LIBRARY_PATH
 
+# Bitcraze toolbelt alias
+alias tb='docker run --rm -it -e "HOST_CW_DIR=${PWD}" -e "CALLING_HOST_NAME=$(hostname)" -e "CALLING_UID"=$UID -e "CALLING_OS"=$(uname) -v ${PWD}:/tb-module -v ${HOME}/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock bitcraze/toolbelt'
 
 # Modelsim Stuff
 export PATH=$PATH:/opt/modelsim_ase/bin
