@@ -9,7 +9,8 @@ Installation of Python tool to use this repo:
 
 Adding dotfiles to this repo (~/.vimrc in this example)
 
-`$ dotfiles --add ~/.vimrc     (relative paths work also)`
+`$ dotfiles --add ~/.vimrc`
+(relative paths work also)
 
 
 
@@ -18,10 +19,10 @@ How to sync configuration on a new computer
 
 To install zsh plugins:
 ```
-'''
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-'''
+```
+
 For specifically powerline10k
 ```
 sudo apt-get install fonts-powerline

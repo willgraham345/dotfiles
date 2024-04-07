@@ -82,6 +82,10 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 ####### WILL #########
+# WSL
+export PATH=$PATH:/home/will/.local/bin
+
+
 # Keybindings
 bindkey '^ ' autosuggest-accept 
 
@@ -113,14 +117,6 @@ alias change_batt_config="echo 80 | sudo tee /sys/class/power_supply/BAT0/charge
 # ROS 2 Humble sourcing
 source /opt/ros/humble/setup.zsh
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
-
-# WeBots Variable Stuff
-export WEBOTS_HOME=/usr/local/webots
-export LD_LIBRARY_PATH=$WEBOTS_HOME/lib/controller:$LD_LIBRARY_PATH
-
-
-# Modelsim Stuff
-export PATH=$PATH:/opt/modelsim_ase/bin
 
 # GO Language stuff
 export GOPATH=$HOME/golang
