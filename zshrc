@@ -85,6 +85,10 @@ source $ZSH/oh-my-zsh.sh
 # WSL
 export PATH=$PATH:/home/will/.local/bin
 
+# WSL GUI forwarding
+export DISPLAY="`grep nameserver /etc/resolv.conf | sed 's/nameserver //'`:0"
+export DISPLAY="`sed -n 's/nameserver //p' /etc/resolv.conf`:0"
+export DISPLAY=$(ip route|awk '/^default/{print $3}'):0.0
 
 # Keybindings
 bindkey '^ ' autosuggest-accept 
