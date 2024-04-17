@@ -120,7 +120,7 @@ alias c_p="clear && pytest"
 alias change_batt_config="echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold" # changes battery config to only charge to 80
 # ROS 2 Humble sourcing
 source /opt/ros/humble/setup.zsh
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+# source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh #This broke on this machine, not sure why.
 
 # GO Language stuff
 export GOPATH=$HOME/golang
