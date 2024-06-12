@@ -145,6 +145,11 @@ lfcd () {
 # Zoxide init
 eval "$(zoxide init --cmd t zsh)"
 
+# Exa config stuff
+alias ls="exa"
+alias ll="exa -alh"
+alias tree="exa --tree"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
