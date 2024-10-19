@@ -8,4 +8,5 @@
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [diff]
-	tool = meld
+	tool = code
+	
