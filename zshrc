@@ -5,6 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH=$PATH:"$HOME/bin"
+if ! command -v oh-my-posh &> /dev/null; then
+    echo "oh-my-posh not found. Installing..."
+    # Installation command (modify as needed for your system)
+    curl -s https://ohmyposh.dev/install.sh | bash -s
+fi
+
 # if [[ -f "/opt/homebrew/bin/brew" ]] then
 #   # If you're using macOS, you'll want this enabled
 #   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -45,7 +52,7 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # set up oh my posh with theme
-eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/powerlevel10k_rainbow.json')"
+eval "$(oh-my-posh init zsh --config '~/Dotfiles/ohmyposh/powerlevel10k_rainbow.omp.json')"
 #eval "$(oh-my-posh init zsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json")"
 
 # Keybindings
@@ -107,7 +114,8 @@ alias z....="cd ../../../.."
 
 #export GIT_EDITOR=vim
 
-# default editors
+# default config
+export PATH=$PATH:"$HOME/bin"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
