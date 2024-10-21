@@ -131,8 +131,8 @@ alias ll="exa -alh"
 alias tree="exa --tree"
 
 # SDL VPN stuff
-#alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
-#export DOCKER_HOST=localhost:2375
+alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
+export DOCKER_HOST=localhost:2375
 
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
