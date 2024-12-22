@@ -57,13 +57,19 @@
 			")${0}"
 		]
 	},
-	"Output to console": {
+	"Print to console": {
 		"prefix": "print",
 		"body": [
 			"print(f\"${1:output} = {${1:output}}\")$0"
 		],
 		"description": "Output to console"
 	},
+	"Print to console with list generator": {
+		"prefix": "print with list generator",
+		"body": [
+			"[print(${1:arg}) for ${arg} in ${2:args}]"
+		]
+	}
 	// Python stuff
 	"For Loop": {
 		"prefix": "for loop",
@@ -113,5 +119,66 @@
 			"\t\t$0"
 		],
 		"description": "Class Method"
+	},
+	"Main": {
+		"prefix": "main",
+		"body": [
+			"if __name__ == \"__main__\":",
+			"\t${0}"
+		],
+		"description": "Main"
+	},
+	"Read csv":{
+		"prefix": "Read csv",
+		"body": [
+			"df = pd.read_csv(${1:filename}, header=0)"
+		],
+		"description": "Reading a csv file with pandas"
+	},
+	"Case/switch/match statement":{
+		"prefix": "Case/switch/match statement",
+		"body": [
+			"match ${1:case_variable}:",
+			"\t case ${2:case1}:",
+			"\t\t${0}"
+		],
+		"description": "Implement a case statement"
+	},
+	// "Console argument parser function call":{
+	// 	"prefix": "Add console argument parsing statement",
+	// 	"body": [
+	// 		"args = parser.parse_args()",
+	// 		"args_dict = vars(args)",
+	// 		"for flag, func in args_dict.items():",
+	// 			"\tif func:",
+	// 				"\t\tprint(f"Running \{flag\}")",
+	// 				"\t\tfunc()"
+	// 	]
+	// },
+	"Add console argument var":{
+		"prefix": "Add console argument variable using argparse",
+		"body": [
+			"parser.add_argument('-${1:optionName}', '--${2:otherOptionName}', default=${3:False})",
+		]
+	},
+	"Add console argument var":{
+		"prefix": "Add positional console argument variable using argparse",
+		"body": [
+			"parser.add_argument('${1:argName}', '-${2:optionName}', '--${3:otherOptionName}', default=${4:False})",
+		]
+	},
+	"Add console argument var with choices":{
+		"prefix": "Add positional console argument variable using argparse with choices",
+		"body": [
+			"parser.add_argument('${1:argName}', '-${2:optionName}', '--${3:otherOptionName}', default=${4:False}, choices=[${5:choiceList}])"
+		]
+	},
+	"Extract console args":{
+		"prefix": "Extract console arguments",
+		"body": [
+			"args = parser.parse_args()",
+			"if args.${1:argName}:",
+			"\t${0}"
+		]
 	},
 }

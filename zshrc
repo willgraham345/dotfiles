@@ -1,15 +1,15 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+
+### First time config ###
+# curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
+# link ~/.tmux.conf ~/Dotfiles/tmux/tmux.conf
+
+
+### ZSH Config ###
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-export PATH=$PATH:"$HOME/bin"
-if ! command -v oh-my-posh &> /dev/null; then
-    echo "oh-my-posh not found. Installing..."
-    # Installation command (modify as needed for your system)
-    curl -s https://ohmyposh.dev/install.sh | bash -s
 fi
 
 # if [[ -f "/opt/homebrew/bin/brew" ]] then
@@ -109,13 +109,10 @@ alias z.="cd .."
 alias z..="cd ../../"
 alias z...="cd ../../.."
 alias z....="cd ../../../.."
-# Failed attempt to jump into directory of a symlink
+# TODO: fix the following line to jump into directory of a symlink
 # alias symdir='$(dirname $(readlinke "$1"))'
 
-#export GIT_EDITOR=vim
-
-# default config
-export PATH=$PATH:"$HOME/bin"
+# default editors
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
@@ -131,9 +128,13 @@ alias ll="exa -alh"
 alias tree="exa --tree"
 
 # SDL VPN stuff
-#alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
+#alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-#vpnkit start`
 #export DOCKER_HOST=localhost:2375
 
+### PATH Edits ###
+# Add .local
+# path=('/home/will/.local/bin' $path)
+export PATH=$PATH:/home/will/.local/bin
+### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
-
