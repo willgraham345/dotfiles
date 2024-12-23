@@ -1,6 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+### First time config ###
+# curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
+# ln -s ~/.tmux.conf ~/Dotfiles/tmux/tmux.conf
+# ln -s ~/.zshrc ~/Dotfiles/zshrc
+# use gh auth login for cli on personal
+
+##### Dotfile Dir #####
+export DOTFILE_DIR="/home/will/Dotfiles"
+export WORK_CONFIG=TRUE
+
+### ZSH Config ###
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -19,10 +27,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-zstyle ':completion::omz:plugins:docker' legacy-completion yes
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
-
 
 # Remove "zi" alias for default zoxide alias to work
 zinit ice atload'unalias zi'
@@ -36,27 +42,24 @@ zinit light https://github.com/Valiev/almostontop
 
 # Add in snippets
 zinit snippet OMZP::sudo
-zinit snippet OMZP::history
+zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::git
-
-
-
+zinit snippet OMZP::colored-man-pages
 # Load completions
 autoload -Uz compinit && compinit
+autoload -U colors && colors
 
 zinit cdreplay -q
 
 # set up oh my posh with theme
-eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/powerlevel10k_rainbow.json')"
 
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
-#bindkey '^I'   complete-word       # tab | complete
 
 # History
 HISTSIZE=5000
@@ -75,22 +78,22 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion::complete:make:*:targets' call-command true
 
+
+# source "$<(fzf)"
+# eval "$(fzf --zsh)"
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 ### Aliases ###
 alias ls='ls --color'
 alias vim='nvim'
-#alias c='clear'
+alias c='clear'
 alias fd='fdfind'
 alias bc='batcat'
-# Docker
-alias dc='docker compose'
-alias de='docker exec -it'
-
 # Git 
 alias ga="git add ."
 alias gswl="git switch -"
@@ -102,22 +105,41 @@ alias gs="git status"
 alias gsv="git status -vvv | bc"
 alias gr_v="git remote -v"
 alias gitlog_v="git log --graph --decorate --oneline"
+# Docker
+alias drc='docker ps -qa' 
+alias drv='docker volume ls -q'
+alias de='docker exec -it'
+alias dps='docker ps --all'
+alias dclall='docker rm $(docker ps -qa) && docker volume rm $(docker volume ls -q)'
+alias dclv='docker volume rm $(docker volume ls -q)'
+alias dcln='docker network rm $(docker network ls -q)'
+alias dclc='docker rm $(docker ps -qa)'
+dc(){
+  docker compose -f "$1" "$2"
+}
+dcbu(){
+  docker compose -f "$1" build
+}
+dcu() {
+  docker compose -f "$1" up -d
+}
+dcu_v() {
+  docker compose -f "$1" up
+}
+dcd() {
+  docker compose -f "$1" down
+}
 alias z.="cd .."
 alias z..="cd ../../"
 alias z...="cd ../../.."
 alias z....="cd ../../../.."
-# Failed attempt to jump into directory of a symlink
+# TODO: fix the following line to jump into directory of a symlink
 # alias symdir='$(dirname $(readlinke "$1"))'
-
-#export GIT_EDITOR=vim
 
 # default editors
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
-export CMAKE_COLOR_DIAGNOSTICS=ON # You don't need this part; it's just helps me identify warnings an such
-export CMAKE_GENERATOR=Ninja
-export NINJA_STATUS="[%f/%t %p :: %e] "
 
 # fd-find stuff
 export FZF_DEFAULT_COMMAND='fdfind --type file --no-hidden'
@@ -129,18 +151,29 @@ alias ls="exa"
 alias ll="exa -alh"
 alias tree="exa --tree"
 
-# SDL VPN stuff
-alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
-#export DOCKER_HOST=localhost:2375
+##### SDL VPN stuff ##### 
+if [[ ($WORK_CONFIG) ]]; then
+  alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
+  export DOCKER_HOST=localhost:2375
+  export QT_X11_NO_MITSHM=1
+  export DISPLAY=:0
+  export WAYLAND_DISPLAY=wayland-0
+  export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+  export PULSE_SERVER=/mnt/wslg/PulseServer
+  #export DOCKER_HOST=localhost:2375
+  export GPG_TTY=$(tty)
+  export DOTFILE_DIR="/home/will/personal/Dotfiles"
+fi
 
-# Docker vars
-#export QT_X11_NO_MITSHM=1
-#export DISPLAY=:0
-#export WAYLAND_DISPLAY="wayland-0"
-#export XDG_RUNTIME_DIR="/mnt/wslg/runtime-dir"
-#export PULSE_SERVER="/mnt/wslg/PulseServer"
-#export DOCKER_HOST=localhost:2375
+### PATH Edits ###
+# Add .local/bin and rust
+export PATH=$PATH:/home/will/.local/bin
+source "$HOME/.cargo/env"
 
-#source "$HOME/.cargo/env"
+
+### oh-my-posh evaluation ###
+eval "$(oh-my-posh init zsh --config "$DOTFILE_DIR/ohmyposh/powerlevel10k_rainbow.omp.json")"
+
+### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
