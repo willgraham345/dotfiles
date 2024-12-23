@@ -4,8 +4,8 @@
 
 ### First time config ###
 # curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
-# link ~/.tmux.conf ~/Dotfiles/tmux/tmux.conf
-# link ~/.zshrc ~/Dotfiles/zshrc
+# ln -s ~/.tmux.conf ~/Dotfiles/tmux/tmux.conf
+# ln -s ~/.zshrc ~/Dotfiles/zshrc
 
 
 ### ZSH Config ###
@@ -53,8 +53,6 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # set up oh my posh with theme
-eval "$(oh-my-posh init zsh --config '/home/will/Dotfiles/ohmyposh/powerlevel10k_rainbow.omp.json')"
-#eval "$(oh-my-posh init zsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json")"
 
 # Keybindings
 bindkey -e
@@ -85,7 +83,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 
 #source "$<(fzf)"
-#eval "$(fzf --zsh)"
+eval "$(fzf --zsh)"
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
@@ -136,6 +134,11 @@ alias tree="exa --tree"
 # Add .local
 # path=('/home/will/.local/bin' $path)
 export PATH=$PATH:/home/will/.local/bin
+
+
+### oh-my-posh evaluation ###
+eval "$(oh-my-posh init zsh --config '/home/will/Dotfiles/ohmyposh/powerlevel10k_rainbow.omp.json')"
+
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
