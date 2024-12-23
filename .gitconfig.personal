@@ -6,7 +6,20 @@
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [diff]
-	tool = code
+	tool = vscode
+[merge]
+	tool = vscode
+[merge "tool"]
+	cmd = code --wait $MERGED
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[core]
+	editor = code --wait
+[commit]
+	gpgsign = true
+[rebase]
+	autosquash = true
+
 [alias]
 	ff = "! git rebase -i --autosquash\"`git merge-base develop HEAD`\""
 	ancestorInCommonWithDevelop = merge-base HEAD develop
