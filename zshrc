@@ -82,8 +82,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 
 
-#source "$<(fzf)"
-eval "$(fzf --zsh)"
+# source "$<(fzf)"
+# eval "$(fzf --zsh)"
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
