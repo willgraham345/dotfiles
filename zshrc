@@ -5,6 +5,7 @@
 ### First time config ###
 # curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
 # link ~/.tmux.conf ~/Dotfiles/tmux/tmux.conf
+# link ~/.zshrc ~/Dotfiles/zshrc
 
 
 ### ZSH Config ###
@@ -52,7 +53,7 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # set up oh my posh with theme
-eval "$(oh-my-posh init zsh --config '~/Dotfiles/ohmyposh/powerlevel10k_rainbow.omp.json')"
+eval "$(oh-my-posh init zsh --config '/home/will/Dotfiles/ohmyposh/powerlevel10k_rainbow.omp.json')"
 #eval "$(oh-my-posh init zsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json")"
 
 # Keybindings
