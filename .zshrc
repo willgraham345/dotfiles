@@ -141,6 +141,6 @@ alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
 #export PULSE_SERVER="/mnt/wslg/PulseServer"
 #export DOCKER_HOST=localhost:2375
 
-source "$HOME/.cargo/env"
+#source "$HOME/.cargo/env"
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"

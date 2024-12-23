@@ -1,0 +1,18 @@
+[diff]
+	tool = vscode
+[merge]
+	tool = vscode
+[alias]
+	ff = "! git rebase -i --autosquash\"`git merge-base develop HEAD`\""
+	ancestorInCommonWithDevelop = merge-base HEAD develop
+	uts = "! GIT_COMMITTER_DATE=\"`date`\" && git commit --amend --no-edit"
+	suir = "submodule update --init --recursive"
+	srr = "submodule sync --recursive"
+[safe]
+	directory = .
+[merge "tool"]
+	cmd = code --wait $MERGED
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[core]
+	editor = code --wait
