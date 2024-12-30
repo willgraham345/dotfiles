@@ -98,7 +98,7 @@ alias bc='batcat'
 alias ga="git add ."
 alias gswl="git switch -"
 alias gc="git commit -m"
-alias gf="git fetch"
+alias gf="git commit --fixup=HEAD"
 alias gp="git push"
 alias gpu="git pull"
 alias gs="git status"
