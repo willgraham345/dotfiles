@@ -6,7 +6,7 @@
 
 ##### Dotfile Dir #####
 export DOTFILE_DIR="/home/will/Dotfiles"
-export WORK_CONFIG=TRUE
+export WORK_CONFIG=false
 
 ### ZSH Config ###
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -91,7 +91,6 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 ### Aliases ###
 alias ls='ls --color'
 alias vim='nvim'
-alias c='clear'
 alias fd='fdfind'
 alias bc='batcat'
 # Git 
@@ -152,7 +151,7 @@ alias ll="exa -alh"
 alias tree="exa --tree"
 
 ##### SDL VPN stuff ##### 
-if [[ ($WORK_CONFIG) ]]; then
+if [[ $WORK_CONFIG==true ]]; then
   alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
   export DOCKER_HOST=localhost:2375
   export QT_X11_NO_MITSHM=1
@@ -163,6 +162,11 @@ if [[ ($WORK_CONFIG) ]]; then
   #export DOCKER_HOST=localhost:2375
   export GPG_TTY=$(tty)
   export DOTFILE_DIR="/home/will/personal/Dotfiles"
+fi
+if [[ $WORK_CONFIG==false ]]; then
+  export DOTFILE_DIR="/home/will/Dotfiles"
+  export QT_X11_NO_MITSHM=1
+  export DISPLAY=:0
 fi
 
 ### PATH Edits ###
