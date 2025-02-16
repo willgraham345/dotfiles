@@ -151,23 +151,23 @@ alias ll="exa -alh"
 alias tree="exa --tree"
 
 ##### SDL VPN stuff ##### 
-if [[ $WORK_CONFIG==true ]]; then
-  alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
-  export DOCKER_HOST=localhost:2375
-  export QT_X11_NO_MITSHM=1
-  export DISPLAY=:0
-  export WAYLAND_DISPLAY=wayland-0
-  export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
-  export PULSE_SERVER=/mnt/wslg/PulseServer
-  #export DOCKER_HOST=localhost:2375
-  export GPG_TTY=$(tty)
-  export DOTFILE_DIR="/home/will/personal/Dotfiles"
-fi
-if [[ $WORK_CONFIG==false ]]; then
-  export DOTFILE_DIR="/home/will/Dotfiles"
-  export QT_X11_NO_MITSHM=1
-  export DISPLAY=:0
-fi
+#if [[ $WORK_CONFIG==true ]]; then
+#  alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
+#  export DOCKER_HOST=localhost:2375
+#  export QT_X11_NO_MITSHM=1
+#  export DISPLAY=:0
+#  export WAYLAND_DISPLAY=wayland-0
+#  export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+#  export PULSE_SERVER=/mnt/wslg/PulseServer
+#  #export DOCKER_HOST=localhost:2375
+#  export GPG_TTY=$(tty)
+#  export DOTFILE_DIR="/home/will/personal/Dotfiles"
+#fi
+#if [[ $WORK_CONFIG==false ]]; then
+#  export DOTFILE_DIR="/home/will/Dotfiles"
+#  export QT_X11_NO_MITSHM=1
+#  export DISPLAY=:0
+#fi
 
 ### PATH Edits ###
 # Add .local/bin and rust
