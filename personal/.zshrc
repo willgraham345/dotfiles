@@ -161,10 +161,8 @@ alias tree="exa --tree"
 #  export PULSE_SERVER=/mnt/wslg/PulseServer
 #  #export DOCKER_HOST=localhost:2375
 #  export GPG_TTY=$(tty)
-#  export DOTFILE_DIR="/home/will/personal/Dotfiles"
 #fi
 #if [[ $WORK_CONFIG==false ]]; then
-#  export DOTFILE_DIR="/home/will/Dotfiles"
 #  export QT_X11_NO_MITSHM=1
 #  export DISPLAY=:0
 #fi
@@ -176,7 +174,7 @@ source "$HOME/.cargo/env"
 
 
 ### oh-my-posh evaluation ###
-eval "$(oh-my-posh init zsh --config "$DOTFILE_DIR/ohmyposh/powerlevel10k_rainbow.omp.json")"
+eval "$(oh-my-posh init zsh --config "~/.config/ohmyposh/powerlevel10k_rainbow.omp.json")"
 
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
