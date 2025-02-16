@@ -1,5 +1,7 @@
-# How to use
+# Dotfile structure
+3 different folders contain the configuration for Will's dotfiles.
+- `personal/`
+- `work/`
+- `misc/`
 
-Download, symlink the zshrc to the one in this file. 
-
-See docs/ for notes on specific configurations.
+With both the personal and work, these are set up for Linux. The idea is to run a script that will set up symplink from the home directory (or `.config/`) to the Dotfiles repo. Execute a script to setup. 
