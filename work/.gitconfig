@@ -1,0 +1,32 @@
+[user]
+	name = Will Graham
+	email = will.graham@sdl.usu.edu
+	signingkey = 0CBBB7AB5017FE81169D3025CDE4078BBAC821F8
+[diff]
+	tool = vscode
+[merge]
+	tool = vscode
+[alias]
+	ff = "! git rebase -i \"`git merge-base develop HEAD`\""
+	forkpoint = merge-base HEAD develop
+	uts = "! GIT_COMMITTER_DATE=\"`date`\" && git commit --amend --no-edit"
+	suir = "submodule update --init --recursive"
+	srr = "submodule sync --recursive"
+[safe]
+	directory = .
+[merge "tool"]
+	cmd = code --wait $MERGED
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[core]
+	editor = code --wait
+  pager = delta
+[commit]
+	gpgsign = true
+[rebase]
+	autosquash = true
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true
