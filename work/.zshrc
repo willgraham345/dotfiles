@@ -49,7 +49,7 @@ zinit cdreplay -q
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
+bindkey '^[w' backward-kill-word
 
 # History
 HISTSIZE=5000
@@ -73,7 +73,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':completion::complete:make:*:targets' call-command true
 export WORDCHARS='*?.[]~=&;!#$%^(){}<>' #default: WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 
-
 # source "$<(fzf)"
 # eval "$(fzf --zsh)"
 source /usr/share/doc/fzf/examples/completion.zsh
@@ -82,8 +81,9 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 ### Aliases ###
 alias ls='ls --color'
 alias vim='nvim'
+alias c='clear'
 alias fd='fdfind'
-alias bc='batcat'
+alias cat='batcat'
 # Git 
 alias ga="git add ."
 alias gswl="git switch -"
@@ -143,6 +143,17 @@ alias ls="exa"
 alias ll="exa -alh"
 alias tree="exa --tree"
 
+##### SDL VPN stuff ##### 
+export QT_X11_NO_MITSHM=1
+export DISPLAY=:0
+export WAYLAND_DISPLAY=wayland-0
+export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+export PULSE_SERVER=/mnt/wslg/PulseServer
+export DOCKER_HOST=tcp://localhost:2375
+export GPG_TTY=$(tty)
+export DOTFILE_DIR="/home/will/personal/Dotfiles"
+wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
+
 ### PATH Edits ###
 # Add .local/bin and rust
 export PATH=$PATH:/home/will/.local/bin:/snap/bin
@@ -150,7 +161,7 @@ source "$HOME/.cargo/env"
 
 
 ### oh-my-posh evaluation ###
-eval "$(oh-my-posh init zsh --config "~/.config/ohmyposh/powerlevel10k_rainbow.omp.json")"
+eval "$(oh-my-posh init zsh --config "$DOTFILE_DIR/ohmyposh/powerlevel10k_rainbow.omp.json")"
 
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
