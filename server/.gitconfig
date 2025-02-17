@@ -1,0 +1,31 @@
+[user]
+	name = "Will Graham"
+	email = "willgraham345@gmail.com"
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[diff]
+	tool = vscode
+[merge]
+	tool = vscode
+[merge "tool"]
+	cmd = code --wait $MERGED
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[core]
+	editor = code --wait
+[rebase]
+	autosquash = true
+
+[alias]
+	ff = "! git rebase -i --autosquash\"`git merge-base develop HEAD`\""
+	forkpoint = merge-base HEAD develop
+	uts = "! GIT_COMMITTER_DATE=\"`date`\" && git commit --amend --no-edit"
+	suir = "submodule update --init --recursive"
+	srr = "submodule sync --recursive"
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true

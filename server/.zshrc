@@ -1,13 +1,3 @@
-### First time config ###
-# curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
-# ln -s ~/.tmux.conf ~/Dotfiles/tmux/tmux.conf
-# ln -s ~/.zshrc ~/Dotfiles/zshrc
-# use gh auth login for cli on personal
-
-##### Dotfile Dir #####
-export DOTFILE_DIR="/home/will/Dotfiles"
-export WORK_CONFIG=false
-
 ### ZSH Config ###
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -81,6 +71,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':completion::complete:make:*:targets' call-command true
+export WORDCHARS='*?.[]~=&;!#$%^(){}<>' #default: WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 
 
 # source "$<(fzf)"
@@ -139,6 +130,8 @@ alias z....="cd ../../../.."
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
+export CC=clang
+export CCX=clang++
 
 # fd-find stuff
 export FZF_DEFAULT_COMMAND='fdfind --type file --no-hidden'
@@ -150,33 +143,14 @@ alias ls="exa"
 alias ll="exa -alh"
 alias tree="exa --tree"
 
-##### SDL VPN stuff ##### 
-#if [[ $WORK_CONFIG==true ]]; then
-#  alias sdl_vpn=`wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start`
-#  export DOCKER_HOST=localhost:2375
-#  export QT_X11_NO_MITSHM=1
-#  export DISPLAY=:0
-#  export WAYLAND_DISPLAY=wayland-0
-#  export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
-#  export PULSE_SERVER=/mnt/wslg/PulseServer
-#  #export DOCKER_HOST=localhost:2375
-#  export GPG_TTY=$(tty)
-#  export DOTFILE_DIR="/home/will/personal/Dotfiles"
-#fi
-#if [[ $WORK_CONFIG==false ]]; then
-#  export DOTFILE_DIR="/home/will/Dotfiles"
-#  export QT_X11_NO_MITSHM=1
-#  export DISPLAY=:0
-#fi
-
 ### PATH Edits ###
 # Add .local/bin and rust
-export PATH=$PATH:/home/will/.local/bin
+export PATH=$PATH:/home/will/.local/bin:/snap/bin
 source "$HOME/.cargo/env"
 
 
 ### oh-my-posh evaluation ###
-eval "$(oh-my-posh init zsh --config "$DOTFILE_DIR/ohmyposh/atomic.json")"
+eval "$(oh-my-posh init zsh --config "~/.config/ohmyposh/atomic.json")"
 
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
