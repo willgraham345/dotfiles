@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the path to your Dotfiles repository
-DOTFILES_DIR="$HOME/Dotfiles/personal"  # Change this if your repo is elsewhere
+DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
 
 # Define the files and directories to symlink
 declare -A LINKS
@@ -9,7 +9,7 @@ declare -A LINKS
 LINKS["$HOME/.zshrc"]="$DOTFILES_DIR/.zshrc"
 LINKS["$HOME/.config/ohmyposh"]="$DOTFILES_DIR/ohmyposh"
 LINKS["$HOME/.config/tmux"]="$DOTFILES_DIR/tmux"
-LINKS["$HOME/.config/nvim"]="$DOTFILES_DIR/neovim"
+LINKS["$HOME/.config/nvim"]="$DOTFILES_DIR/nvim"
 LINKS["$HOME/.gitconfig"]="$DOTFILES_DIR/.gitconfig"
 
 # Function to create symlinks
@@ -19,7 +19,7 @@ create_symlinks() {
         
         # Ensure the source file/directory exists
         if [ ! -e "$source" ]; then
-            echo "Source $source does not exist. Skipping..."
+            echo "ERROR: Source $source not found. Skipping..."
             continue
         fi
         

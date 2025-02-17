@@ -161,7 +161,7 @@ source "$HOME/.cargo/env"
 
 
 ### oh-my-posh evaluation ###
-eval "$(oh-my-posh init zsh --config "$DOTFILE_DIR/ohmyposh/powerlevel10k_rainbow.omp.json")"
+eval "$(oh-my-posh init zsh --config "~/personal/Dotfiles/work/ohmyposh/powerlevel10k_rainbow.omp.json")"
 
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
