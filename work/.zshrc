@@ -149,7 +149,7 @@ export DISPLAY=:0
 export WAYLAND_DISPLAY=wayland-0
 export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
 export PULSE_SERVER=/mnt/wslg/PulseServer
-export DOCKER_HOST=tcp://localhost:2375
+#export DOCKER_HOST=tcp://localhost:2375 # This thing keeps breaking everything...
 export GPG_TTY=$(tty)
 export DOTFILE_DIR="/home/will/personal/Dotfiles"
 wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start

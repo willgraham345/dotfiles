@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.opt.winbar = "%=%m %f"
+-- vim.opt.path = "++"
+vim.opt.relativenumber = false

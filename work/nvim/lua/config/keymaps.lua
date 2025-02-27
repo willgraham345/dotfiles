@@ -7,3 +7,5 @@
 --   "<M-N>",
 --   "<Cmd>BufferLineCyclePrev<CR>",
 -- )
+vim.keymap.set("n", "<M-e>", "<cmd>Neotree focus<cr>", { desc = "Neotree focus" })
+vim.keymap.set("n", "<Space>wz", "<cmd>Toggle zoom mode<cr>", { desc = "Toggle Zoom mode" })
