@@ -1,20 +1,52 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-local FileUtilities = require("utilities.file_utilities")
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.loader.enable()
+-- if vim.g.vscode then
+--   -- VSCode extension
+--   require("user.vscode_keymaps")
+--   require("config.lazy")
+-- else
+--   -- bootstrap lazy.nvim, LazyVim and your plugins
+--   local FileUtilities = require("utilities.file_utilities")
+--   vim.g.loaded_netrw = 1
+--   vim.g.loaded_netrwPlugin = 1
+--   vim.loader.enable()
+--
+--   -- Set working directory
+--   if vim.fn.argc() == 1 then
+--     local arg = vim.fn.argv()[1]
+--     -- If the argument is a non-existing directory, create it
+--     if arg:sub(-1) == "/" and not FileUtilities.isDirectory(arg) then
+--       -- Create the directory
+--       vim.fn.mkdir(arg, "p")
+--     end
+--
+--     if FileUtilities.isDirectory(arg) then
+--       vim.cmd("cd " .. arg)
+--     end
+--   end
+--   require("config.lazy")
+-- end
+--
 
--- Set working directory
-if vim.fn.argc() == 1 then
-  local arg = vim.fn.argv()[1]
-  -- If the argument is a non-existing directory, create it
-  if arg:sub(-1) == "/" and not FileUtilities.isDirectory(arg) then
-    -- Create the directory
-    vim.fn.mkdir(arg, "p")
-  end
+if vim.g.vscode then
+  require("user.vscode_keymaps")
+  require("config.lazy")
+else
+  local FileUtilities = require("utilities.file_utilities")
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+  vim.loader.enable()
 
-  if FileUtilities.isDirectory(arg) then
-    vim.cmd("cd " .. arg)
+  -- Set working directory
+  if vim.fn.argc() == 1 then
+    local arg = vim.fn.argv()[1]
+    -- If the argument is a non-existing directory, create it
+    if arg:sub(-1) == "/" and not FileUtilities.isDirectory(arg) then
+      -- Create the directory
+      vim.fn.mkdir(arg, "p")
+    end
+
+    if FileUtilities.isDirectory(arg) then
+      vim.cmd("cd " .. arg)
+    end
   end
+  require("config.lazy")
 end
-require("config.lazy")

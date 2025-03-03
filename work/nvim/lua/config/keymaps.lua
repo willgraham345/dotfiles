@@ -9,3 +9,7 @@
 -- )
 vim.keymap.set("n", "<M-e>", "<cmd>Neotree focus<cr>", { desc = "Neotree focus" })
 vim.keymap.set("n", "<Space>wz", "<cmd>Toggle zoom mode<cr>", { desc = "Toggle Zoom mode" })
+vim.keymap.set("n", "<M-d>", function()
+  Snacks.bufdelete()
+end, { desc = "Deletes buffer in one command" })
+-- vim.keymap.set("n", "<C-w>", ":bdelete<CR>", { silent = true })
