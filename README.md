@@ -13,3 +13,4 @@ batcat
 fdfind
 fzf
 delta
+lazydocker [lazydocker](https://github.com/jesseduffield/lazydocker)

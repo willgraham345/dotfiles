@@ -5,7 +5,12 @@ local opts = { noremap = true, silent = true }
 keymap("n", "<Space>", "", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-keymap({ "n", "v" }, "<leader>bo", "<cmd> lua require('vscode').action('workbench.action.closeEditorsInOtherGroups<CR>")
+keymap(
+  { "n", "v" },
+  "<leader>bo",
+  "<cmd> lua require('vscode').action('workbench.action.closeEditorsInOtherGroups')<CR>"
+)
+keymap({ "n", "v" }, "gk", "<cmd> lua require('vscode').action('showHover')<CR>")
 
 -- -- yank to system clipboard
 -- keymap({ "n", "v" }, "<leader>y", '"+y', opts)
