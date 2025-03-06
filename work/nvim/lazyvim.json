@@ -1,6 +1,7 @@
 {
   "extras": [
     "lazyvim.plugins.extras.editor.aerial",
+    "lazyvim.plugins.extras.editor.harpoon2",
     "lazyvim.plugins.extras.editor.neo-tree",
     "lazyvim.plugins.extras.editor.snacks_explorer",
     "lazyvim.plugins.extras.lang.clangd",
@@ -9,6 +10,7 @@
     "lazyvim.plugins.extras.lang.git",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.vscode"
   ],

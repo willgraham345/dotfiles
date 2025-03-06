@@ -255,7 +255,7 @@ end, { remap = false, desc = "select all lines in buffer" })
 map({ "v", "i" }, "<C-c>", function()
   copyToClipBoard()
 end, { remap = false, desc = "copy selected text" })
-map("i", "<C-l>", "<Del>", { remap = true, desc = "delete one character backward" })
+-- map("i", "<C-l>", "<Del>", { remap = true, desc = "delete one character backward" })
 local function neovimMappings()
   -- map(
   --   { "i", "t" },

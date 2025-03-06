@@ -5,14 +5,27 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-keymap({ "n", "v" }, "<leader>j", "<cmd> lua require('vscode').action('workbench.action.showCommands')<CR>")
 keymap(
   { "n", "v" },
-  "<leader>bo",
-  "<cmd> lua require('vscode').action('workbench.action.closeEditorsInOtherGroups')<CR>"
+  "<leader>j",
+  "<cmd> lua require('vscode').action('workbench.ac/home/will/repos/stoneward/.cacheshowCommands')<CR>"
 )
+-- buffers
+keymap({ "n" }, "<leader>bo", "<cmd> lua require('vscode').action('workbench.actioneOtherEditors')<CR>") -- Closes editors in group
+keymap({ "n" }, "<leader>bD", "<cmd> lua require('vscode').action('workbench.actioneEditorsInOtherGroups')<CR>") -- close editors in other groups
+keymap({ "n" }, "<leader>bl", "<cmd> lua require('vscode').action('workbench.actioneEditorsToTheLeft')<CR>")
+keymap({ "n" }, "<leader>bh", "<cmd> lua require('vscode').action('workbench.actioneEditorsToTheRight')<CR>")
+
 keymap({ "n", "v" }, "gk", "<cmd> lua require('vscode').action('showHover')<CR>")
 keymap({ "n", "v" }, "K", "<cmd> lua require('vscode').action('showHover')<CR>")
+
+-- Code navigation keymaps
+-- TODO: Figure out how the movement works in vscode, and where it's different in neovim
+keymap({ "n", "v" }, "gR", "<cmd> lua require('vscode').action('editor.action.referenceSerch.trigger')<CR>")
+keymap({ "n", "v" }, "gy", "<cmd> lua require('vscode').action('editor.action.peekDeclaration')<CR>")
+keymap({ "n", "v" }, "gY", "<cmd> lua require('vscode').action('editor.action.revealDeclaration')<CR>")
+-- TODO: Add stuff for collapsing/folding various stuff
+
 -- keymap({ "n", "v" }, "L", "<cmd> lua require('vscode').action('workbench.action.nextEditor')<CR>")
 -- keymap({ "n", "v" }, "H", "<cmd> lua require('vscode').action('workbench.action.previousEditor')<CR>")
 -- -- yank to system clipboard
