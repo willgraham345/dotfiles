@@ -27,7 +27,7 @@
 --
 
 if vim.g.vscode then
-  require("user.vscode_keymaps")
+  -- require("user.vscode_keymaps")
   require("config.lazy")
 else
   local FileUtilities = require("utilities.file_utilities")
