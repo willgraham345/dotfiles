@@ -1,8 +1,8 @@
-local keymap = vim.keymap.set
+local keymap = map
 local opts = { noremap = true, silent = true }
 
 -- remap leader key
-vim.keymap.set("n", "<Space>", "<Nop>")
+map("n", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 keymap(
@@ -11,19 +11,15 @@ keymap(
   "<cmd> lua require('vscode').action('workbench.ac/home/will/repos/stoneward/.cacheshowCommands')<CR>"
 )
 -- buffers
-keymap({ "n" }, "<leader>bo", "<cmd> lua require('vscode').action('workbench.actioneOtherEditors')<CR>") -- Closes editors in group
-keymap({ "n" }, "<leader>bD", "<cmd> lua require('vscode').action('workbench.actioneEditorsInOtherGroups')<CR>") -- close editors in other groups
-keymap({ "n" }, "<leader>bl", "<cmd> lua require('vscode').action('workbench.actioneEditorsToTheLeft')<CR>")
-keymap({ "n" }, "<leader>bh", "<cmd> lua require('vscode').action('workbench.actioneEditorsToTheRight')<CR>")
 
 keymap({ "n", "v" }, "gk", "<cmd> lua require('vscode').action('showHover')<CR>")
 keymap({ "n", "v" }, "K", "<cmd> lua require('vscode').action('showHover')<CR>")
 
 -- Code navigation keymaps
 -- TODO: Figure out how the movement works in vscode, and where it's different in neovim
-keymap({ "n", "v" }, "gR", "<cmd> lua require('vscode').action('editor.action.referenceSerch.trigger')<CR>")
-keymap({ "n", "v" }, "gy", "<cmd> lua require('vscode').action('editor.action.peekDeclaration')<CR>")
-keymap({ "n", "v" }, "gY", "<cmd> lua require('vscode').action('editor.action.revealDeclaration')<CR>")
+-- keymap({ "n", "v" }, "gR", "<cmd> lua require('vscode').action('editor.action.referenceSerch.trigger')<CR>")
+-- keymap({ "n", "v" }, "gy", "<cmd> lua require('vscode').action('editor.action.peekDeclaration')<CR>")
+-- keymap({ "n", "v" }, "gY", "<cmd> lua require('vscode').action('editor.action.revealDeclaration')<CR>")
 -- TODO: Add stuff for collapsing/folding various stuff
 
 -- keymap({ "n", "v" }, "L", "<cmd> lua require('vscode').action('workbench.action.nextEditor')<CR>")
@@ -54,16 +50,16 @@ keymap({ "n", "v" }, "gY", "<cmd> lua require('vscode').action('editor.action.re
 -- call vscode commands from neovim
 
 -- general keymaps
-keymap({ "n", "v" }, "<leader>t", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
-keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
--- keymap({ "n", "v" }, "<leader>d", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
-keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
-keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
-keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
-keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
-keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
-keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
-keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+-- keymap({ "n", "v" }, "<leader>t", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
+-- keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+-- -- keymap({ "n", "v" }, "<leader>d", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
+-- keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
+-- keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
+-- keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
+-- keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
+-- keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
+-- keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
+-- keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
 --
 -- harpoon keymaps
 -- keymap({ "n", "v" }, "<leader>H", "<cmd>lua require('vscode').action('vscode-harpoon.addEditor')<CR>")
