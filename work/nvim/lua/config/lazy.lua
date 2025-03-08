@@ -51,3 +51,5 @@ require("lazy").setup({
     },
   },
 })
+
+-- Example from https://github.com/tanvirtin/vgit.nvim
