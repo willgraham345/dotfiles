@@ -19,6 +19,10 @@ chmod u+x nvim-linux-x86_64.appimage
 ./nvim-linux-x86_64.appimage
 ```
 
+### Neovim with VSCode
+
+Keybindings should be set up to be similar, don't worry too much about this. Only use vscode when you really need to.
+
 ## Other dependencies
 
 zoxide
