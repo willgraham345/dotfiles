@@ -145,7 +145,7 @@ alias tree="exa --tree"
 
 ### PATH Edits ###
 # Add .local/bin and rust
-export PATH=$PATH:/home/will/.local/bin:/snap/bin
+export PATH=$PATH:/home/will/.local/bin:/snap/bin:/opt/nvim
 source "$HOME/.cargo/env"
 
 
