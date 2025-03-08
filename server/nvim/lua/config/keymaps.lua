@@ -2,235 +2,216 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
--- use `vim.keymap.set` instead
--- local map = LazyVim.safe_keymap_set
+-- Will keymaps
 local map = vim.keymap.set
-
--- better up/down
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
-
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
--- Move Lines
-map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
-
--- buffers
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", function()
-  Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
-map("n", "<leader>bo", function()
-  Snacks.bufdelete.other()
-end, { desc = "Delete Other Buffers" })
-map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
-
--- Clear search and stop snippet on escape
-map({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  LazyVim.cmp.actions.snippet_stop()
-  return "<esc>"
-end, { expr = true, desc = "Escape and Clear hlsearch" })
-
--- Clear search, diff update and redraw
--- taken from runtime/lua/_editor.lua
-map(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "Redraw / Clear hlsearch / Diff Update" }
-)
-
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-
--- Add undo break-points
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
-
--- save file
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-
---keywordprg
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
-
--- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
-
--- commenting
-map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
--- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-
--- new file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- location list
-map("n", "<leader>xl", function()
-  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "Location List" })
-
--- quickfix list
-map("n", "<leader>xq", function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "Quickfix List" })
-
-map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
-
--- formatting
-map({ "n", "v" }, "<leader>cf", function()
-  LazyVim.format({ force = true })
-end, { desc = "Format" })
-
--- diagnostic
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
-map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-
--- stylua: ignore start
-
--- toggle options
-LazyVim.format.snacks_toggle():map("<leader>uf")
-LazyVim.format.snacks_toggle(true):map("<leader>uF")
-Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
-Snacks.toggle.diagnostics():map("<leader>ud")
-Snacks.toggle.line_number():map("<leader>ul")
-Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" }):map("<leader>uc")
-Snacks.toggle.option("showtabline", { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = "Tabline" }):map("<leader>uA")
-Snacks.toggle.treesitter():map("<leader>uT")
-Snacks.toggle.option("background", { off = "light", on = "dark" , name = "Dark Background" }):map("<leader>ub")
-Snacks.toggle.dim():map("<leader>uD")
-Snacks.toggle.animate():map("<leader>ua")
-Snacks.toggle.indent():map("<leader>ug")
-Snacks.toggle.scroll():map("<leader>uS")
-Snacks.toggle.profiler():map("<leader>dpp")
-Snacks.toggle.profiler_highlights():map("<leader>dph")
-
-if vim.lsp.inlay_hint then
-  Snacks.toggle.inlay_hints():map("<leader>uh")
-end
-
--- lazygit
-if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-  map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
-  map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
-  map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git Log" })
-  map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
-end
-
-map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git Blame Line" })
-map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse (open)" })
-map({"n", "x" }, "<leader>gY", function()
-  Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
-end, { desc = "Git Browse (copy)" })
-
--- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-
--- highlights under cursor
-map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
-
--- LazyVim Changelog
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
-
--- floating terminal
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-/>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
-
--- Terminal Mappings
-map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
-
--- windows
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
-Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ"):map("<M-m>")
-Snacks.toggle.zen():map("<leader>uz")
-
--- tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- native snippets. only needed on < 0.11, as 0.11 creates these by default
-if vim.fn.has("nvim-0.11") == 0 then
-  map("s", "<Tab>", function()
-    return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
-  end, { expr = true, desc = "Jump Next" })
-  map({ "i", "s" }, "<S-Tab>", function()
-    return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
-  end, { expr = true, desc = "Jump Previous" })
-end
-
-
-
-
---- Will edits...
-vim.keymap.set("n", "<M-e>", "<cmd>Neotree focus<cr>", { desc = "Neotree focus" })
-vim.keymap.set("n", "<leader>m", ":wincmd m<CR>", { desc = "Maximize window" })
--- vim.keymap.set("n", "<Space>wz", "<cmd>Toggle zoom mode<cr>", { desc = "Toggle Zoom mode" })
-vim.keymap.set("n", "<M-d>", function()
+map("n", "<M-e>", function()
+  Snacks.explorer({ focus })
+end, { desc = "Neotree focus" })
+map("n", "<M-m>", function()
+  Snacks.zen.zoom()
+end, { desc = "Maximize window" })
+map("n", "<M-d>", function()
   Snacks.bufdelete()
 end, { desc = "Deletes buffer in one command" })
--- vim.keymap.set("n", "<C-w>", ":bdelete<CR>", { silent = true })
+
+-- map("n", "<leader>gs", function()
+--   require("vgit").buffer_hunk_stage()
+-- end, { desc = "" })
+-- map("n", "leader>gr", function()
+--   require("vgit").buffer_hunk_reset()
+-- end, { desc = "" })
+-- map("n", "leader>gp", function()
+--   require("vgit").buffer_hunk_preview()
+-- end, { desc = "" })
+-- map("n", "leader>gf", function()
+--   require("vgit").buffer_diff_preview()
+-- end, { desc = "" })
+-- map("n", "leader>gh", function()
+--   require("vgit").buffer_history_preview()
+-- end, { desc = "" })
+-- map("n", "leader>gu", function()
+--   require("vgit").buffer_reset()
+-- end, { desc = "" })
+-- map("n", "leader>gd", function()
+--   require("vgit").project_diff_preview()
+-- end, { desc = "" })
+-- map("n", "leader>gx", function()
+--   require("vgit").toggle_diff_preference()
+-- end, { desc = "" })
+
+-- Vscode commands
+local function copyToClipBoard()
+  vim.cmd("set clipboard+=unnamedplus")
+  vim.cmd("norm! y")
+  vim.cmd("set clipboard-=unnamedplus")
+  print("copied!")
+end
+
+local function callVSCodeFunction(vsCodeCommand)
+  vim.cmd(vsCodeCommand)
+end
+
+map("i", "<C-a>", function()
+  vim.cmd("norm! ggVG")
+  print("Selected all lines")
+end, { remap = false, desc = "select all lines in buffer" })
+map({ "v", "i" }, "<C-c>", function()
+  copyToClipBoard()
+end, { remap = false, desc = "copy selected text" })
+-- map("i", "<C-l>", "<Del>", { remap = true, desc = "delete one character backward" })
+local function neovimMappings()
+  -- map(
+  --   { "i", "t" },
+  --   "<C-j>",
+  --   "<cmd>ToggleTerm direction=float<CR><Esc>i",
+  --   { desc = "open floating terminal", noremap = false }
+  -- )
+
+  map("i", "<C-d>", function()
+    local new_text = vim.fn.input("Replace with?: ")
+    local cmd = "normal! *Ncgn" .. new_text
+    vim.cmd(cmd)
+  end, { desc = "ctrl+d vs code alternative" })
+
+  map("i", "<C-f>", "<Esc>/", { noremap = false })
+
+  -- Map a keybinding to toggle word wrap
+  map("n", "<leader>ct", function()
+    ToggleWordWrap()
+  end, { noremap = true, silent = true, desc = "toggle word wrap" })
+  map("n", "<leader>bc", "<cmd>BufferLinePick<CR>", { noremap = false, silent = true, desc = "pick buffer" })
+end
+
+local function vscodeMappings()
+  map("n", "<leader>j", function()
+    callVSCodeFunction("call VSCodeCall('workbench.action.showCommands')")
+  end, { noremap = true, silent = true, desc = "Execute command" })
+
+  map("n", "<C-/>", function()
+    callVSCodeFunction("call VSCodeCall('workbench.action.terminal.focus')")
+  end, { noremap = true, silent = true, desc = "toggle terminal" })
+
+  map("t", "<C-l>", function()
+    print("next term")
+    callVSCodeFunction("call VSCodeCall('workbench.action.terminal.focusNextPane')")
+  end, { noremap = true, silent = true, desc = "cycle terminal focus" })
+
+  map("t", "<C-h>", function()
+    print("prev term")
+    callVSCodeFunction("call VSCodeCall('workbench.action.terminal.focusPreviousPane')")
+  end, { noremap = true, silent = true, desc = "cycle terminal focus" })
+
+  map("n", "<leader>cs", function()
+    print("go to symbols in editor")
+    callVSCodeFunction("call VSCodeCall('workbench.action.gotoSymbol')")
+  end, { noremap = true, silent = true, desc = "go to symbols in editor" })
+
+  map("n", "<S-l>", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.action.nextEditor')")
+  end, { noremap = true, desc = "switch between editor to next" })
+
+  map("n", "<S-h>", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.action.previousEditor')")
+  end, { noremap = true, desc = "switch between editor to previous" })
+
+  map("n", "gr", function()
+    callVSCodeFunction("call VSCodeNotify('editor.action.referenceSearch.trigger')")
+  end, { noremap = true, desc = "peek references inside vs code" })
+
+  map("n", "<leader>sd", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.action.problems.focus')")
+  end, { noremap = true, desc = "open problems and errors infos" })
+
+  map("n", "<leader>e", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.files.action.focusFilesExplorer')")
+  end, { noremap = true, desc = "focus to file explorer" })
+
+  map("n", "<leader>fe", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.files.action.focusFilesExplorer')")
+  end, { noremap = true, desc = "focus to file explorer" })
+
+  map("n", "<leader>ff", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.action.quickOpen')")
+  end, { noremap = true, desc = "open files" })
+
+  map("n", "<leader>gg", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.view.scm')")
+  end, { noremap = true, desc = "open git source control" })
+
+  map("n", "<leader>sml", function()
+    callVSCodeFunction("call VSCodeNotify('bookmarks.list')")
+  end, { noremap = true, desc = "open bookmarks list for current files" })
+
+  map("n", "<leader>smL", function()
+    callVSCodeFunction("call VSCodeNotify('bookmarks.listFromAllFiles')")
+  end, { noremap = true, desc = "open bookmarks list for all files" })
+
+  map("n", "<leader>smm", function()
+    callVSCodeFunction("call VSCodeNotify('bookmarks.toggle')")
+  end, { noremap = true, desc = "toggle bookmarks" })
+
+  map("n", "<leader>smd", function()
+    callVSCodeFunction("call VSCodeNotify('bookmarks.clear')")
+  end, { noremap = true, desc = "clear bookmarks from current file" })
+
+  map("n", "<leader>smr", function()
+    callVSCodeFunction("call VSCodeNotify('bookmarks.clearFromAllFiles')")
+  end, { noremap = true, desc = "clear bookmarks from all file" })
+
+  map("n", "<leader>cr", function()
+    callVSCodeFunction("call VSCodeNotify('editor.action.rename')")
+  end, { noremap = true, desc = "rename symbol" })
+
+  map("n", "<leader>ca", function()
+    callVSCodeFunction("call VSCodeNotify('editor.action.quickFix')")
+  end, { noremap = true, desc = "open quick fix in vs code" })
+
+  map("n", "<leader>cA", function()
+    callVSCodeFunction("call VSCodeNotify('editor.action.sourceAction')")
+  end, { noremap = true, desc = "open source Action in vs code" })
+
+  map("n", "<leader>cp", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.panel.markers.view.focus')")
+  end, { noremap = true, desc = "open problems diagnostics" })
+
+  map("n", "<leader>cd", function()
+    callVSCodeFunction("call VSCodeNotify('editor.action.marker.next')")
+  end, { noremap = true, desc = "open problems diagnostics" })
+
+  map({ "v" }, "<C-c>", function()
+    callVSCodeFunction("call VSCodeNotify('editor.action.clipboardCopyAction')")
+    print("📎added to clipboard!")
+  end, { noremap = true, desc = "copy text/add text to clipboard" })
+
+  map({ "n" }, "u", function()
+    callVSCodeFunction("call VSCodeNotify('undo')")
+  end, { noremap = true, desc = "undo changes" })
+
+  map("n", "<C-r>", function()
+    callVSCodeFunction("call VSCodeNotify('redo')")
+  end, { noremap = true, desc = "redo changes" })
+
+  map("n", "<leader>bo", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.actioneOtherEditors')")
+  end, { noremap = true, desc = "Closes other editor groups" })
+
+  map("n", "<leader>bD", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.actioneEditorsInOtherGroups')")
+  end, { noremap = true, desc = "Close editors in other groups" })
+
+  map("n", "<leader>bl", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.actioneEditorsToTheLeft')")
+  end, { noremap = true, desc = "Closes editors to the left" })
+
+  map("n", "<leader>bh", function()
+    callVSCodeFunction("call VSCodeNotify('workbench.action.closeEditorsToTheRight')")
+    print("Closed editors to the right")
+  end, { noremap = true, desc = "Closes editors to the right" })
+end
+
+if vim.g.vscode then
+  print("⚡connected to neovim!💯‼️🤗😎")
+  vscodeMappings()
+else
+  neovimMappings()
+end
