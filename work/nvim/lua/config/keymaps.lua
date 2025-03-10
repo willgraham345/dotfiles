@@ -4,7 +4,9 @@
 
 -- Will keymaps
 local map = vim.keymap.set
-map("n", "<M-e>", "<cmd>Explorer Snacks<CR>", { desc = "Neotree focus" })
+map("n", "<M-e>", function()
+  Snacks.explorer({ focus })
+end, { desc = "Neotree focus" })
 map("n", "<M-m>", function()
   Snacks.zen.zoom()
 end, { desc = "Maximize window" })

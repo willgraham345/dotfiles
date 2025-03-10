@@ -1,3 +1,4 @@
+-- TODO: Remove this file, and all keymaps assocaited with vscode. Will keep them separate for now...
 local keymap = map
 local opts = { noremap = true, silent = true }
 
