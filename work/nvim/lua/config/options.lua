@@ -6,7 +6,7 @@ vim.g.snacks_animate = false
 vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_cmp = "nvim.cmp"
 -- vim.g.lazygit_floating_window_scaling_factor = 0.95 -- scaling factor for floating window
--- local opt = vim.opt
+local opt = vim.opt
 
 -- Commands to run
 -- vim.cmd("colorscheme onedark_vivid")
