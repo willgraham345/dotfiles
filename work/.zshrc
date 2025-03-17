@@ -130,8 +130,8 @@ alias z....="cd ../../../.."
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
-export CC=clang
-export CCX=clang++
+export CC=gcc
+export CCX=g++
 
 # fd-find stuff
 export FZF_DEFAULT_COMMAND='fdfind --type file --no-hidden'
@@ -156,7 +156,8 @@ wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
 
 ### PATH Edits ###
 # Add .local/bin and rust
-export PATH=$PATH:/home/will/.local/bin:/snap/bin:/opt/nvim
+export PATH=/home/will/.local/bin:/snap/bin:/opt/nvim:$PATH
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source "$HOME/.cargo/env"
 
 

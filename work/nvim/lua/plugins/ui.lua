@@ -1,4 +1,13 @@
 return {
+  -- {
+  --   "s1n7ax/nvim-window-picker",
+  --   name = "window-picker",
+  --   event = "VeryLazy",
+  --   version = "2.*",
+  --   config = function()
+  --     require("window-picker").setup()
+  --   end,
+  -- },
   {
     "bufferline.nvim",
     opts = {
@@ -38,6 +47,17 @@ return {
   {
     "snacks.nvim",
     opts = {
+      explorer = {
+        layout = {
+          preset = "sidebar",
+          preview = true,
+          auto_close = true,
+        },
+      },
+      picker = {
+        hidden = true,
+        ignored = true,
+      },
       dashboard = {
         preset = {
           pick = function(cmd, opts)

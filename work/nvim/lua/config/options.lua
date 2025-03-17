@@ -8,6 +8,19 @@ vim.g.lazyvim_cmp = "nvim.cmp"
 -- vim.g.lazygit_floating_window_scaling_factor = 0.95 -- scaling factor for floating window
 local opt = vim.opt
 
+-- local neoget = require("neogit")
+-- neogit.setup{
+--
+-- }
+--   {
+--   "folke/which-key.nvim",
+--   opts = function(_, opts)
+--     opts.icons = {
+--       rules = {
+--       { pattern = "neogit"}
+--       }
+--     }
+-- }
 -- Commands to run
 -- vim.cmd("colorscheme onedark_vivid")
 -- TODO: Figure out how to add a different color for visual mode
