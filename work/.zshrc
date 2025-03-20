@@ -126,12 +126,13 @@ alias z....="cd ../../../.."
 # TODO: fix the following line to jump into directory of a symlink
 # alias symdir='$(dirname $(readlinke "$1"))'
 
-# default editors
+# default editors and compilers
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
 export CC=gcc
 export CCX=g++
+export CMAKE_GENERATOR="Ninja"
 
 # fd-find stuff
 export FZF_DEFAULT_COMMAND='fdfind --type file --no-hidden'
