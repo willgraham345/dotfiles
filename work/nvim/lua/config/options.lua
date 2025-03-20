@@ -5,6 +5,7 @@
 vim.g.snacks_animate = false
 vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_cmp = "nvim.cmp"
+vim.opt.relativenumber = false
 -- vim.g.lazygit_floating_window_scaling_factor = 0.95 -- scaling factor for floating window
 local opt = vim.opt
 
@@ -22,5 +23,5 @@ local opt = vim.opt
 --     }
 -- }
 -- Commands to run
--- vim.cmd("colorscheme onedark_vivid")
+-- vim.cmd("colorscheme onedark")
 -- TODO: Figure out how to add a different color for visual mode

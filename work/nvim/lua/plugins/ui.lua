@@ -14,10 +14,10 @@ return {
       options = {
         separator_style = "thin", -- Made this as small as possible
         max_name_length = 30, --Increased this, most files are too short for me
-    -- stylua: ignore
-    close_command = function(n) Snacks.bufdelete(n) end,
-    -- stylua: ignore
-    right_mouse_command = function(n) Snacks.bufdelete(n) end,
+        -- stylua: ignore
+        close_command = function(n) Snacks.bufdelete(n) end,
+        -- stylua: ignore
+        right_mouse_command = function(n) Snacks.bufdelete(n) end,
         diagnostics = "nvim_lsp",
         always_show_bufferline = false,
         diagnostics_indicator = function(_, _, diag)
