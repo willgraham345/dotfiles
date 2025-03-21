@@ -21,6 +21,7 @@
 [core]
 	editor = code --wait
   pager = delta
+	excludesfile = /home/will/.gitignore
 [commit]
 	gpgsign = true
 [rebase]
