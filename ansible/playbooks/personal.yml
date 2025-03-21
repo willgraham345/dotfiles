@@ -1,0 +1,11 @@
+---
+- name: Personal setup
+  hosts: localhost
+  become: yes
+  roles:
+    - role: dotfile_setup
+
+#TODO: Add in installer role
+#TODO: Add in nvim setup
+#TODO: Add in dotfiles 
+

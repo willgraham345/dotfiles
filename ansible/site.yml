@@ -1,0 +1,22 @@
+---
+- name: Prompt user for installation choice
+  hosts: localhost
+  gather_facts: no
+  vars_prompt:
+    - name: selected_option
+      prompt: "Select an installation option: (1) Personal, (2) Work, (3) Server"
+      private: no
+
+  tasks:
+    #TODO: Check if this thing works at all, it came straight from ChatGPT
+    - name: Include the appropriate playbook based on selection
+      ansible.builtin.include_playbook: "{{ item }}"
+      loop:
+        - "personal.yml"
+        - "work.yml"
+        - "server.yml"
+      when: 
+        - (selected_option == "1" and item == "personal.yml") or
+          (selected_option == "2" and item == "work.yml") or
+          (selected_option == "3" and item == "server.yml")
+

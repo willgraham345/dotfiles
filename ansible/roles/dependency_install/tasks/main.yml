@@ -1,0 +1,81 @@
+---
+- name: Install essential packages on Ubuntu
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+
+    - name: Install core packages with specific versions
+      apt:
+        name:
+          - zoxide
+          - bat
+          - fd-find
+          - silversearcher-ag
+          - fzf
+          - git-delta
+          - ripgrep
+          - neovim
+          - npm
+          - tmux
+          - zsh
+        state: present
+        force_apt_get: yes
+        update_cache: yes
+
+    - name: Install LazyGit with specific version
+      shell: |
+        add-apt-repository -y ppa:lazygit-team/release
+        apt update && apt install -y lazygit=$(apt-cache madison lazygit | awk '{print $3}' | head -n 1)
+      args:
+        executable: /bin/bash
+
+    - name: Install LazyDocker with latest version
+      shell: |
+        curl -fsSL https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_$(uname -s)_$(uname -m).tar.gz | tar -xz -C /usr/local/bin lazydocker
+      args:
+        executable: /bin/bash
+
+    - name: Install Docker dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      shell: |
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      args:
+        executable: /bin/bash
+
+    - name: Add Docker repository
+      shell: |
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      args:
+        executable: /bin/bash
+
+    - name: Install Docker with specific version
+      apt:
+        name:
+          - docker-ce=$(apt-cache madison docker-ce | awk '{print $3}' | head -n 1)
+          - docker-ce-cli=$(apt-cache madison docker-ce-cli | awk '{print $3}' | head -n 1)
+          - containerd.io=$(apt-cache madison containerd.io | awk '{print $3}' | head -n 1)
+        state: present
+        update_cache: yes
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Change default shell to zsh
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: /bin/zsh
+
