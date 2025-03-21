@@ -1,0 +1,7 @@
+---
+- name: Work setup
+  hosts: localhost
+  become: yes
+  roles:
+    - role: dotfile_setup
+# TODO: Add in a github setup
