@@ -14,7 +14,7 @@
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [core]
-	editor = code --wait
+	pager = delta
 [rebase]
 	autosquash = true
 
