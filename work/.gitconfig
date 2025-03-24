@@ -20,14 +20,13 @@
 	cmd = code --wait --diff $LOCAL $REMOTE
 [core]
 	editor = code --wait
-  pager = delta
-	excludesfile = /home/will/.gitignore
+	pager = delta
 [commit]
 	gpgsign = true
 [rebase]
 	autosquash = true
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [delta]
-  navigate = true
-  side-by-side = true
+	navigate = true
+	side-by-side = true
