@@ -1,14 +1,23 @@
 return {
+  -- {
+  --   "s1n7ax/nvim-window-picker",
+  --   name = "window-picker",
+  --   event = "VeryLazy",
+  --   version = "2.*",
+  --   config = function()
+  --     require("window-picker").setup()
+  --   end,
+  -- },
   {
     "bufferline.nvim",
     opts = {
       options = {
         separator_style = "thin", -- Made this as small as possible
         max_name_length = 30, --Increased this, most files are too short for me
-    -- stylua: ignore
-    close_command = function(n) Snacks.bufdelete(n) end,
-    -- stylua: ignore
-    right_mouse_command = function(n) Snacks.bufdelete(n) end,
+        -- stylua: ignore
+        close_command = function(n) Snacks.bufdelete(n) end,
+        -- stylua: ignore
+        right_mouse_command = function(n) Snacks.bufdelete(n) end,
         diagnostics = "nvim_lsp",
         always_show_bufferline = false,
         diagnostics_indicator = function(_, _, diag)
@@ -24,9 +33,9 @@ return {
             highlight = "Directory",
             text_align = "left",
           },
-          -- {
-          --   filetype = "snacks_layout_box",
-          -- },
+          {
+            filetype = "snacks_layout_box",
+          },
         },
         ---@param opts bufferline.IconFetcherOpts
         get_element_icon = function(opts)
@@ -38,6 +47,17 @@ return {
   {
     "snacks.nvim",
     opts = {
+      explorer = {
+        layout = {
+          preset = "sidebar",
+          preview = true,
+          auto_close = true,
+        },
+      },
+      picker = {
+        hidden = true,
+        ignored = true,
+      },
       dashboard = {
         preset = {
           pick = function(cmd, opts)
@@ -67,5 +87,15 @@ return {
         },
       },
     },
+  },
+  {
+    "ellisonleao/glow.nvim",
+    config = true,
+    cmd = "Glow",
+    config = function()
+      require("glow").setup({
+        pager = true,
+      })
+    end,
   },
 }

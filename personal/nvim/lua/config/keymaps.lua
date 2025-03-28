@@ -2,8 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+------------------
 -- Will keymaps
+------------------
 local map = vim.keymap.set
+map("n", "<M-q>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
+map("n", "<M-w>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
 map("n", "<M-e>", function()
   Snacks.explorer({ focus })
 end, { desc = "Neotree focus" })
@@ -13,32 +17,40 @@ end, { desc = "Maximize window" })
 map("n", "<M-d>", function()
   Snacks.bufdelete()
 end, { desc = "Deletes buffer in one command" })
+map("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { noremap = true, desc = "Starts Fugitive Diff window" })
+map("n", "<leader>xc", function()
+  vim.cmd("command! ClearQuickfixList cexpr []")
+end, { noremap = true, desc = "Clear the quickfix list" })
+-- Open compiler
+map("n", "<C-ScrollWheelDown>", "5zl", { desc = "Scroll right" })
+map("n", "<C-ScrollWheelUp>", "5zh", { desc = "Scroll left" })
+vim.api.nvim_set_keymap("n", "<F6>", "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
+map("n", "<leader>cj", function()
+  local schema = require("yaml-companion").get_buf_schema(0)
+  if schema.result[1].name == "none" then
+    return ""
+  end
+  return schema.result[1].name
+end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
+map("n", "<leader>cJ", function()
+  require("yaml-companion").open_ui_select()
+end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
 
--- map("n", "<leader>gs", function()
---   require("vgit").buffer_hunk_stage()
--- end, { desc = "" })
--- map("n", "leader>gr", function()
---   require("vgit").buffer_hunk_reset()
--- end, { desc = "" })
--- map("n", "leader>gp", function()
---   require("vgit").buffer_hunk_preview()
--- end, { desc = "" })
--- map("n", "leader>gf", function()
---   require("vgit").buffer_diff_preview()
--- end, { desc = "" })
--- map("n", "leader>gh", function()
---   require("vgit").buffer_history_preview()
--- end, { desc = "" })
--- map("n", "leader>gu", function()
---   require("vgit").buffer_reset()
--- end, { desc = "" })
--- map("n", "leader>gd", function()
---   require("vgit").project_diff_preview()
--- end, { desc = "" })
--- map("n", "leader>gx", function()
---   require("vgit").toggle_diff_preference()
--- end, { desc = "" })
+-- Redo last selected option
+vim.api.nvim_set_keymap(
+  "n",
+  "<S-F6>",
+  "<cmd>CompilerStop<CR>" -- (Optional, to dispose all tasks before redo)
+    .. "<cmd>CompilerRedo<CR>",
+  { noremap = true, silent = true }
+)
 
+-- Toggle compiler results
+vim.api.nvim_set_keymap("n", "<S-F7>", "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
+
+------------------
+-- Removed keymaps
+------------------
 -- Vscode commands
 local function copyToClipBoard()
   vim.cmd("set clipboard+=unnamedplus")

@@ -1,0 +1,12 @@
+gui:
+  scrollHeight: 20
+
+git:
+  paging:
+    # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+    colorArg: never
+    pager: delta --dark --paging=never --syntax-theme base16-256 -s
+  mainBranches:
+    - master
+    - main
+    - develop

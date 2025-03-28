@@ -2,8 +2,12 @@
 	name = Will Graham
 	email = will.graham@sdl.usu.edu
 	signingkey = 0CBBB7AB5017FE81169D3025CDE4078BBAC821F8
+; [diff]
+; 	tool = vscode
 [diff]
-	tool = vscode
+    tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -d $LOCAL $REMOTE"
 [merge]
 	tool = vscode
 [alias]
