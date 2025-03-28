@@ -20,7 +20,7 @@ return {
       },
       outline_items = {
         show_symbol_lineno = true,
-        show_symbol_details = false,
+        show_symbol_details = true,
       },
     }
 

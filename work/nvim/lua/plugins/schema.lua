@@ -26,6 +26,30 @@ return {
           name = "Dockerd",
           uri = "https://json.schemastore.org/dockerd.json",
         },
+        {
+          name = "Ansible playbook",
+          uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook",
+        },
+        {
+          name = "Ansible tasks",
+          uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks",
+        },
+        {
+          name = "Ansible inventory",
+          uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/inventory.json",
+        },
+        {
+          name = "Ansible lint",
+          uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json",
+        },
+        {
+          name = "Ansible role arg spec",
+          uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/role-arg-spec.json",
+        },
+        {
+          name = "Ansible vars",
+          uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json",
+        },
       },
 
       -- Pass any additional options that will be merged in the final LSP config
@@ -51,6 +75,6 @@ return {
     require("lspconfig")["yamlls"].setup(cfg)
 
     -- :Telescope yaml_schema
-    require("telescope").load_extension("yaml_schema")
+    -- require("telescope").load_extension("yaml_schema")
   end,
 }

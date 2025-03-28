@@ -35,8 +35,15 @@ return {
       -- directly inside the plugin declaration.
       -- vim.g.sonokai_style = "atlantis"
       vim.g.sonokai_enable_italic = true
-      vim.cmd.colorscheme("sonokai")
     end,
+  },
+  {
+    "sickill/vim-monokai",
+    lazy = false,
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd("colorscheme monokai")
+    -- end,
   },
 }
 

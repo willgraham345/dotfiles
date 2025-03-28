@@ -10,6 +10,11 @@ vim.g.lazygit_floating_window_scaling_factor = 0.95 -- scaling factor for floati
 local opt = vim.opt
 vim.opt.expandtab = false
 vim.opt.tabstop = 4
+opt.mouse = "a"
+opt.sidescroll = 1
+
+vim.opt.pumblend = 0 -- Turns off transparency for windows
+vim.opt.winblend = 0
 
 -- Commands to run
 -- TODO: Figure out how to add a different color for visual mode
