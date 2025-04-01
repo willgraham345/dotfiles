@@ -4,8 +4,8 @@ gui:
 git:
   paging:
     # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
-    colorArg: never
-    pager: delta --dark --paging=never --syntax-theme base16-256 -s
+    colorArg: always
+    pager: delta --dark --paging=never
   mainBranches:
     - master
     - main

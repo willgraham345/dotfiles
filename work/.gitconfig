@@ -23,7 +23,7 @@
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [core]
-	editor = code --wait
+	editor = nvim
 	pager = delta
 [commit]
 	gpgsign = true
@@ -33,4 +33,8 @@
 	diffFilter = delta --color-only
 [delta]
 	navigate = true
-	side-by-side = true
+[pager]
+  blame = delta
+  diff = delta
+  reflog = delta
+  show = delta
