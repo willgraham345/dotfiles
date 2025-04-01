@@ -45,58 +45,83 @@ return {
     },
   },
   {
-    "snacks.nvim",
-    opts = {
-      explorer = {
-        layout = {
-          preset = "sidebar",
-          preview = true,
-          auto_close = true,
-        },
-      },
-      picker = {
-        hidden = true,
-        ignored = true,
-      },
-      dashboard = {
-        preset = {
-          pick = function(cmd, opts)
-            return LazyVim.pick(cmd, opts)()
-          end,
-          header = [[
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function(_, opts)
+      local logo = [[
 	  ██╗    ██╗██╗██╗     ██╗      ██╗   ██╗██╗███╗   ███╗
 	  ██║    ██║██║██║     ██║      ██║   ██║██║████╗ ████║
 	  ██║ █╗ ██║██║██║     ██║█████╗██║   ██║██║██╔████╔██║
 	  ██║███╗██║██║██║     ██║╚════╝╚██╗ ██╔╝██║██║╚██╔╝██║
 	  ╚███╔███╔╝██║███████╗███████╗  ╚████╔╝ ██║██║ ╚═╝ ██║
 	  ╚══╝╚══╝ ╚═╝╚══════╝╚══════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-]],
-       -- ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-       -- ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    
-       -- ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       
-       -- ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z         
-       -- ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║           
-       -- ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝           
-       -- stylua: ignore
-       ---@type snacks.dashboard.Item[]
-       keys = {
-         { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-         { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-         { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-         { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-         { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-         { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-         { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
-         { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-         { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-       },
-        },
+	  ]]
+
+      logo = string.rep("\n", 8) .. logo .. "\n\n"
+      opts.config.header = vim.split(logo, "\n")
+      opts.theme = "doom"
+
+      -- local opts = {
+      -- config = {
+      -- picker = {
+      --   hidden = true,
+      --   ignored = true,
+      -- },
+      -- header = vim.split(logo, "\n"),
+      -- center = {
+      --   { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+      --   { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+      --   { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+      --   { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+      --   {
+      --     icon = " ",
+      --     key = "c",
+      --     desc = "Config",
+      --     action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+      --   },
+      --   { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+      --   { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+      --   { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+      --   { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+      -- },
+      -- footer = function()
+      --   local stats = require("lazy").stats()
+      --   local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      --   return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+      -- end,
+      -- },
+      -- }
+      -- for _, button in ipairs(opts.config.center) do
+      --   button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+      --   button.key_format = "  %s"
+      -- end
+      --
+      -- if vim.o.filetype == "lazy" then
+      --   vim.api.nvim_create_autocmd("WinClosed", {
+      --     pattern = tostring(vim.api.nvim_get_current_win()),
+      --     once = true,
+      --     callback = function()
+      --       vim.schedule(function()
+      --         vim.api.nvim_exec_autocmds("UIEnter", { group = "dashboard" })
+      --       end)
+      --     end,
+      --   })
+      -- end
+    end,
+  },
+  {
+    "folke/snacks.nvim",
+    lazy = false,
+    opts = {
+      picker = {
+        hidden = true,
+        ignored = true,
       },
     },
   },
   {
     "ellisonleao/glow.nvim",
-    config = true,
+    -- config = true,
     cmd = "Glow",
     config = function()
       require("glow").setup({
