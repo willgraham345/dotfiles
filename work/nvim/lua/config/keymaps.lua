@@ -39,3 +39,6 @@ map("n", "<leader>cP", "<cmd>PeekOpen<CR>", { desc = "Markdown PeekOpen" })
 
 vim.api.nvim_set_keymap("n", "<S-F6>", "<cmd>OverseerRun CMake Configure<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-F7>", "<cmd>OverseerRun CMake Build<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "]<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
+vim.keymap.set("n", "[<S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
