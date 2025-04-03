@@ -18,9 +18,7 @@ map("n", "<M-d>", function()
   Snacks.bufdelete()
 end, { desc = "Deletes buffer in one command" })
 map("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { noremap = true, desc = "Starts Fugitive Diff window" })
-map("n", "<leader>xc", function()
-  vim.cmd("command! ClearQuickfixList cexpr []")
-end, { noremap = true, desc = "Clear the quickfix list" })
+map("n", "<leader>xc", "<cmd>cexpr []<CR>", { noremap = true, desc = "Clear the quickfix list" })
 -- Open compiler
 map("n", "<C-ScrollWheelDown>", "5zl", { desc = "Scroll right" })
 map("n", "<C-ScrollWheelUp>", "5zh", { desc = "Scroll left" })
@@ -42,3 +40,6 @@ vim.api.nvim_set_keymap("n", "<S-F7>", "<cmd>OverseerRun CMake Build<CR>", { nor
 
 vim.keymap.set("n", "]<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
 vim.keymap.set("n", "[<S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
+vim.keymap.set("n", "<leader>s/", LazyVim.pick("files", { root = false }), { desc = "Grep (cwd)", noremap = true })
+vim.keymap.del("n", "<leader>sg")
+vim.keymap.del("n", "<leader>sG")

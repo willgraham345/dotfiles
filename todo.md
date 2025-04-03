@@ -10,6 +10,7 @@
     (<https://www.pgadmin.org/download/pgadmin-4-apt/>)
 - [x] Try octo
   - Octo only works for github
+- [x] Add [tabby](https://github.com/nanozuki/tabby.nvim) for tabs rather than buffers...
 
 # TODO
 
@@ -17,7 +18,7 @@
 - [ ] Set up LuaSnip to add in VSCode snippets, and especially mermaid snippets
 - [ ] Add in support for Obsidian from neovim
 
-- [ ] Overseer setup
+- [ ] Overseer task setup
   - [ ] CMake configure && build
   - [ ] Run test...?
 - [ ] Set up cmp to handle autocompletion/hovering
@@ -31,4 +32,6 @@
 - [ ] Fix the outline not seeing gtest functions.
 - [ ] Markdown rendering
   - [ ] Showing bullet points as different when I'm on that particular bullet point
-- [ ] Add [tabby](https://github.com/nanozuki/tabby.nvim) for tabs rather than buffers...
+- [ ] Add keybind that lets me vertically split from fzf
+- [ ] Make the cwd and root directory snacks explorer preview make some sense
+  - Maybe make the root alt+e and cwd alt+E?

@@ -157,7 +157,7 @@ wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
 
 ### PATH Edits ###
 # Add .local/bin and rust
-export PATH=/home/will/.local/bin:/snap/bin:/opt/nvim:$PATH
+export PATH=/home/will/.local/bin:/opt/nvim:$PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source "$HOME/.cargo/env"
 
