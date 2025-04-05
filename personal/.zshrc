@@ -82,8 +82,9 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 ### Aliases ###
 alias ls='ls --color'
 alias vim='nvim'
+alias c='clear'
 alias fd='fdfind'
-alias bc='batcat'
+alias cat='batcat'
 # Git 
 alias ga="git add ."
 alias gswl="git switch -"
@@ -126,12 +127,13 @@ alias z....="cd ../../../.."
 # TODO: fix the following line to jump into directory of a symlink
 # alias symdir='$(dirname $(readlinke "$1"))'
 
-# default editors
+# default editors and compilers
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
-export CC=clang
-export CCX=clang++
+export CC=gcc
+export CCX=g++
+export CMAKE_GENERATOR="Ninja"
 
 # fd-find stuff
 export FZF_DEFAULT_COMMAND='fdfind --type file --no-hidden'
@@ -145,7 +147,8 @@ alias tree="exa --tree"
 
 ### PATH Edits ###
 # Add .local/bin and rust
-export PATH=$PATH:/home/will/.local/bin:/snap/bin:/opt/nvim
+export PATH=/home/will/.local/bin:/opt/nvim:$PATH
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source "$HOME/.cargo/env"
 
 

@@ -18,4 +18,5 @@ if vim.fn.argc() == 1 then
 end
 require("config.lazy")
 -- Set colorscheme
-vim.cmd("colorscheme onedark")
+
+vim.cmd("colorscheme sonokai")

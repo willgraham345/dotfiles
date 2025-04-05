@@ -1,4 +1,22 @@
-return {}
+return {
+  {
+    { "nvim-neotest/neotest-plenary" },
+    { "alfaix/neotest-gtest" },
+    {
+      "nvim-neotest/neotest",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "alfaix/neotest-gtest",
+      },
+      opts = {
+        adapters = { "neotest-plenary", "neotest-gtest" },
+        status = { virtual_text = true },
+      },
+    },
+  },
+}
+
+-- Old tries
 -- return {
 --   "nvim-neotest/neotest",
 --   lazy = false,

@@ -5,7 +5,7 @@
 vim.g.snacks_animate = false
 vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_cmp = "nvim.cmp"
-vim.g.mkdp_theme = "dark"
+vim.g.mkdp_theme = "light"
 vim.g.auto_close = 0
 vim.g.mkdp_update_time = 250
 vim.opt.relativenumber = false

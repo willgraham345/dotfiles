@@ -1,0 +1,489 @@
+{
+    "Rounded edges node": {
+        "prefix": "node:rounded",
+        "body": [
+            "$1(\"$2\")"
+        ],
+        "description": "Rounded edges node"
+    },
+    "Stadium-shaped node": {
+        "prefix": "node:stadium",
+        "body": [
+            "$1([\"$2\"])"
+        ],
+        "description": "Stadium-shaped node"
+    },
+    "Subroutine shape node": {
+        "prefix": "node:subroutine",
+        "body": [
+            "$1[[\"$2\"]]"
+        ],
+        "description": "Subroutine shape node"
+    },
+    "Cylindrical shape node": {
+        "prefix": "node:cylinder",
+        "body": [
+            "$1[(\"$2\")]"
+        ],
+        "description": "Cylindrical node"
+    },
+    "Circle node": {
+        "prefix": "node:circle",
+        "body": [
+            "$1((\"$2\"))"
+        ],
+        "description": "Circle node"
+    },
+    "Asymmetric node": {
+        "prefix": "node:asymmetric",
+        "body": [
+            "$1>\"$2\"]"
+        ],
+        "description": "Asymmetric node"
+    },
+    "Rhombus node": {
+        "prefix": "node:rhombus",
+        "body": [
+            "$1{\"$2\"}"
+        ],
+        "description": "Rhombus node"
+    },
+    "Hexagon node": {
+        "prefix": "node:hexagon",
+        "body": [
+            "$1{{\"$2\"}}"
+        ],
+        "description": "Hexagon node"
+    },
+    "Parallegram node": {
+        "prefix": "node:parallegram",
+        "body": [
+            "$1[/\"$2\"/]"
+        ],
+        "description": "Parallegram node"
+    },
+    "Alt parallegram node": {
+        "prefix": "node:parallegram-alt",
+        "body": [
+            "$1[\\\"$2\"\\]"
+        ],
+        "description": "Alt Parallegram node"
+    },
+    "Trapezoid node": {
+        "prefix": "node:trapezoid",
+        "body": [
+            "$1[/\"$2\"\\]"
+        ],
+        "description": "Trapezoid node"
+    },
+    "Alt Trapezoid node": {
+        "prefix": "node:trapezoid-alt",
+        "body": [
+            "$1[\\\"$2\"/]"
+        ],
+        "description": "Alt Trapezoid node"
+    },
+    "Link": {
+        "prefix": "flowChart link:normal",
+        "body": [
+            "$1 --${2|>,-|} $3"
+        ],
+        "description": "Link, you must specify arrow type"
+    },
+    "Link with text": {
+        "prefix": "flowChart link:normal-with-text",
+        "body": [
+            "$1 --${2:text} --${3|>,-|} $4"
+        ],
+        "description": "Link with text, you must specify arrow type"
+    },
+    "Link dotted": {
+        "prefix": "flowChart link:dotted",
+        "body": [
+            "$1 -.-${2|>,-|} ${3}"
+        ],
+        "description": "Link with text, you must specify arrow type"
+    },
+
+    "Dotted link with text": {
+        "prefix": "flowChart link:dotted-with-text",
+        "body": [
+            "$1 -.${2:text} .-${3|>,-|} $4"
+        ],
+        "description": "Link with text, you must specify arrow type"
+    },
+    "Bidirectional link": {
+        "prefix": "flowChart link:bidirectional",
+        "body": [
+            "$1 $2--$3 $4"
+        ],
+        "description": "Bidirectional link, you must specify arrow type"
+    },
+    "Bidirectional link with text": {
+        "prefix": "flowChart link:bidirectional with text",
+        "body": [
+            "$1 $2--$3|$4| $5"
+        ],
+        "description": "Bidirectional link with text, you must specify arrow type"
+    },
+
+    "Link invisible": {
+        "prefix": "flowChart link:invisible",
+        "body": [
+            "${1:node1} ~~~ ${2:node2}"
+        ],
+        "description": "Useful for placement"
+    },
+    // Inheritance link
+    "Inheritance link": {
+        "prefix": "classDiagram link:inheritance",
+        "body": 
+            "${1:derived} <|-- ${2:base}: inheritance"
+        ],
+        "description": "Inheritance link (solid line with closed arrow)"
+    },
+
+    // Composition link
+    "Composition link": {
+        "prefix": "classDiagram link:composition",
+        "body": [
+            "${1:composer} *-- ${2:composed}: composition"
+        ],
+        "description": "Composition link (solid line with filled diamond)"
+    },
+
+    // Aggregation link
+    "Aggregation link": {
+        "prefix": "classDiagram link:aggregation",
+        "body": [
+            "${1:aggregator} o-- ${2:aggregate}: aggregation"
+        ],
+        "description": "Aggregation link (solid line with open diamond)"
+    },
+
+    // Association link
+    "Association link": {
+        "prefix": "classDiagram link:association",
+        "body": [
+            "{$1:associated_with} <-- ${2:associator}: ${3:association}"
+        ],
+        "description": "Association link (solid line with open arrow)"
+    },
+
+    // Solid link
+    "Solid link": {
+        "prefix": "classDiagram link:solid",
+        "body": [
+            "$1 <-- $2 : ${3:solid}"
+        ],
+        "description": "Basic solid link (no arrow)"
+    },
+
+    // Dependency link
+    "Dependency link": {
+        "prefix": "classDiagram link:dependency",
+        "body": [
+            "${1:dependency} <.. ${2:depender} : ${3}"
+        ],
+        "description": "Dependency link (dashed line with open arrow)"
+    },
+
+    // Realization link
+    "Realization link": {
+        "prefix": "classDiagram link:realization",
+        "body": [
+            "${1:realization} <|.. ${2:realizes} : ${3:realization}"
+        ],
+        "description": "Realization link (dashed line with closed arrow)"
+    },
+
+    // Dashed link
+    "Dashed link": {
+        "prefix": "classDiagram link:dashed",
+        "body": [
+            "$1 .. $2: ${3:message}"
+        ],
+        "description": "Basic dashed link (no arrow)"
+    },
+       // Note for a specific class
+    "Class-specific note": {
+        "prefix": "note for class in classDiagram",
+        "body": [
+            "note for ${1:class} \"${2:note}\"",
+        ],
+        "description": "Note attached to a specific class"
+    },
+    "Note for flowchart": {
+        "prefix": "note for flowchart",
+        "body": [
+            "note_for_${1:node}[\"${2:|`,|}${3:note}${2}\"]",
+            "${1}-.-note_for_${1:node}"
+        ],
+        "description": "Note attached to a specific class"
+    },
+
+    // General note
+    "General note": {
+        "prefix": "note:general",
+        "body": [
+            "note \"$1\""
+        ],
+        "description": "General note (not attached to any class)"
+    },
+    // Markdown legend for link types
+    "Link type legend (Markdown)": {
+        "prefix": "legend:markdown",
+        "body": [
+            "| Link Type       | Symbol     | Description                     |",
+            "|-----------------|------------|---------------------------------|",
+            "| Inheritance     | --\\|>      | Solid line with closed arrow    |",
+            "| Composition     | --*        | Solid line with filled diamond  |",
+            "| Aggregation     | --o        | Solid line with open diamond    |",
+            "| Association     | -->        | Solid line with open arrow      |",
+            "| Solid Link      | --         | Basic solid link (no arrow)     |",
+            "| Dependency      | ..>        | Dashed line with open arrow     |",
+            "| Realization     | ..\\|>      | Dashed line with closed arrow   |",
+            "| Dashed Link     | ..         | Basic dashed link (no arrow)    |"
+        ],
+        "description": "Markdown table legend for all class diagram link types"
+    },
+    "Subgraph": {
+        "prefix": "flowchart-subgraph",
+        "body": [
+            "subgraph $1[\"$2\"]",
+            "end"
+        ],
+        "description": "flowchart version of namespace"
+    },
+    "Namespace": {
+        "prefix": "classDiagram namespace",
+        "body": [
+            "namespace ${1:name} {",
+            "$0",
+            "}",
+        ],
+        "description": "classDiagram version of subgraph"
+    }
+
+    "BR": {
+        "prefix": "html:br",
+        "body": [
+            "<br>"
+        ],
+        "description": "Newline of HTML"
+    },
+    // Title Snippet
+    "Diagram Title": {
+        "prefix": "title",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---"
+        ],
+        "description": "Inserts a title for the diagram in Mermaid format"
+    },
+
+    // Class Diagram snippet
+    "Class Diagram": {
+        "prefix": "new diagram - classDiagram",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "classDiagram",
+            "\tdirection ${2|TD,LR,RL,BT|}",
+            "\t$0",
+            "%% Links",
+            "%% Notes",
+        ],
+        "description": "Initializes a Mermaid class diagram with a title"
+    },
+
+    // Flowchart Diagram snippet
+    "Flowchart Diagram": {
+        "prefix": "new diagram - flowchart",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "graph ${2|TD,LR,RL,BT|}",
+            "\t$3",
+            "%% Links",
+            "%% Notes",
+        ],
+        "description": "Initializes a Mermaid flowchart with a title (options: 'TB', 'LR', etc.)"
+    },
+
+    // Sequence Diagram snippet
+    "Sequence Diagram": {
+        "prefix": "new diagram - sequenceDiagram",
+        "body": [
+                        "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "sequenceDiagram",
+            "\t$2"
+        ],
+        "description": "Initializes a Mermaid sequence diagram with a title"
+    },
+
+    // Gantt Diagram snippet
+    "Gantt Diagram": {
+        "prefix": "new diagram - gantt",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "gantt",
+            "\tdateFormat ${2:YYYY-MM-DD}",
+            "\t$3"
+        ],
+        "description": "Initializes a Mermaid Gantt chart with a title and date format"
+    },
+
+    // Entity-Relationship Diagram snippet
+    "ER Diagram": {
+        "prefix": "new diagram - er entity-relationship",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "erDiagram",
+            "\t$2"
+        ],
+        "description": "Initializes a Mermaid ER (Entity-Relationship) diagram with a title"
+    },
+
+    // Pie Chart snippet
+    "Pie Chart": {
+        "prefix": "new diagram - pie",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "pie",
+            "\t\"$2\" : $3",
+            "\t$4"
+        ],
+        "description": "Initializes a Mermaid pie chart with a title"
+    },
+
+    // Journey Diagram snippet
+    "Journey Diagram": {
+        "prefix": "new diagram - journey",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "journey",
+            "\t$2"
+        ],
+        "description": "Initializes a Mermaid journey diagram with a title"
+    },
+
+    // Mindmap Diagram snippet
+    "Mindmap Diagram": {
+        "prefix": "new diagram - mindmap",
+        "body": [
+            "---",
+            "title: ${1:Diagram Title}",
+            "---" // Title snippet reference
+            "mindmap",
+            "\t$2"
+        ],
+        "description": "Initializes a Mermaid mindmap diagram with a title"
+    },
+
+    "Class in Class Diagram with access modifiers": {
+        "prefix": "class",
+        "body": [
+            "class ${1:ClassName} {",
+            "\t%% Properties (~type~ name)",
+            "\t%% Methods (method(~type~) ~typeReturn~",
+            "}"
+        ],
+        "description": "Creates a class within a classDiagram"
+    },
+
+    "Class in Class Diagram with access modifiers": {
+        "prefix": "class-properties",
+        "body": [
+            "class ${1:ClassName} {",
+            "\t%% Properties (~type~ name)",
+            "\t%% Methods (method(~type~) ~typeReturn~",
+            "\t${2|+,-,#|}${3}",
+            "}"
+        ],
+        "description": "Creates a class within a classDiagram with access specified"
+    },
+    "Class in Class Diagram Basic": {
+        "prefix": "class-base",
+        "body": [
+            "class ${1:ClassName} {",
+            "\t%% Properties (~type~ name)",
+            "\t%% Methods (method(~type~) ~typeReturn~",
+            "\t${2|+,-,#|}${3}",
+            "}"
+        ],
+        "description": "Creates a class within a classDiagram"
+    },
+    "Class in Class Diagram with Label": {
+        "prefix": "class-label",
+        "body": [
+            "class ${1:ClassName}[\"${2:classLabel}\"] {",
+            "\t%% Properties (~type~ name)",
+            "\t%% Methods (method(~type~) ~typeReturn~",
+            "\t${2|+,-,#|}${3}",
+            "}"
+        ],
+        "description": "Creates a class within a classDiagram"
+    },
+    "Sequence box": {
+        "prefix": "sequence-box",
+        "body": [
+            "box ${1:boxName}",
+            "\t${2}",
+            "end"
+        ],
+        "description": "Create box for sequence diagram"
+    },
+    "Sequence participant": {
+        "prefix": "sequence-participant",
+        "body": [
+            "create participant ${1:participantName}"
+        ],
+        "description": "Creates participant at that exact point"
+    },
+    "Sequence loop": {
+        "prefix": "sequence loop",
+        "body": [
+            "loop ${1:frequency}",
+            "\t${2}",
+            "end"
+        ],
+        "description": "Create a loop"
+    },
+    "Sequence alt": {
+        "prefix": "sequence alt",
+        "body": [
+            "alt ${1:option}",
+            "\t${2}",
+            "else ${3:option2}",
+            "\t${4}",
+            "end"
+        ],
+        "description": "Create an option"
+    },
+
+    "Sequence parallel": {
+        "prefix": "sequence parallel",
+        "body": [
+            "par ${1:action1}",
+            "\t${2}",
+            "and ${3:action2}",
+            "\t${4}",
+            "end"
+        ],
+        "description": "Create a parallel option"
+    }
+}

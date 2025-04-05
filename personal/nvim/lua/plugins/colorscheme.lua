@@ -1,4 +1,37 @@
 return {
+  -- {
+  --   "olimorris/onedarkpro.nvim",
+  --   priority = 1000,
+  --   require("onedark_vivid").setup({
+  --     cursorline = true, -- Use cursorline highlighting?
+  --     transparency = false, -- Use a transparent background?
+  --     terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
+  --     lualine_transparency = false, -- Center bar transparency?
+  --     highlight_inactive_windows = true, -- When the window is out of focus, change the normal background?
+  --     styles = {
+  --       types = "NONE",
+  --       methods = "NONE",
+  --       numbers = "NONE",
+  --       strings = "NONE",
+  --       comments = "italic",
+  --       keywords = "bold,italic",
+  --       constants = "NONE",
+  --       functions = "italic",
+  --       operators = "NONE",
+  --       variables = "NONE",
+  --       parameters = "NONE",
+  --       conditionals = "italic",
+  --       virtual_text = "NONE",
+  --     },
+  --     colors = {
+  --       dark_comment = "require('onedarkpro.helpers').darken('comment', 50, 'onedark_vivid')",
+  --     },
+  --     highlights = {
+  --       LineNr = { fg = "${dark_comment}" },
+  --     },
+  --     config = true,
+  --   }),
+  -- },
   {
     "olimorris/onedarkpro.nvim",
     priority = 1000, -- Ensure it loads first
@@ -7,23 +40,31 @@ return {
       transparency = false, -- Use a transparent background?
       terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
       lualine_transparency = false, -- Center bar transparency?
-      highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
+      highlight_inactive_windows = true, -- When the window is out of focus, change the normal background?
+      styles = {
+        types = "NONE",
+        methods = "NONE",
+        numbers = "NONE",
+        strings = "NONE",
+        comments = "italic",
+        keywords = "bold,italic",
+        constants = "NONE",
+        functions = "italic",
+        operators = "NONE",
+        variables = "NONE",
+        parameters = "NONE",
+        conditionals = "italic",
+        virtual_text = "NONE",
+      },
+      colors = {
+        dark_comment = "require('onedarkpro.helpers').darken('comment', 50, 'onedark_vivid')",
+      },
+      highlights = {
+        LineNr = { fg = "${dark_comment}" },
+      },
+      config = true,
     },
-    styles = {
-      types = "NONE",
-      methods = "NONE",
-      numbers = "NONE",
-      strings = "NONE",
-      comments = "italic",
-      keywords = "bold,italic",
-      constants = "NONE",
-      functions = "italic",
-      operators = "NONE",
-      variables = "NONE",
-      parameters = "NONE",
-      conditionals = "italic",
-      virtual_text = "NONE",
-    },
+    -- require("onedark_vivid").load(),
   },
   { "projekt0n/github-nvim-theme", name = "github-theme" },
   {
