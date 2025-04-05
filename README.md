@@ -41,8 +41,14 @@ C-Space + I
 - fzf
 - delta
 - lazydocker [lazydocker](https://github.com/jesseduffield/lazydocker)
-- npm
-  - mermaid.cli
 - ripgrep
 - libreadline-dev
+
+Potential (mermaidcli stuff)
+- npm (not sure that I need this one, doesn't work with )
+  - mermaid.cli (install locally rather than globally)
 - kitty
+- luajit
+- libmagickwand-dev
+- luarocks
+  - luarocks install magick

@@ -14,6 +14,13 @@ end, { desc = "Deletes buffer in one command" })
 map("n", "<M-e>", function()
   Snacks.explorer({ focus })
 end, { desc = "Neotree focus" })
+map("n", "<M-E>", function()
+  Snacks.explorer({
+    cwd = vim.loop.cwd(),
+    focus = true,
+  })
+end, { desc = "Neotree focus to CWD" })
+
 map("n", "<M-m>", function()
   Snacks.zen.zoom()
 end, { desc = "Maximize window" })
