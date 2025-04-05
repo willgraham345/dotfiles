@@ -23,22 +23,26 @@ chmod u+x nvim-linux-x86_64.appimage
 
 Keybindings should be set up to be similar, don't worry too much about this. Only use vscode when you really need to.
 
-
 ## Tmux
 
 Make sure to fetch the plugins for tmux, can be done by pressing
+
 ```
 C-Space + I
 ```
+
 - Make sure to hit shift+i to make it capital...
 
 ## Other dependencies
 
-zoxide
-batcat
-fdfind
-fzf
-delta
-lazydocker [lazydocker](https://github.com/jesseduffield/lazydocker)
-npm
-ripgrep
+- zoxide
+- batcat
+- fdfind
+- fzf
+- delta
+- lazydocker [lazydocker](https://github.com/jesseduffield/lazydocker)
+- npm
+  - mermaid.cli
+- ripgrep
+- libreadline-dev
+- kitty
