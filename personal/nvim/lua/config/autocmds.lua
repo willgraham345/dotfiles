@@ -15,10 +15,3 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   end,
   desc = "Set tabline to 0",
 })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    require("luasnip").filetype_extend("markdown", { "mermaid" })
-  end,
-})

@@ -8,12 +8,12 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
-    config = function()
-      -- vim.g.mkdp_auto_start = 1 -- Automatically start
-      -- vim.g.mkdp_refresh_slow = 1 -- Update preview in real-time
-      -- vim.g.mkdp_combine_preview = 1
-      -- vim.g.mkdp_combine_preview_auto_refresh = 1
-    end,
+    -- config = function()
+    --   -- vim.g.mkdp_auto_start = 1 -- Automatically start
+    --   -- vim.g.mkdp_refresh_slow = 1 -- Update preview in real-time
+    --   -- vim.g.mkdp_combine_preview = 1
+    --   -- vim.g.mkdp_combine_preview_auto_refresh = 1
+    -- end,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",

@@ -15,10 +15,7 @@ map("n", "<M-e>", function()
   Snacks.explorer({ focus })
 end, { desc = "Neotree focus" })
 map("n", "<M-E>", function()
-  Snacks.explorer({
-    cwd = vim.loop.cwd(),
-    focus = true,
-  })
+  Snacks.explorer({ cwd = LazyVim.root() })
 end, { desc = "Neotree focus to CWD" })
 
 map("n", "<M-m>", function()

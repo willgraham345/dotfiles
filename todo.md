@@ -11,27 +11,23 @@
 - [x] Try octo
   - Octo only works for github
 - [x] Add [tabby](https://github.com/nanozuki/tabby.nvim) for tabs rather than buffers...
+- [x] Set up LuaSnip to add in VSCode snippets, and especially mermaid snippets
+- [x] Markdown rendering
+  - [x] Showing bullet points as different when I'm on that particular bullet point
+- [x] Fix bullet having issues with lists/todo's (It might not be)
+  - Has errors pop up each time I switch lines for some reason
 
 # TODO
 
 - [ ] Fix query for dataviewJS within a project
-- [ ] Set up LuaSnip to add in VSCode snippets, and especially mermaid snippets
 - [ ] Add in support for Obsidian from neovim
-
 - [ ] Overseer task setup
   - [ ] CMake configure && build
   - [ ] Run test...?
 - [ ] Set up cmp to handle autocompletion/hovering
-  - [ ] docker (confirm this one)
-  - [ ] dockerfile
-  - [ ] Snippets (luaSnip)
-  - [ ] Check this out [nvim-cmp source](https://www.lazyvim.org/configuration/recipes#add-a-nvim-cmp-source)
-  - [ ] CMake functions and other stuff
-- [ ] Fix bullet having issues with lists/todo's (It might not be)
-  - Has errors pop up each time I switch lines for some reason
+  - [x] dockerfile
+  - [x] CMake functions and other stuff
 - [ ] Fix the outline not seeing gtest functions.
-- [ ] Markdown rendering
-  - [ ] Showing bullet points as different when I'm on that particular bullet point
 - [ ] Add keybind that lets me vertically split from fzf
 - [ ] Make the cwd and root directory snacks explorer preview make some sense
   - Maybe make the root alt+e and cwd alt+E?

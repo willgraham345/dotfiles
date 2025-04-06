@@ -10,7 +10,10 @@
 				"path": "mermaid.json"
 			},
 			{
-				"language": "d2",
+				"language": [
+					"d2",
+					"mermaid"
+				],
 				"path": "d2.json"
 			}
 		]
