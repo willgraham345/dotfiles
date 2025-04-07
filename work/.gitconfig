@@ -8,8 +8,12 @@
     tool = nvimdiff
 [difftool "nvimdiff"]
 	cmd = "nvim -d $LOCAL $REMOTE"
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
 	tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
 [alias]
 	ff = "! git rebase -i \"`git merge-base develop HEAD`\""
 	forkpoint = merge-base HEAD develop
@@ -18,10 +22,6 @@
 	srr = "submodule sync --recursive"
 [safe]
 	directory = .
-[merge "tool"]
-	cmd = code --wait $MERGED
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
 [core]
 	editor = nvim
 	pager = delta

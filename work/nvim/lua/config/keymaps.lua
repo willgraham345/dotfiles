@@ -6,7 +6,7 @@
 -- Will keymaps
 ------------------
 local map = vim.keymap.set
-map("n", "<M-q>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
+map("n", "<M-w>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
 map("n", "<M-v>", "<C-w>v", { noremap = true, desc = "Splits the current window" })
 map("n", "<M-d>", function()
   Snacks.bufdelete()

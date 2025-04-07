@@ -8,10 +8,10 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- Always show bufferline/tabline
-vim.api.nvim_create_autocmd("BufReadPre", {
-  group = vim.api.nvim_create_augroup("showtabline", { clear = true }),
-  callback = function()
-    vim.opt.showtabline = 0
-  end,
-  desc = "Set tabline to 0",
-})
+-- vim.api.nvim_create_autocmd("BufReadPre", {
+--   group = vim.api.nvim_create_augroup("showtabline", { clear = true }),
+--   callback = function()
+--     vim.opt.showtabline = 0
+--   end,
+--   desc = "Set tabline to 0",
+-- })
