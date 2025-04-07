@@ -1,25 +1,4 @@
 return {
-  -- {
-  --   "echasnovski/mini.snippets",
-  --   opts = function(_, opts)
-  --     -- By default, for opts.snippets, the extra for mini.snippets only adds gen_loader.from_lang()
-  --     -- This provides a sensible quickstart, integrating with friendly-snippets
-  --     -- and your own language-specific snippets
-  --     --
-  --     -- In order to change opts.snippets, replace the entire table inside your own opts
-  --
-  --     local snippets, config_path = require("mini.snippets"), vim.fn.stdpath("config")
-  --
-  --     opts.snippets = { -- override opts.snippets provided by extra...
-  --       -- Load custom file with global snippets first (order matters)
-  --       snippets.gen_loader.from_file(config_path .. "/snippets/global.json"),
-  --
-  --       -- Load snippets based on current language by reading files from
-  --       -- "snippets/" subdirectories from 'runtimepath' directories.
-  --       snippets.gen_loader.from_lang(), -- this is the default in the extra...
-  --     }
-  --   end,
-  -- },
   --  {
   --    "L3MON4D3/LuaSnip",
   --    -- follow latest release.
@@ -32,15 +11,28 @@ return {
   -- vscode_loader.load({ paths = {vim.fn.stdpath("config") .. "/snippets"}}),
   --
   --  },
+
+  {
+    "rafamadriz/friendly-snippets",
+  },
   {
     "L3MON4D3/LuaSnip",
-    -- event = "LspAttach",
-    dependencies = { "rafamadriz/friendly-snippets" },
-    -- version = "v2.*",
-    -- build = "make install_jsregexp",
-    init = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
-    end,
+    lazy = true,
+    build = (not LazyVim.is_win())
+        and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
+      or nil,
+    dependencies = {
+      {
+        "rafamadriz/friendly-snippets",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+          require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+        end,
+      },
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
   },
 }
