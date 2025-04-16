@@ -1,3 +1,5 @@
+[include]
+  path = ~/.config/.delta-themes.gitconfig
 [user]
 	name = Will Graham
 	email = will.graham@sdl.usu.edu
@@ -8,12 +10,12 @@
     tool = nvimdiff
 [difftool "nvimdiff"]
 	cmd = "nvim -d $LOCAL $REMOTE"
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+; [difftool "vscode"]
+; 	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
 	tool = vscode
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
+; [mergetool "vscode"]
+;   cmd = code --wait $MERGED
 [alias]
 	ff = "! git rebase -i \"`git merge-base develop HEAD`\""
 	forkpoint = merge-base HEAD develop
@@ -25,16 +27,24 @@
 [core]
 	editor = nvim
 	pager = delta
+  excludesfile = ~/.gitignore-excludesfile
 [commit]
 	gpgsign = true
 [rebase]
 	autosquash = true
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only --features=interactive
 [delta]
-	navigate = true
+  navigate = true
+  side-by-side = true
+  light = false
+  true-color = always
+  features = colibri
 [pager]
   blame = delta
   diff = delta
   reflog = delta
   show = delta
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

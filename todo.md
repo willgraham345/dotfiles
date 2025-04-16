@@ -16,11 +16,14 @@
   - [x] Showing bullet points as different when I'm on that particular bullet point
 - [x] Fix bullet having issues with lists/todo's (It might not be)
   - Has errors pop up each time I switch lines for some reason
+- [x] Add in support for Obsidian from neovim
+- [x] Make the cwd and root directory snacks explorer preview make some sense
+  - Maybe make the root alt+e and cwd alt+E?
+- [x] Change tab switch keybind and next todo keybind (todo gets capital T)
 
 # TODO
 
 - [ ] Fix query for dataviewJS within a project
-- [ ] Add in support for Obsidian from neovim
 - [ ] Overseer task setup
   - [ ] CMake configure && build
   - [ ] Run test...?
@@ -29,5 +32,3 @@
   - [x] CMake functions and other stuff
 - [ ] Fix the outline not seeing gtest functions.
 - [ ] Add keybind that lets me vertically split from fzf
-- [ ] Make the cwd and root directory snacks explorer preview make some sense
-  - Maybe make the root alt+e and cwd alt+E?

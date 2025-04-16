@@ -1,10 +1,55 @@
 gui:
   scrollHeight: 20
+  # sidePanelWidth: 0.15
+  mainPanelSplitMode: flexible
+  expandFocusedSidePanel: true
+  # enlargedSideViewLocation: top
+  portraitMode: always
+  nerdFontsVersion: "3"
+  # dracula theme, it's mid at best
+  # theme:
+  #   activeBorderColor:
+  #     - "#FF79C6"
+  #     - bold
+  #   inactiveBorderColor:
+  #     - "#BD93F9"
+  #
+  #   searchingActiveBorderColor:
+  #     - "#8BE9FD"
+  #     - bold
+  #
+  #   optionsTextColor:
+  #     - "#6272A4"
+  #
+  #   selectedLineBgColor:
+  #     - "#6272A4"
+  #
+  #   inactiveViewSelectedLineBgColor:
+  #     - bold
+  #
+  #   cherryPickedCommitFgColor:
+  #     - "#6272A4"
+  #
+  #   cherryPickedCommitBgColor:
+  #     - "#8BE9FD"
+  #
+  #   markedBaseCommitFgColor:
+  #     - "#8BE9FD"
+  #
+  #   markedBaseCommitBgColor:
+  #     - "#F1FA8C"
+  #
+  #   unstagedChangesColor:
+  #     - "#FF5555"
+  #
+  #   defaultFgColor:
+  #     - "#F8F8F2"
 
 git:
   paging:
     # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
     colorArg: always
+    # pager: delta --dark --paging=never
     pager: delta --dark --paging=never
   mainBranches:
     - master

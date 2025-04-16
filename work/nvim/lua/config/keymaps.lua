@@ -5,22 +5,36 @@
 ------------------
 -- Will keymaps
 ------------------
+vim.keymap.del("n", "[t")
+vim.keymap.del("n", "]t")
+
 local map = vim.keymap.set
 map("n", "<M-w>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
 map("n", "<M-v>", "<C-w>v", { noremap = true, desc = "Splits the current window" })
 map("n", "<M-d>", function()
   Snacks.bufdelete()
 end, { desc = "Deletes buffer in one command" })
+map("n", "<M-m>", function()
+  Snacks.zen.zoom()
+end, { desc = "Maximize window" })
+
 map("n", "<M-e>", function()
   Snacks.explorer({ focus })
 end, { desc = "Neotree focus" })
 map("n", "<M-E>", function()
   Snacks.explorer({ cwd = LazyVim.root() })
 end, { desc = "Neotree focus to CWD" })
+map("n", "]T", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment", silent = false })
+map("n", "[T", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment", silent = true })
 
-map("n", "<M-m>", function()
-  Snacks.zen.zoom()
-end, { desc = "Maximize window" })
+map("n", "]t", ":tabnext<CR>", { desc = "Next tab", remap = false })
+map("n", "[t", ":tabprevious<CR>", { desc = "Last tab", remap = false })
+vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
+
 map("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { noremap = true, desc = "Starts Fugitive Diff window" })
 map("n", "<leader>xc", "<cmd>cexpr []<CR>", { noremap = true, desc = "Clear the quickfix list" })
 -- Open compiler
@@ -42,9 +56,7 @@ map("n", "<leader>cP", "<cmd>PeekOpen<CR>", { desc = "Markdown PeekOpen" })
 vim.api.nvim_set_keymap("n", "<S-F6>", "<cmd>OverseerRun CMake Configure<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-F7>", "<cmd>OverseerRun CMake Build<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "]<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
-vim.keymap.set("n", "[<S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
 vim.keymap.set("n", "<leader>s/", LazyVim.pick("files", { root = false }), { desc = "Grep (cwd)", noremap = true })
 vim.keymap.del("n", "<leader>sg")
 vim.keymap.del("n", "<leader>sG")

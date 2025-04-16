@@ -8,6 +8,9 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+    opts = function(_, opts)
+      vim.g.mkdp_auto_close = 0
+    end,
     -- config = function()
     --   -- vim.g.mkdp_auto_start = 1 -- Automatically start
     --   -- vim.g.mkdp_refresh_slow = 1 -- Update preview in real-time
@@ -68,7 +71,7 @@ return {
         left_pad = 0,
         right_pad = 0,
         min_width = 0,
-        border = "thick",
+        border = "thin",
         above = " ",
         below = " ",
         highlight = "RenderMarkdownCode",
@@ -87,24 +90,46 @@ return {
       },
     },
   },
-  -- {
-  --   ""OXY2DEV/markview.nvim"",
-  --   lazy = false,
+  "epwalsh/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
+  lazy = true,
+  ft = "markdown",
+  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  -- event = {
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+  --   -- refer to `:h file-pattern` for more examples
+  --   "BufReadPre path/to/my-vault/*.md",
+  --   "BufNewFile path/to/my-vault/*.md",
   -- },
-  -- {
-  --   { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
-  -- },
-  -- For blink.cmp's completion
-  -- source
-  -- dependencies = {
-  --     "saghen/blink.cmp"
-  -- },
+  dependencies = {
+    -- Required.
+    "nvim-lua/plenary.nvim",
+
+    -- see below for full list of optional dependencies 👇
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "Space Dynamics Lab",
+        path = "/mnt/c/Users/wgraham/Documents/Obsidian_vaults/Space Dynamics Lab",
+      },
+      {
+        name = "work",
+        path = "mnt/c/Users/wgraham/Documents/Obsidian_vaults/Work",
+      },
+    },
+
+    -- see below for full list of options 👇
+  },
   -- {
   --   "toppair/peek.nvim",
   --   event = { "VeryLazy" },
   --   build = "deno task --quiet build:fast",
   --   config = function()
-  --     require("peek").setup()
+  --     require("peek").setup({
+  --       theme = "light",
+  --     })
   --     vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
   --     vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
   --   end,
