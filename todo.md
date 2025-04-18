@@ -1,3 +1,21 @@
+# TODO
+
+- [ ] Change ~ and \` in oryx config
+- [ ] Fix cpp snippets, they're not working
+- [ ] Add templater/quickAdd for adding new headings
+- [ ] Fix query for dataviewJS within a project
+- [ ] Add better dataviewJS for command and code queries
+  - [ ] Sort by tag group and tag subgroups (maybe choose depth at which to search)
+- [ ] Add keybind that lets me vertically split from fzf
+- [ ] Overseer task setup
+  - [ ] CMake configure && build
+  - [ ] Run test...?
+- [ ] Set up cmp to handle autocompletion/hovering
+  - [x] dockerfile
+  - [x] CMake functions and other stuff
+  - [ ]
+- [ ] Fix the outline not seeing gtest functions.
+
 # DONE
 
 - [x] Add in bullet for markdown files (sorta finished, still needs confirmation that it is working in markdown)
@@ -20,15 +38,3 @@
 - [x] Make the cwd and root directory snacks explorer preview make some sense
   - Maybe make the root alt+e and cwd alt+E?
 - [x] Change tab switch keybind and next todo keybind (todo gets capital T)
-
-# TODO
-
-- [ ] Fix query for dataviewJS within a project
-- [ ] Overseer task setup
-  - [ ] CMake configure && build
-  - [ ] Run test...?
-- [ ] Set up cmp to handle autocompletion/hovering
-  - [x] dockerfile
-  - [x] CMake functions and other stuff
-- [ ] Fix the outline not seeing gtest functions.
-- [ ] Add keybind that lets me vertically split from fzf

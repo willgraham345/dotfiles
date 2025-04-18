@@ -36,6 +36,10 @@ map("n", "[t", ":tabprevious<CR>", { desc = "Last tab", remap = false })
 vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
 
 map("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { noremap = true, desc = "Starts Fugitive Diff window" })
+map("n", "<leader>gD", "<cmd>Git difftool -y develop<CR>", { noremap = true, desc = "Difftool against develop" })
+map("n", "<leader>gm", "<cmd>Git mergetool<CR>", { noremap = true, desc = "Start mergetool, quicklist" })
+map("n", "<leader>gM", "<cmd>Git mergetool -y<CR>", { noremap = true, desc = "Start mergetool, tabs" })
+
 map("n", "<leader>xc", "<cmd>cexpr []<CR>", { noremap = true, desc = "Clear the quickfix list" })
 -- Open compiler
 map({ "n", "i" }, "<C-ScrollWheelUp>", "5zl", { desc = "Scroll right" })

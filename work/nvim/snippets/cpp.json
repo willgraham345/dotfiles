@@ -4,7 +4,7 @@
 		"body": [
 			"for (${size_t} ${i} = ${1:0}; ${i} < ${2:length}; ${i}++)",
 			"{",
-			"	$3",
+			"$3",
 			"}"
 		],
 		"description": "Code snippet for 'for' loop"
@@ -14,7 +14,7 @@
 		"body": [
 			"for (int ${i} = ${1:length} - 1; ${i} >= ${2:0}; ${i}--)",
 			"{",
-			"	$3",
+			"$3",
 			"}"
 		],
 		"description": "Code snippet for reverse 'for' loop"
@@ -24,7 +24,7 @@
 		"body": [
 			"do",
 			"{",
-			"	$1",
+			"$1",
 			"} while($2);"
 		],
 		"description": "Code snippet for do...while loop"
@@ -34,7 +34,7 @@
 		"body": [
 			"while ($1)",
 			"{",
-			"	$2",
+			"$2",
 			"}"
 		],
 		"description": "Code snippet for while loop"
@@ -44,7 +44,7 @@
 		"body": [
 			"for(auto ${var} : ${collection_to_loop})",
 			"{",
-			"	$1",
+			"$1",
 			"}"
 		],
 		"description": "Code snippet for range-based for loop (c++11) statement"
@@ -54,7 +54,7 @@
 		"body": [
 			"if ($1)",
 			"{",
-			"	$2",
+			"$2",
 			"}"
 		],
 		"description": "Code snippet for if statement"
@@ -64,7 +64,7 @@
 		"body": [
 			"else",
 			"{",
-			"	$1",
+			"$1",
 			"}"
 		],
 		"description": "Code snippet for else statement"
@@ -74,7 +74,7 @@
 		"body": [
 			"else if ($1)",
 			"{",
-			"	$2",
+			"$2",
 			"}"
 		],
 		"description": "Code snippet for else-if statement"
@@ -84,7 +84,7 @@
 		"body": [
 			"enum ${MyEnum}",
 			"{",
-			"	$1",
+			"$1",
 			"};"
 		],
 		"description": "Code snippet for enum"
@@ -102,15 +102,15 @@
 			"class ${MyClass}",
 			"{",
 			"public:",
-			"	${MyClass}();",
-			"	${MyClass}(${MyClass} &&) = default;",
-			"	${MyClass}(const ${MyClass} &) = default;",
-			"	${MyClass} &operator=(${MyClass} &&) = default;",
-			"	${MyClass} &operator=(const ${MyClass} &) = default;",
-			"	~${MyClass}();",
+			"${MyClass}();",
+			"${MyClass}(${MyClass} &&) = default;",
+			"${MyClass}(const ${MyClass} &) = default;",
+			"${MyClass} &operator=(${MyClass} &&) = default;",
+			"${MyClass} &operator=(const ${MyClass} &) = default;",
+			"~${MyClass}();",
 			"",
 			"private:",
-			"	$1",
+			"$1",
 			"};",
 			"",
 			"${MyClass}::${MyClass}()",
@@ -129,15 +129,15 @@
 			"class ${MyClass}",
 			"{",
 			"public:",
-			"	${MyClass}() = default;",
-			"	${MyClass}(${MyClass} &&) = default;",
-			"	${MyClass}(const ${MyClass} &) = default;",
-			"	${MyClass} &operator=(${MyClass} &&) = default;",
-			"	${MyClass} &operator=(const ${MyClass} &) = default;",
-			"	~${MyClass}() = default;",
+			"${MyClass}() = default;",
+			"${MyClass}(${MyClass} &&) = default;",
+			"${MyClass}(const ${MyClass} &) = default;",
+			"${MyClass} &operator=(${MyClass} &&) = default;",
+			"${MyClass} &operator=(const ${MyClass} &) = default;",
+			"~${MyClass}() = default;",
 			"",
 			"private:",
-			"	$1",
+			"$1",
 			"};"
 		],
 		"description": "Code snippet for class with inline constructor/destructor"
@@ -147,7 +147,7 @@
 		"body": [
 			"__interface I${Interface}",
 			"{",
-			"	$1",
+			"$1",
 			"};"
 		],
 		"description": "Code snippet for interface (Visual C++)"
@@ -157,7 +157,7 @@
 		"body": [
 			"namespace ${MyNamespace}",
 			"{",
-			"	$1",
+			"$1",
 			"}"
 		],
 		"description": "Code snippet for namespace"
@@ -194,7 +194,7 @@
 		"body": [
 			"struct ${MyStruct}",
 			"{",
-			"	$1",
+			"$1",
 			"};"
 		],
 		"description": "Code snippet for struct"
@@ -205,7 +205,7 @@
 			"switch (${switch_on})",
 			"{",
 			"default:",
-			"	break;$1",
+			"break;$1",
 			"}"
 		],
 		"description": "Code snippet for switch statement"
@@ -215,11 +215,11 @@
 		"body": [
 			"try",
 			"{",
-			"	",
+			"",
 			"}",
 			"catch (const std::exception&)",
 			"{",
-			"	$1",
+			"$1",
 			"}"
 		],
 		"description": "Code snippet for try catch"
@@ -229,7 +229,7 @@
 		"body": [
 			"union ${MyUnion}",
 			"{",
-			"	$1",
+			"$1",
 			"};"
 		],
 		"description": "Code snippet for union"
@@ -246,21 +246,21 @@
 		"body": [
 			"#include \"$1\""
 		],
-		"description": "Code snippet for #include \" \""
+		"description": "Code snippet for #include "
 	},
 	"#inc<": {
 		"prefix": "#inc<",
 		"body": [
 			"#include <$1>"
 		],
-		"description": "Code snippet for #include \" \""
+		"description": "Code snippet for #include "
 	},
 	"#def": {
 		"prefix": "#def",
 		"body": [
 			"#define \"$1\" \"$2\" "
-			],
-		"description": "Code snippet for #define \" \""
+		],
+		"description": "Code snippet for #define "
 	},
 	"main": {
 		"prefix": "main",
@@ -271,128 +271,13 @@
 		],
 		"description": "Code snippet for main function"
 	},
-	"xteds_base_app": {
-		"prefix": "xteds base app",
+	"Lambda Expression": {
+		"prefix": "lambda function",
 		"body": [
-			"//HEADER",
-			"class ${1: AppName} : public SpaApplication",
-			"{",
-			"\tpublic:",
-			"\t\t${1: AppName}();",
-			"\t\tvoid appInit(Int32 argc, char** pArgv);",
-			"\t\tvoid appShutdown(void);",
-			"\tprivate:",
-			"\t\tCALLBACK_CONFIG(${1: AppName});",
-			"//SOURCE"
-			"${1: AppName} :: ${1: AppName}()",
-			"\t: SpaAppliction(\"${1: AppName}\"),"
-			"{",
-			"",
-			"}",
-			"void ${1: AppName}::appInit(Int32 argc, char** pArgv)",
-			"{",
-			"",
-			"}",
+			"auto ${1:lambda_name} = [${2:&}](${3:args})${4: -> ${5:void}} {",
+			"    $0",
+			"};"
 		],
-		"description": "Base for defining SpaApplication hpp/cpp"
-	},
-	"xteds_notification_query": {
-		"prefix": "xteds_notification_query",
-		"body": [
-			"//HEADER",
-			"public:",
-			"\t//callbacks",
-			"\tvoid on${1:dataName}Received(SpaMessage*);",
-			"private:",
-			"\t//Message handles",
-			"\tNotificationMsg m_queried${2:notifName};"
-			"",
-			"\t//variables",
-			"\t${3:DataType} m_recv${1:dataName};",
-			"\t"
-			"//SOURCE",
-			"//in constructor",
-			"m_queried${2:notifName},",
-			"m_recv${1:dataName}",
-			"//in appInit",
-			"\tm_queried${2:notifName}.addVariable(VariableType(${4:DataTypeType}), &m_recv${1:dataName});",
-			"\tm_queried${2:notifName}.onDataReceived = callback(&${5:AppName}::on${1:dataName}Received);",
-			"issueQuery(myQuery, &m_queried${2:notifName});",
-			"}",
-			"//in source file as its own method",
-			"void ${5:AppName}::on${1:dataName}Recived(SpaMessage* pMsg)",
-			"{",
-			"\t//data now exists to be handled",
-			"}"
-		],
-		"description": "Format for handling notifications that are queried"
-	},
-	"xteds_notification_provide": {
-		"prefix": "xteds_notification_provide",
-		"body": [
-			"//HEADER",
-			"public:",
-			"\t//callbacks",
-			"\tvoid my${1:dataName}Publish(void);",
-			"private:",
-			"\t//Message handles",
-			"\tNotificationMsg m_queried${2:notifName};"
-			"",
-			"\t//variables",
-			"\t${3:DataType} m_my${1:dataName};",
-			"\t"
-			"//SOURCE",
-			"//in constructor",
-			"m_queried${2:notifName}(${4:interfaceId} ${5:messageId}),",
-			"//in appInit",
-			"\tm_queried${2:notifName}.addVariable(VariableType(${6:DataTypeType}), &m_my${1:dataName});",
-			"\tm_queried${2:notifName}.onDataReceived = callback(&${7:AppName}::my${1:dataName}Publish);",
-			"issueQuery(myQuery, &m_queried${2:notifName});",
-			"}",
-			"//in source file as its own method",
-			"void ${7:AppName}::my${1:dataName}Publish(void)",
-			"{",
-			"\t//make sure ${1:dataName}is up to date and ready to be published",
-			"}"
-		],
-		"description": "Handles notifications that are provided by the app, not queried by the app"
-	},
-	"xteds_command": {
-		"prefix": "xteds_command",
-		"body": [
-			"//HEADER",
-			"public:",
-			"\t//callbacks",
-			"\tvoid on${1:cmdName}(void);",
-			"private:",
-			"\t//Message handles",
-			"\tCommandMsg m_my${1:cmdName};"
-			"",
-			"\t//variables",
-			"\t${2:DataType} m_recv${1:cmdName};",
-			"\t"
-			"//SOURCE",
-			"//in constructor",
-			"m_my${1:cmdName}(${3:interfaceId}, ${4:messageId}),",
-			"//in appInit",
-			"m_my${1:cmdName}.onCommandReceived = callback(&${5:AppName}::on${1:cmdName});"
-			"}",
-			"//in source file as its own method",
-			"void ${5:AppName}::on${1:cmdName}(void)",
-			"{",
-			"\t//handle receipt of the command here",
-			"}"
-		],
-		"description": "Format for handling notifications that are queried"
-	},
-	"gtest": {
-		"prefix": "gtest test fixture",
-		"body": [
-			"TEST_F(${1:testFixture}, ${2:testName})",
-			"{",
-			"\t${0}"
-			"}"
-		],
-		"description": "Creates a google test fixture"
+		"description": "C++ lambda expression with captures, parameters, and optional return type"
 	}
 }

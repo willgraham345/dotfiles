@@ -168,4 +168,3 @@ eval "$(oh-my-posh init zsh --config "~/personal/Dotfiles/work/ohmyposh/powerlev
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
-. "/home/will/.deno/env"

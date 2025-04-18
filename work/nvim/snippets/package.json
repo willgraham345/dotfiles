@@ -1,21 +1,27 @@
 {
-	"name": "will-vscode-snippets",
-	"contributes": {
-		"snippets": [
-			{
-				"language": [
-					"mermaid",
-					"markdown"
-				],
-				"path": "mermaid.json"
-			},
-			{
-				"language": [
-					"d2",
-					"mermaid"
-				],
-				"path": "d2.json"
-			}
-		]
-	}
+  "name": "will-vscode-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "mermaid",
+          "markdown",
+        ],
+        "path": "mermaid.json"
+      },
+      {
+        "language": [
+          "d2",
+          "mermaid",
+        ],
+        "path": "d2.json"
+      },
+      {
+        "language": [
+          "cpp"
+        ],
+        "path": "cpp.json"
+      }
+    ]
+  }
 }
