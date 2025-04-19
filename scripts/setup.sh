@@ -2,20 +2,41 @@
 
 # Set the path to your Dotfiles repository
 DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
+COMMON_DIR=$(pwd)/common
+WORK_DIR=$(pwd)/work
+PERSONAL_DIR=$(pwd)/personal
 
 # Define the files and directories to symlink
 declare -A LINKS
 # LINKS["$HOME/.tmux.conf"]="$DOTFILES_DIR/tmux/.tmux.conf"
-LINKS["$HOME/.zshrc"]="$DOTFILES_DIR/.zshrc"
-LINKS["$HOME/.config/ohmyposh"]="$DOTFILES_DIR/ohmyposh"
-LINKS["$HOME/.config/tmux"]="$DOTFILES_DIR/tmux"
-LINKS["$HOME/.config/nvim"]="$DOTFILES_DIR/nvim"
-LINKS["$HOME/.config/lazygit"]="$DOTFILES_DIR/lazygit"
-LINKS["$HOME/.config/lazydocker"]="$DOTFILES_DIR/lazygit"
-LINKS["$HOME/.gitconfig"]="$DOTFILES_DIR/.gitconfig"
-LINKS["$HOME/.gitignore"]="$DOTFILES_DIR/.gitignore"
-LINKS["$HOME/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
-LINKS["$HOME/.config/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
+if [[ "$1" == "--common" ]]; then
+  MODE="shell"
+  LINKS["$HOME/.config/ohmyposh"]="$COMMON_DIR/ohmyposh"
+  LINKS["$HOME/.config/tmux"]="$COMMON_DIR/tmux"
+  LINKS["$HOME/.config/nvim"]="$COMMON_DIR/nvim"
+  LINKS["$HOME/.config/lazygit"]="$COMMON_DIR/lazygit"
+  LINKS["$HOME/.config/lazydocker"]="$COMMON_DIR/lazygit"
+  LINKS["$HOME/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
+  LINKS["$HOME/.config/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
+  LINKS["$HOME/.config/.delta-themes.gitconfig"]="$DOTFILES_DIR/.delta-themes.gitconfig"
+fi
+
+if [[ "$1" == "--work"]]; then
+  MODE="work"
+  LINKS["$HOME/.gitconfig"]="$WORK_DIR/.gitconfig"
+  LINKS["$HOME/.zshrc"]="$WORK_DIR/.zshrc"
+  LINKS["$HOME/.gitignore-excludesfile"]="$WORK_DIR/.gitignore-excludesfile"
+fi
+
+if [[ "$1" == "--personal"]]; then
+  MODE="work"
+  LINKS["$HOME/.gitconfig"]="$PERSONAL_DIR/.gitconfig"
+  LINKS["$HOME/.zshrc"]="$PERSONAL_DIR/.zshrc"
+fi
+
+
+
+
 
 # Function to create symlinks
 create_symlinks() {
