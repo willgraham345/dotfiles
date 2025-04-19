@@ -35,9 +35,6 @@ if [[ "$1" == "--personal"]]; then
 fi
 
 
-
-
-
 # Function to create symlinks
 create_symlinks() {
 	for target in "${!LINKS[@]}"; do
