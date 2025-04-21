@@ -21,14 +21,14 @@ if [[ "$1" == "--common" ]]; then
   LINKS["$HOME/.config/.delta-themes.gitconfig"]="$DOTFILES_DIR/.delta-themes.gitconfig"
 fi
 
-if [[ "$1" == "--work"]]; then
+if [[ "$1" == "--work" ]]; then
   MODE="work"
   LINKS["$HOME/.gitconfig"]="$WORK_DIR/.gitconfig"
   LINKS["$HOME/.zshrc"]="$WORK_DIR/.zshrc"
   LINKS["$HOME/.gitignore-excludesfile"]="$WORK_DIR/.gitignore-excludesfile"
 fi
 
-if [[ "$1" == "--personal"]]; then
+if [[ "$1" == "--personal" ]]; then
   MODE="work"
   LINKS["$HOME/.gitconfig"]="$PERSONAL_DIR/.gitconfig"
   LINKS["$HOME/.zshrc"]="$PERSONAL_DIR/.zshrc"
