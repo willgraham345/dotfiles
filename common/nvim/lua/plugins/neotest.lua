@@ -7,9 +7,11 @@ return {
       dependencies = {
         "nvim-lua/plenary.nvim",
         "alfaix/neotest-gtest",
+        "mrcjkb/rustaceanvim",
       },
       opts = {
-        adapters = { "neotest-plenary", "neotest-gtest" },
+        adapters = { "neotest-plenary", "neotest-gtest",
+          ["rustaceanvim.neotest"] = {}},
         status = { virtual_text = true },
       },
     },

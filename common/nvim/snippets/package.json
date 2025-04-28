@@ -5,22 +5,28 @@
       {
         "language": [
           "mermaid",
-          "markdown",
+          "markdown"
         ],
         "path": "mermaid.json"
-      },
-      {
-        "language": [
-          "d2",
-          "mermaid",
-        ],
-        "path": "d2.json"
       },
       {
         "language": [
           "cpp"
         ],
         "path": "cpp.json"
+      },
+      {
+        "language": [
+          "rust"
+        ],
+        "path": "rust.json"
+      },
+      {
+        "language": [
+          "python"
+
+        ],
+        "path": "python.jsonc"
       }
     ]
   }

@@ -1,6 +1,13 @@
 # TODO
 
 - [ ] Change ~ and \` in oryx config
+- [ ] Keymaps
+  - [ ] consider turning off default keymaps for lazyvim
+  - [ ] Add delete buffers to left/right keymaps
+  - [ ] Add [[ to aerial rather than snacks default
+  - [ ] Make keymap to delete the matching "([{" on end of a string
+  - [ ] Add "[," for next comma
+- [ ] Add in [tabby](https://github.com/nanozuki/tabby.nvim?tab=readme-ov-file) extension
 - [ ] Fix cpp snippets, they're not working
 - [ ] Add templater/quickAdd for adding new headings
 - [ ] Fix query for dataviewJS within a project
@@ -13,7 +20,6 @@
 - [ ] Set up cmp to handle autocompletion/hovering
   - [x] dockerfile
   - [x] CMake functions and other stuff
-  - [ ]
 - [ ] Fix the outline not seeing gtest functions.
 
 # DONE

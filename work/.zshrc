@@ -126,6 +126,8 @@ alias z....="cd ../../../.."
 # TODO: fix the following line to jump into directory of a symlink
 # alias symdir='$(dirname $(readlinke "$1"))'
 
+alias cSDL="code '/mnt/c/Users/wgraham/Documents/Obsidian_vaults/Space Dynamics Lab'"
+
 # default editors and compilers
 export VISUAL=vim
 export EDITOR="$VISUAL"

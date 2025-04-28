@@ -9,13 +9,16 @@
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d $LOCAL $REMOTE"
+	cmd = "nvim -d $LOCAL $REMOTE $MERGED"
 ; [difftool "vscode"]
 ; 	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-	tool = vscode
+	tool = nvimdiff
+  conflict-style = diff3
 ; [mergetool "vscode"]
 ;   cmd = code --wait $MERGED
+[rebasetool]
+    tool = nvimdiff
 [alias]
 	ff = "! git rebase -i \"`git merge-base develop HEAD`\""
 	forkpoint = merge-base HEAD develop

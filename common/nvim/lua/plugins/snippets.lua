@@ -14,6 +14,7 @@ return {
 
   {
     "rafamadriz/friendly-snippets",
+
   },
   {
     "L3MON4D3/LuaSnip",
@@ -32,7 +33,8 @@ return {
     },
     opts = {
       history = true,
-      delete_check_events = "TextChanged",
+      region_check_events = "CursorMoved",
+      delete_check_events = "TextChanged"
     },
   },
 }

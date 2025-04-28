@@ -21,3 +21,13 @@ require("config.lazy")
 
 -- require("snacks").explorer()
 vim.cmd("colorscheme sonokai")
+-- require("aerial").setup({
+--   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+--   on_attach = function(bufnr)
+--     -- Jump forwards/backwards with '{' and '}'
+--     vim.keymap.set("n", "[o", "<cmd>AerialPrev<CR>", { desc = "AerialPrev", buffer = bufnr , noremap = false})
+--     vim.keymap.set("n", "]o", "<cmd>AerialNext<CR>", { desc = "AerialNext", buffer = bufnr , noremap = false})
+--   end,
+-- })
+-- You probably also want to set a keymap to toggle aerial
+vim.keymap.set("n", "<leader>cs", "<cmd>AerialToggle!<CR>")

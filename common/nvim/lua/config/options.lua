@@ -13,8 +13,8 @@ vim.g.lazygit_floating_window_scaling_factor = 0.99 -- scaling factor for floati
 vim.g.lazyvim_python_lsp = "pyright" -- Can also be "basedpyright"
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 local opt = vim.opt
--- vim.opt.expandtab = false
--- vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
 opt.mouse = "a"
 opt.sidescroll = 1
 

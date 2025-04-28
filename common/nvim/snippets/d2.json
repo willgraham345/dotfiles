@@ -399,13 +399,6 @@
         "description": "Inserts a Filled Circle Arrowhead"
     },
     "Connection Reference Color": {
-        "prefix": "connnection_color",
-        "body": [
-            "(${1:var1} -> ${2:var2})[${3:iter}.style.stroke: ${4:color}"
-        ],
-        "description": "Create a different colored connection"
-    },
-    "Connection Reference Color": {
         "prefix": "connnection_color_reference",
         "body": [
             "(${1:var1} -> ${2:var2})[${3:iter}].style.stroke: ${4:color}"
@@ -432,5 +425,5 @@
             "near: ${1:object}"
         ],
         "description": "Change where a thing is laid out"
-    },
+    }
 }

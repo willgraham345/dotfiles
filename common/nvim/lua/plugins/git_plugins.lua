@@ -14,7 +14,7 @@ return {
   -- }
   {
     "tpope/vim-fugitive",
-    dependencies = { "tpope/vim-rhubarb" },
+    dependencies = { "tpope/vim-rhubarb", "nvim-tree/nvim-web-devicons" },
     cmd = { "Git", "G" },
     lazy = false,
   },
