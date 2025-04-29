@@ -12,9 +12,9 @@ return {
     table.insert(opts.sources, { name = "luasnip" })
   end,
   -- stylua: ignore
-  keys = {
-    { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-    { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-  },
+  -- keys = {
+  --   { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+  --   { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+  -- },
 }
 }
