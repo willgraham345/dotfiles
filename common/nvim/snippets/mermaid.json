@@ -117,6 +117,13 @@
 		],
 		"description": "Note attached to a specific class"
 	},
+    "Flowchart Class Definition": {
+        "prefix": "fc - classDef",
+        "body": [
+            "${1:name}@shape: div-rect, label: \"&lt${3:className}&gt<br/>${0}"
+        ],
+      "description": "Sets a wannabe class in a flow diagram"
+    },
 	"General note": {
 		"prefix": "note:general",
 		"body": [

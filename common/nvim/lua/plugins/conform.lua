@@ -1,5 +1,5 @@
-local M = {}
-local Util = require("lazyvim.util")
+-- local M = {}
+-- local Util = require("lazyvim.util")
 return {
   {
     "stevearc/conform.nvim",
@@ -23,8 +23,8 @@ return {
 
         formatters_by_ft = {
           ["html"] = { "prettier" },
-          -- ["markdown"] = { "mdslw", "markdownlint", "mdformat" },
-          ["markdown"] = { "prettier" },
+          ["markdown"] = { "mdslw", "markdownlint", "mdformat" },
+          -- ["markdown"] = { "prettier", },
           ["python"] = { "isort", "black" },
           ["rust"] = {"rustfmt"}
         },

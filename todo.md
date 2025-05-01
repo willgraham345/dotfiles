@@ -1,6 +1,7 @@
 # TODO
 
 - [ ] Change ~ and \` in oryx config
+- [ ] Better filtering for obsidian breadcrumb group relationships
 - [ ] Keymaps
   - [ ] consider turning off default keymaps for lazyvim
   - [ ] Add delete buffers to left/right keymaps

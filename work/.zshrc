@@ -127,6 +127,7 @@ alias z....="cd ../../../.."
 # alias symdir='$(dirname $(readlinke "$1"))'
 
 alias cSDL="code '/mnt/c/Users/wgraham/Documents/Obsidian_vaults/Space Dynamics Lab'"
+alias cWORK="code '/mnt/c/Users/wgraham/Documents/Obsidian_vaults/Work'"
 
 # default editors and compilers
 export VISUAL=vim

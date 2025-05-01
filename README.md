@@ -47,3 +47,7 @@ Potential (mermaidcli stuff)
 - libmagickwand-dev
 - luarocks
   - luarocks install magick
+
+## Language Specifics
+
+- Bacon (use cargo install bacon)

@@ -9,7 +9,7 @@ vim.keymap.del("n", "[t")
 vim.keymap.del("n", "]t")
 vim.keymap.del("n", "<leader>br")
 vim.keymap.del("n", "<leader>bl")
-vim.keymap.del("n", "<leader>cs") -- aerial remove
+-- vim.keymap.del("n", "<leader>cs") -- aerial remove
 -- TODO: Remove the "[[" and "]]" commands from snacks, hand those to aerial
 -- config = function(_, opts)
 --   require("snacks").words.disable({
@@ -39,6 +39,8 @@ end, { desc = "Previous todo comment", silent = true })
 map("n", "]t", ":tabnext<CR>", { desc = "Next tab", remap = false })
 map("n", "[t", ":tabprevious<CR>", { desc = "Last tab", remap = false })
 map("n", "<M-q>", ":tabclose<CR>", { desc = "Close tab", remap = false })
+map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", {desc = "Delete buffers to the Right" })
+map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", {desc = "Delete buffers to the Left" })
 
 
 -- File explorer keymaps
@@ -51,9 +53,17 @@ end, { desc = "Neotree focus to CWD" })
 map("n", "<leader>cs", "<cmd>Outline<CR>", {desc = "Toggle Outline", noremap = true})
 
 -- Movement keymaps
-vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
+-- vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
 map({ "n", "i" }, "<C-ScrollWheelUp>", "5zl", { desc = "Scroll right" })
 map({ "n", "i" }, "<C-ScrollWheelDown>", "5zh", { desc = "Scroll left" })
+
+-- N behavior (not sure why this is weird)
+map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 
 -- Git keymaps
@@ -85,6 +95,7 @@ map("n", "<leader>cJ", function()
   require("yaml-companion").open_ui_select()
 end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
 map("n", "<leader>cP", "<cmd>PeekOpen<CR>", { desc = "Markdown PeekOpen" })
+map("n", "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd"})
 
 
 -- Searching keymaps

@@ -13,8 +13,8 @@ return {
   end,
   -- stylua: ignore
   -- keys = {
-  --   { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-  --   { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-  -- },
+    -- { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+    -- { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+  -- }
 }
 }

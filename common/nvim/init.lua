@@ -30,4 +30,4 @@ vim.cmd("colorscheme sonokai")
 --   end,
 -- })
 -- You probably also want to set a keymap to toggle aerial
-vim.keymap.set("n", "<leader>cs", "<cmd>AerialToggle!<CR>")
+-- vim.keymap.set("n", "<leader>cs", "<cmd>AerialToggle!<CR>")

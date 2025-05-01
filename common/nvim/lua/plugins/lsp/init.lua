@@ -136,17 +136,43 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {ensure_installed = {"lua", "rust", "ron"},
-    auto_install = true,
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting=false,
+    opts = {
+      ensure_installed = {
+        "bash",
+        "c",
+        "diff",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "printf",
+        "python",
+        "query",
+        "regex",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "xml",
+        "yaml",
       },
-    ident = {enable = true},
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = 3000,
+      auto_install = true,
+      highlight = {
+          enable = true,
+          additional_vim_regex_highlighting=false,
+        },
+      ident = {enable = true},
+      rainbow = {
+          enable = true,
+          extended_mode = true,
+          max_file_lines = 3000,
       }
     }
   },
