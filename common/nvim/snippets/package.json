@@ -11,6 +11,13 @@
       },
       {
         "language": [
+          "d2",
+          "markdown"
+        ],
+        "path": "d2_online.json"
+      },
+      {
+        "language": [
           "cpp"
         ],
         "path": "cpp.json"

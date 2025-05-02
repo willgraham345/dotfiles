@@ -19,10 +19,10 @@ globals.expandtab = true
 local opt = vim.opt
 opt.relativenumber = false
 opt.expandtab = true
-opt.tabstop = 4
+-- opt.tabstop = 4
 opt.mouse = "a"
 opt.sidescroll = 1
-opt.shiftwidth = 4
+-- opt.shiftwidth = 4
 opt.splitbelow = false
 
 vim.opt.pumblend = 0 -- Turns off transparency for windows

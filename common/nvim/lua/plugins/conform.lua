@@ -23,8 +23,8 @@ return {
 
         formatters_by_ft = {
           ["html"] = { "prettier" },
-          ["markdown"] = { "mdslw", "markdownlint", "mdformat" },
-          -- ["markdown"] = { "prettier", },
+          -- ["markdown"] = { "mdslw", "markdownlint", "mdformat" },
+          ["markdown"] = { "prettier", },
           ["python"] = { "isort", "black" },
           ["rust"] = {"rustfmt"}
         },
