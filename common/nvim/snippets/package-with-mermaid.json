@@ -4,6 +4,13 @@
     "snippets": [
       {
         "language": [
+          "mermaid",
+          "markdown"
+        ],
+        "path": "mermaid.json"
+      },
+      {
+        "language": [
           "d2",
           "markdown"
         ],
