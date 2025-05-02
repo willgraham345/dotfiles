@@ -1,3 +1,7 @@
+local d2 = {
+  'terrastruct/d2-vim',
+  ft = {'d2', 'markdown'}
+}
 return {
   {
     "neovim/nvim-lspconfig",
@@ -132,6 +136,9 @@ return {
         hover = true,
       },
     },
+  },
+  {
+    d2
   },
 
   {
