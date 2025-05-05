@@ -26,7 +26,8 @@ return {
           -- ["markdown"] = { "mdslw", "markdownlint", "mdformat" },
           ["markdown"] = { "prettier", },
           ["python"] = { "isort", "black" },
-          ["rust"] = {"rustfmt"}
+          ["rust"] = {"rustfmt"},
+          ["cpp"] = {"clang_format"}
         },
         formatters = {
           injected = { options = { ignore_errors = true } },

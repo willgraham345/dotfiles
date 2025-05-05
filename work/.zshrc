@@ -119,6 +119,9 @@ dcu_v() {
 dcd() {
   docker compose -f "$1" down
 }
+d2preview(){
+  d2 --watch --browser=0 "$1".d2 "$1".svg
+}
 alias z.="cd .."
 alias z..="cd ../../"
 alias z...="cd ../../.."
@@ -135,6 +138,8 @@ export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
 export CC=gcc
 export CCX=g++
+export CXXFLAGS="${CXXFLAGS} -fdiagnostics-color=always"
+export CPPFLAGS="${CPPFLAGS} -fdiagnostics-color=always"
 export CMAKE_GENERATOR="Ninja"
 
 # fd-find stuff
