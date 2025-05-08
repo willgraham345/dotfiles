@@ -1,43 +1,42 @@
 return {
-  {
-  "hedyhli/outline.nvim",
-  lazy = true,
-  cmd = { "Outline", "OutlineOpen" },
-  keys = { -- Example mapping to toggle outline
-    { "n", "<leader>cs", "<cmd>Outline<CR>", {desc = "Toggle outline", noremap = true} },
-    },
-  opts = {
-      outline_window = {
-        relative_width = true,
-        outline = 45,
-      },
-      outline_items = {
-        show_symbol_lineno = true,
-        show_symbol_details = true,
-      },
-      keymaps = {
-        up_and_jump = '<C-p>',
-        down_and_jump = '<C-n>',
-      },
-      symbol_folding = {
-        autofold_depth = 2,
-          auto_unfold = {
-            hovered = true,
-            only = true,
-        },
-      },
-      symbols = {
-        icon_fetcher = function(kind, bufnr, symbol)
-          local access_icons = { public = '○', protected = '◉', private = '●' }
-          local icon = require('outline.config').o.symbols.icons[kind].icon
-          -- ctags provider might add an `access` key
-          if symbol and symbol.access then
-            return icon .. ' ' .. access_icons[symbol.access]
-          end
-          return icon
-        end,
-      },
-    },
+  -- {
+  -- "hedyhli/outline.nvim",
+  -- lazy = true,
+  -- cmd = { "Outline", "OutlineOpen" },
+  -- keys = { -- Example mapping to toggle outline
+  --   { "n", "<leader>co", "<cmd>Outline<CR>", {desc = "Toggle outline", noremap = true} },
+  --   },
+    --   outline_window = {
+    --     relative_width = true,
+    --     outline = 45,
+    --   },
+    --   outline_items = {
+    --     show_symbol_lineno = true,
+    --     show_symbol_details = true,
+    --   },
+    --   keymaps = {
+    --     up_and_jump = '<C-p>',
+    --     down_and_jump = '<C-n>',
+    --   },
+    --   symbol_folding = {
+    --     autofold_depth = 2,
+    --       auto_unfold = {
+    --         hovered = true,
+    --         only = true,
+    --     },
+    --   },
+    --   symbols = {
+    --     icon_fetcher = function(kind, bufnr, symbol)
+    --       local access_icons = { public = '○', protected = '◉', private = '●' }
+    --       local icon = require('outline.config').o.symbols.icons[kind].icon
+    --       -- ctags provider might add an `access` key
+    --       if symbol and symbol.access then
+    --         return icon .. ' ' .. access_icons[symbol.access]
+    --       end
+    --       return icon
+    --     end,
+    --   },
+    -- },
   -- opts = function(_, opts)
   --   local defaults = require("outline.config").defaults
   --   local opts = {
@@ -70,6 +69,35 @@ return {
   --   end
   --   return opts
   -- end,
+  -- },
+  {
+    "hedyhli/outline.nvim",
+    keys = { { "<leader>cs", "<cmd>Outline<cr>", desc = "Toggle Outline" } },
+    cmd = "Outline",
+    opts = function()
+      local defaults = require("outline.config").defaults
+      local opts = {
+        symbols = {
+          icons = {},
+          -- filter = vim.deepcopy(LazyVim.config.kind_filter),
+        },
+        keymaps = {
+          up_and_jump = "<up>",
+          down_and_jump = "<down>",
+        },
+        outline_window = {
+          auto_close = true
+        },
+      }
+
+      for kind, symbol in pairs(defaults.symbols.icons) do
+        opts.symbols.icons[kind] = {
+          icon = LazyVim.config.icons.kinds[kind] or symbol.icon,
+          hl = symbol.hl,
+        }
+      end
+      return opts
+    end,
   },
   {
     "folke/trouble.nvim",

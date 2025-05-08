@@ -11,7 +11,6 @@ globals.auto_close = 0
 globals.mkdp_update_time = 250
 globals.lazygit_floating_window_scaling_factor = 0.99 -- scaling factor for floating window
 globals.lazyvim_python_lsp = "pyright" -- Can also be "basedpyright"
-globals.lazyvim_rust_diagnostics = "rust-analyzer"
 globals.markdown_recommended_style = 1
 -- globals.autoformat = true
 globals.autoformat = true

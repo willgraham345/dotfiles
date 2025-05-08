@@ -119,8 +119,9 @@ dcu_v() {
 dcd() {
   docker compose -f "$1" down
 }
-d2preview(){
-  d2 --watch --browser=0 "$1".d2 "$1".svg
+d2p(){
+  base="${1%.d2}"  # Remove .d2 if present
+  d2 --watch --browser=0 "$base.d2" "$base.svg"
 }
 alias z.="cd .."
 alias z..="cd ../../"
@@ -164,6 +165,8 @@ export DOTFILE_DIR="/home/will/personal/Dotfiles"
 wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
 
 ### PATH Edits ###
+# Add snap to path
+export PATH=$PATH:/snap/bin
 # Add .local/bin and rust
 export PATH=/home/will/.local/bin:/opt/nvim:$PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

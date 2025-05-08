@@ -5,6 +5,7 @@
 ------------------
 -- Will keymaps
 ------------------
+vim.keymap.del({"n", "t"}, "<C-/>")
 vim.keymap.del("n", "[t")
 vim.keymap.del("n", "]t")
 vim.keymap.del("n", "<leader>br")
@@ -43,6 +44,15 @@ map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", {desc = "Delete buffers 
 map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", {desc = "Delete buffers to the Left" })
 
 
+
+-- Terminal/comment keymaps
+-- TODO: Add commenting stuff
+-- map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+-- map("t", "<M-/>", "<cmd>close<CR>")
+-- map({"n", "v", "i"}, "<M-/>", "<cmd>gcc<CR>", { desc = "Toggle comment", remap=false})
+
+
+
 -- File explorer keymaps
 map("n", "<M-e>", function()
   Snacks.explorer({ focus })
@@ -50,7 +60,7 @@ end, { desc = "Neotree focus" })
 map("n", "<M-E>", function()
   Snacks.explorer({ cwd = LazyVim.root() })
 end, { desc = "Neotree focus to CWD" })
-map("n", "<leader>cs", "<cmd>Outline<CR>", {desc = "Toggle Outline", noremap = true})
+-- map("n", "<leader>co", "<cmd>Outline<CR>", {desc = "Toggle Outline", noremap = true})
 
 -- Movement keymaps
 -- vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
@@ -58,12 +68,12 @@ map({ "n", "i" }, "<C-ScrollWheelUp>", "5zl", { desc = "Scroll right" })
 map({ "n", "i" }, "<C-ScrollWheelDown>", "5zh", { desc = "Scroll left" })
 
 -- N behavior (not sure why this is weird)
-map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+-- map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+-- map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+-- map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+-- map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+-- map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+-- map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 
 -- Git keymaps

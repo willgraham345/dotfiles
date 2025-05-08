@@ -2,6 +2,8 @@ local d2 = {
   'terrastruct/d2-vim',
   ft = {'d2', 'markdown'}
 }
+vim.g.lazyvim_rust_diagnostics = "bacon-ls"
+local diagnostics = vim.g.lazyvim_rust_diagnostics
 return {
   {
     "neovim/nvim-lspconfig",
@@ -22,14 +24,14 @@ return {
         bacon_ls = {
           enabled = diagnostics == "bacon-ls",
         },
-        rust_analyzer = {},
+        rust_analyzer = { enabled = false, },
       },
-      setup = {
-        rust_analyzer = function(_, opts)
-          require("rust-tools").setup({ server = opts })
-          return true
-        end,
-      },
+      -- setup = {
+        -- rust_analyzer = function(_, opts)
+        --   require("rust-tools").setup({ server = opts })
+        --   return true
+        -- end,
+      -- },
     },
   },
 
