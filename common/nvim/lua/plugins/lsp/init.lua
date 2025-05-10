@@ -43,8 +43,14 @@ return {
       if diagnostics == "bacon-ls" then
         vim.list_extend(opts.ensure_installed, { "bacon" })
       end
+      PATH = "append" -- This makes mason defualt to locally installed packages
     end
   },
+  -- {
+  --   "mrcjkp/rustaceanvim",
+  --   version = '^6',
+  --   lazy = false
+  -- },
 
   -- {
   -- "mrcjkb/rustaceanvim",

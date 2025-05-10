@@ -39,6 +39,13 @@ map("n", "[T", function()
 end, { desc = "Previous todo comment", silent = true })
 map("n", "]t", ":tabnext<CR>", { desc = "Next tab", remap = false })
 map("n", "[t", ":tabprevious<CR>", { desc = "Last tab", remap = false })
+vim.keymap.set('n', '<leader><Tab>r', function()
+  local input = vim.fn.input('New tab name: ')
+  if input ~= '' then
+    vim.cmd('BufferLineTabRename ' .. input)
+  end
+end, { desc = 'Rename bufferline tab' })
+
 map("n", "<M-q>", ":tabclose<CR>", { desc = "Close tab", remap = false })
 map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", {desc = "Delete buffers to the Right" })
 map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", {desc = "Delete buffers to the Left" })

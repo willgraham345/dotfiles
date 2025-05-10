@@ -8,11 +8,13 @@ return {
         "nvim-lua/plenary.nvim",
         "alfaix/neotest-gtest",
         "mrcjkb/rustaceanvim",
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-neotest/nvim-nio"
       },
       opts = {
-        adapters = { "neotest-plenary", "neotest-gtest",
-          ["rustaceanvim.neotest"] = {}},
-        status = { virtual_text = true },
+        adapters = {
+          ["rustaceanvim.neotest"] = {}
+        },
       },
     },
   },
