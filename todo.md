@@ -2,17 +2,12 @@
 
 - [ ] Change ~ and \` in oryx config
 - [ ] Better filtering for obsidian breadcrumb group relationships
-- [ ] Keymaps
-  - [ ] consider turning off default keymaps for lazyvim
-  - [ ] Add delete buffers to left/right keymaps
-  - [ ] Add [[ to aerial rather than snacks default
-  - [ ] Make keymap to delete the matching "([{" on end of a string
-  - [ ] Add "[," for next comma
 - [ ] Fix cpp snippets, they're not working
 - [ ] Fix query for dataviewJS within a project
 - [ ] Add better dataviewJS for command and code queries
   - [ ] Sort by tag group and tag subgroups (maybe choose depth at which to search)
 - [ ] Add keybind that lets me vertically split from fzf
+- [ ] Neotest setup
 - [ ] Overseer task setup
   - [ ] CMake configure && build
   - [ ] Run test...?
@@ -45,3 +40,9 @@
 - [x] Set up cmp to handle autocompletion/hovering
   - [x] dockerfile
   - [x] CMake functions and other stuff
+- [x] Keymaps
+  - [x] consider turning off default keymaps for lazyvim
+  - [x] Add delete buffers to left/right keymaps
+  - [x] Add [[ to aerial rather than snacks default
+  - [x] Make keymap to delete the matching "([{" on end of a string
+  - [x] Add "[," for next comma
