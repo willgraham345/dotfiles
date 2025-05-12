@@ -9,11 +9,13 @@ return {
         "alfaix/neotest-gtest",
         "mrcjkb/rustaceanvim",
         "nvim-treesitter/nvim-treesitter",
-        "nvim-neotest/nvim-nio"
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-neotest/nvim-nio",
       },
       opts = {
         adapters = {
-          ["rustaceanvim.neotest"] = {}
+          ["rustaceanvim.neotest"] = {},
+          ["neotest-gtest"] = {}
         },
       },
     },
