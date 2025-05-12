@@ -5,10 +5,10 @@
 ------------------
 -- Will keymaps
 ------------------
-vim.keymap.del({"n", "t"}, "<C-/>")
+vim.keymap.del({ "n", "t" }, "<C-/>")
 vim.keymap.del("n", "[t")
 vim.keymap.del("n", "]t")
-vim.keymap.del("n", "<leader>br")
+vim.keymap.del("n", "<leader>br") -- Deletes the initial
 vim.keymap.del("n", "<leader>bl")
 -- vim.keymap.del("n", "<leader>cs") -- aerial remove
 -- TODO: Remove the "[[" and "]]" commands from snacks, hand those to aerial
@@ -19,7 +19,6 @@ vim.keymap.del("n", "<leader>bl")
 --   vim.keymap.del({ "n", "t" }, "[[")
 --   vim.keymap.del({ "n", "t" }, "]]")
 -- end,
-
 
 -- Window keymaps
 local map = vim.keymap.set
@@ -39,26 +38,22 @@ map("n", "[T", function()
 end, { desc = "Previous todo comment", silent = true })
 map("n", "]t", ":tabnext<CR>", { desc = "Next tab", remap = false })
 map("n", "[t", ":tabprevious<CR>", { desc = "Last tab", remap = false })
-vim.keymap.set('n', '<leader><Tab>r', function()
-  local input = vim.fn.input('New tab name: ')
-  if input ~= '' then
-    vim.cmd('BufferLineTabRename ' .. input)
+vim.keymap.set("n", "<leader><Tab>r", function()
+  local input = vim.fn.input("New tab name: ")
+  if input ~= "" then
+    vim.cmd("BufferLineTabRename " .. input)
   end
-end, { desc = 'Rename bufferline tab' })
+end, { desc = "Rename bufferline tab" })
 
 map("n", "<M-q>", ":tabclose<CR>", { desc = "Close tab", remap = false })
-map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", {desc = "Delete buffers to the Right" })
-map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", {desc = "Delete buffers to the Left" })
-
-
+map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", { desc = "Delete buffers to the Right" })
+map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers to the Left" })
 
 -- Terminal/comment keymaps
 -- TODO: Add commenting stuff
 -- map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
 -- map("t", "<M-/>", "<cmd>close<CR>")
 -- map({"n", "v", "i"}, "<M-/>", "<cmd>gcc<CR>", { desc = "Toggle comment", remap=false})
-
-
 
 -- File explorer keymaps
 map("n", "<M-e>", function()
@@ -82,7 +77,6 @@ map({ "n", "i" }, "<C-ScrollWheelDown>", "5zh", { desc = "Scroll left" })
 -- map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 -- map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
-
 -- Git keymaps
 map("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { noremap = true, desc = "Starts Fugitive Diff window" })
 map("n", "<leader>gD", "<cmd>Git difftool -y develop<CR>", { noremap = true, desc = "Difftool against develop" })
@@ -93,7 +87,6 @@ map("n", "<leader>gt", "<cmd>Gvdiffsplit!<CR>", { noremap = true, desc = "Start 
 -- Quickfix keymaps
 map("n", "<leader>xc", "<cmd>cexpr []<CR>", { noremap = true, desc = "Clear the quickfix list" })
 
-
 -- Task runner keymaps (work in progress)
 vim.api.nvim_set_keymap("n", "<F6>", "<cmd><cr>", { noremap = true, silent = true })
 map("n", "<leader>cj", function()
@@ -103,17 +96,19 @@ map("n", "<leader>cj", function()
   end
   return schema.result[1].name
 end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
-vim.api.nvim_set_keymap("n", "<S-F6>", "<cmd>OverseerRun CMake Configure<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<S-F7>", "<cmd>OverseerRun CMake Build<CR>", { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap("n", "<F6>", "<cmd>OverseerRun CMake Configure<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F7>", "<cmd>OverseerRun CMake Build<CR>", { noremap = true, silent = true })
+map("n", "<leader>cG", "<cmd>CMakeSettings<CR>", { noremap = true, desc = "CMake Settings" })
+map("n", "<F6>", "<cmd>CMakeGenerate<CR>", { noremap = true, desc = "CMake Generate" })
+map("n", "<F7>", "<cmd>CMakeBuild<CR>", { noremap = true, desc = "CMake Build" })
+map("n", "<F8>", "<cmd>CMakeRunTest<CR>", { noremap = true, desc = "CMake Run Test" })
 
 -- LSP keymaps
 map("n", "<leader>cJ", function()
   require("yaml-companion").open_ui_select()
 end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
 map("n", "<leader>cP", "<cmd>PeekOpen<CR>", { desc = "Markdown PeekOpen" })
-map("n", "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd"})
-
+map("n", "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
 
 -- Searching keymaps
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
@@ -121,20 +116,15 @@ vim.keymap.set("n", "<leader>s/", LazyVim.pick("files", { root = false }), { des
 vim.keymap.del("n", "<leader>sg")
 vim.keymap.del("n", "<leader>sG")
 
-
-
 ------------------
 -- Will Functions
 ------------------
 local list_snips = function()
-	local ft_list = require("luasnip").available()[vim.o.filetype]
-	local ft_snips = {}
-	for _, item in pairs(ft_list) do
-		ft_snips[item.trigger] = item.name
-	end
-	print(vim.inspect(ft_snips))
+  local ft_list = require("luasnip").available()[vim.o.filetype]
+  local ft_snips = {}
+  for _, item in pairs(ft_list) do
+    ft_snips[item.trigger] = item.name
+  end
+  print(vim.inspect(ft_snips))
 end
 vim.api.nvim_create_user_command("SnipList", list_snips, {})
-
-
-

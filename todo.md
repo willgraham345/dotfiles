@@ -1,5 +1,9 @@
 # TODO
 
+- [ ] Cpp setup
+  - [ ] Add a cmake kit to zshrc and write it to .config somewhere
+  - [ ] Add configuration to use Ninja
+  - [ ] Add configuration to use ctest
 - [ ] Change ~ and \` in oryx config
 - [ ] Better filtering for obsidian breadcrumb group relationships
 - [ ] Fix cpp snippets, they're not working
@@ -7,10 +11,6 @@
 - [ ] Add better dataviewJS for command and code queries
   - [ ] Sort by tag group and tag subgroups (maybe choose depth at which to search)
 - [ ] Add keybind that lets me vertically split from fzf
-- [ ] Neotest setup
-- [ ] Overseer task setup
-  - [ ] CMake configure && build
-  - [ ] Run test...?
 
 # DONE
 
@@ -46,3 +46,4 @@
   - [x] Add [[ to aerial rather than snacks default
   - [x] Make keymap to delete the matching "([{" on end of a string
   - [x] Add "[," for next comma
+- [x] Neotest setup
