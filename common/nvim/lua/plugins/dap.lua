@@ -10,7 +10,8 @@ return {
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
     dependencies = {
-      "rcarriga/nvim-dap-ui",
+      -- "rcarriga/nvim-dap-ui",
+      "igorlfs/nvim-dap-view",
       -- virtual text for the debugger
       {
         "theHamsta/nvim-dap-virtual-text",
@@ -63,31 +64,33 @@ return {
       end
     end,
   },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "nvim-neotest/nvim-nio" },
-    -- stylua: ignore
-    keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-    },
-    opts = {},
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup(opts)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open({})
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close({})
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close({})
-      end
-    end,
-  }
-  -- Not that fancy...
+  -- Turned off dap-ui, mostly for speed
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   dependencies = { "nvim-neotest/nvim-nio" },
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+  --     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+  --   },
+  --   opts = {},
+  --   -- The config calls this plugin automatically when the debugger is called
+  --   config = function(_, opts)
+  --     local dap = require("dap")
+  --     local dapui = require("dapui")
+  --     dapui.setup(opts)
+  --     dap.listeners.after.event_initialized["dapui_config"] = function()
+  --       dapui.open({})
+  --     end
+  --     dap.listeners.before.event_terminated["dapui_config"] = function()
+  --       dapui.close({})
+  --     end
+  --     dap.listeners.before.event_exited["dapui_config"] = function()
+  --       dapui.close({})
+  --     end
+  --   end,
+  -- },
+  -- Alternative dap-ui setup
   -- {
   --   "rcarriga/nvim-dap-ui",
   -- -- virtual text for the debugger
@@ -98,27 +101,27 @@ return {
   --   opts = nil
   -- }
   -- FIXME: Not able to find mason-lspconfig.mappings.server
-  -- {
-  --   "jay-babu/mason-nvim-dap.nvim",
-  --   dependencies = { "mason.nvim", "mfussenegger/nvim-dap"},
-  --   cmd = { "DapInstall", "DapUninstall" },
-  --   opts = {
-  --     -- Makes a best effort to setup the various debuggers with
-  --     -- reasonable debug configurations
-  --     automatic_installation = true,
-  --
-  --     -- You can provide additional configuration to the handlers,
-  --     -- see mason-nvim-dap README for more information
-  --     handlers = {},
-  --
-  --     -- You'll need to check that you have the required things installed
-  --     -- online, please don't ask me how to install them :)
-  --     ensure_installed = {
-  --       -- Update this to ensure that you have the debuggers for the langs you want
-  --       "python"
-  --     },
-  --   },
-  --   -- mason-nvim-dap is loaded when nvim-dap loads
-  --   config = function() end,
-  -- },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "mason.nvim", "mfussenegger/nvim-dap"},
+    cmd = { "DapInstall", "DapUninstall" },
+    opts = {
+      -- Makes a best effort to setup the various debuggers with
+      -- reasonable debug configurations
+      automatic_installation = true,
+
+      -- You can provide additional configuration to the handlers,
+      -- see mason-nvim-dap README for more information
+      handlers = {},
+
+      -- You'll need to check that you have the required things installed
+      -- online, please don't ask me how to install them :)
+      ensure_installed = {
+        -- Update this to ensure that you have the debuggers for the langs you want
+        -- NOTE: We keep the primary mason as the one source of truth
+      },
+    },
+    -- mason-nvim-dap is loaded when nvim-dap loads
+    config = function() end,
+  },
 }

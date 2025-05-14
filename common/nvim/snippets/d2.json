@@ -208,14 +208,11 @@
         ],
         "description": "Inserts a Code Shape for D2"
     },
-    "class": {
-        "prefix": "class",
+    "shape class": {
+        "prefix": "shape class",
         "body": [
-            "${1:className}: {",
-            "\tshape: class",
-            "",
-            "\t${2:data}",
-            "}"
+            "tshape: class",
+            "${2:data}",
         ],
         "description": "Inserts a Class Shape for D2"
     },
@@ -241,16 +238,21 @@
         ],
         "description": "Inserts an SQL Table Shape for D2"
     },
-    "sequence_diagram": {
-        "prefix": "sequence_diagram",
+    "shape sequence_diagram": {
+        "prefix": "shape sequence_diagram",
         "body": [
-            "${1:className}: \"${2:Class Title}\" {",
-            "\tshape: sequence_diagram",
-            "",
-            "\t${3:data}",
-            "}"
+            "shape: sequence_diagram"
         ],
         "description": "Inserts a Sequence Diagram Shape for D2"
+    },
+    "markdown": {
+        "prefix": "markdown",
+        "body": [
+          "${1:name}: |`",
+          "\${2:markdown}",
+          "`|"
+        ],
+        "description": "Inserts a markdown block"
     },
     "image": {
         "prefix": "image",
@@ -261,6 +263,13 @@
             "}"
         ],
         "description": "Inserts an Image Shape for D2"
+    },
+    "note": {
+        "prefix": "note",
+        "body": [
+            "\"${1:note}\" -> ${2:thing}"
+        ],
+        "description": "Inserts a note"
     },
     "style": {
         "prefix": "style",

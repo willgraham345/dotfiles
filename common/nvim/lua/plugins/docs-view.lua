@@ -2,7 +2,7 @@ return {
   {
     "amrbashir/nvim-docs-view",
     lazy = true,
-    cmd = "Docs",
+    cmd = "DocsViewToggle",
     opts = {
       position = "right",
       width = 60,

@@ -1,16 +1,23 @@
 # TODO
 
-- [ ] Cpp setup
+## nvim
+
+- [ ] whichkey icon and group setup
+- [ ] See if outline has a "freeze" toggle
+- [ ] Finish up cmake setup
   - [ ] Add a cmake kit to zshrc and write it to .config somewhere
   - [ ] Add configuration to use Ninja
   - [ ] Add configuration to use ctest
+- [ ] Fix cpp snippets, they're not working
+- [ ] Add keybind that lets me vertically split from fzf
+
+## other
+
 - [ ] Change ~ and \` in oryx config
 - [ ] Better filtering for obsidian breadcrumb group relationships
-- [ ] Fix cpp snippets, they're not working
 - [ ] Fix query for dataviewJS within a project
 - [ ] Add better dataviewJS for command and code queries
   - [ ] Sort by tag group and tag subgroups (maybe choose depth at which to search)
-- [ ] Add keybind that lets me vertically split from fzf
 
 # DONE
 

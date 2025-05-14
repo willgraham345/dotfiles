@@ -70,6 +70,7 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
       },
 
+      -- FIXME: Still trying to suggest on command line
       cmdline = {
         enabled = false,
       },

@@ -146,5 +146,9 @@ return
       }
     }
   },
+  {
+    -- Don't delete, this works with the thing up top to implmeent d2 graphs lsp
+    d2
+  }
 
 }

@@ -51,7 +51,7 @@ map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers 
 
 -- Terminal/comment keymaps
 -- TODO: Add commenting stuff
--- map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
 -- map("t", "<M-/>", "<cmd>close<CR>")
 -- map({"n", "v", "i"}, "<M-/>", "<cmd>gcc<CR>", { desc = "Toggle comment", remap=false})
 
@@ -83,9 +83,33 @@ map("n", "<leader>gD", "<cmd>Git difftool -y develop<CR>", { noremap = true, des
 map("n", "<leader>gm", "<cmd>Git mergetool<CR>", { noremap = true, desc = "Start mergetool, quicklist" })
 map("n", "<leader>gM", "<cmd>Git mergetool -y<CR>", { noremap = true, desc = "Start mergetool, tabs" })
 map("n", "<leader>gt", "<cmd>Gvdiffsplit!<CR>", { noremap = true, desc = "Start fugitive 3 way diff" })
+map("n", "g2o", "<cmd>diffget //2<CR>", {noremap = true, desc = "Get changes from left window"})
+map("n", "g3o", "<cmd>diffget //3<CR>", {noremap = true, desc = "Get changes from right window"})
+-- Mergetool stuff
+--   ╔═══════╦═══════╦════════╗
+  -- ║       ║       ║        ║
+  -- ║ LOCAL ║ MERGED║ REMOTE ║
+  -- ║       ║       ║        ║
+  -- ╚═══════╩═══════╩════════╝
+-- do = get changes from current window
+-- dp = Put changes to other window
+-- :diffupdate = refresh diff highlighting
+-- +----------------+------------------+
+-- |     LOCAL      |      REMOTE     |
+-- |  (your branch) | (their branch)  |
+-- +----------------+------------------+
+-- |             BASE                 |
+-- |    (common ancestor)            |
+-- +----------------+------------------+
+-- |            MERGED               |
+-- |     (final result)             |
+-- +----------------+------------------+
 
 -- Quickfix keymaps
 map("n", "<leader>xc", "<cmd>cexpr []<CR>", { noremap = true, desc = "Clear the quickfix list" })
+
+-- DocsViewToggle
+map("n", "<leader>cD", "<cmd>DocsViewToggle<CR>", { noremap = true, desc = "Toggle docs to the right"})
 
 -- Task runner keymaps (work in progress)
 vim.api.nvim_set_keymap("n", "<F6>", "<cmd><cr>", { noremap = true, silent = true })
@@ -98,17 +122,96 @@ map("n", "<leader>cj", function()
 end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
 vim.api.nvim_set_keymap("n", "<F6>", "<cmd>OverseerRun CMake Configure<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>OverseerRun CMake Build<CR>", { noremap = true, silent = true })
-map("n", "<leader>cg", "<cmd>CMakeSettings<CR>", { noremap = true, desc = "CMake Settings" })
-map("n", "<F6>", "<cmd>CMakeGenerate<CR>", { noremap = true, desc = "CMake Generate" })
-map("n", "<F7>", "<cmd>CMakeBuild<CR>", { noremap = true, desc = "CMake Build" })
-map("n", "<F8>", "<cmd>CMakeRunTest<CR>", { noremap = true, desc = "CMake Run Test" })
+map("n", "<leader>ms", "<cmd>CMakeSettings<CR>", { noremap = true, desc = "CMake Settings" })
+map("n", "<leader>mr", "<cmd>CMakeRun<CR>", {noremap = true, desc="Run"})
+map("n", "<leader>mR", "<cmd>CMakeQuickRun<CR>", {noremap=true, desc="CMake quick run"})
+map("n", "<leader>mg", "<cmd>CMakeGenerate<CR>", { noremap = true, desc = "CMake Generate" })
+map("n", "<leader>mm", "<cmd>CMakeBuild<CR>", { noremap = true, desc = "CMake Build" })
+map("n", "<leader>mt", "<cmd>CMakeSelectBuildTarget<CR>", { noremap = true, desc = "Pick Build target" })
+map("n", "<leader>ml", "<cmd>CMakeSelectLaunchTarget<CR>", { noremap = true, desc = "Pick Launch target" })
+map("n", "<leader>ma", "<cmd>CMakeTargetSettings<CR>", { noremap = true, desc = "Target Settings (gtest_filter)" })
+-- map("n", "<leader>mt", "<cmd>CMakeRunTest<CR>", { noremap = true, desc = "CMake Run Test" })
 
 -- LSP keymaps
 map("n", "<leader>cJ", function()
   require("yaml-companion").open_ui_select()
 end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
-map("n", "<leader>cP", "<cmd>PeekOpen<CR>", { desc = "Markdown PeekOpen" })
-map("n", "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
+map({"n", "v"}, "<leader>cct", "<cmd>ClangdAST<CR>", { desc = "Clangd AST" })
+map({"n", "v"}, "<leader>cci", "<cmd>ClangdSymbolInfo<CR>", { desc = "Clangd Symbol Info" })
+map({"n", "v"}, "<leader>cch", "<cmd>ClangdTypeHierarchy<CR>", { desc = "Clangd Type Hierarchy" })
+map({"n", "v"}, "<leader>ccm", "<cmd>ClangdMemoryUsage<CR>", { desc = "Clangd Memory Usage" })
+map({"n", "v"}, "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
+
+-- Test keymaps
+map("n", "<leader>tR", function()
+  vim.ui.input({ prompt = "Test name to run: " }, function(input)
+    if input and input ~= "" then
+      require("neotest").run.run(input)
+      else
+        print("No test name provided.")
+      end
+  end)
+end, {desc = "Run test by name", noremap = true, silent = true})
+-- FIXME: Doesn't list all tests
+-- vim.api.nvim_create_user_command("ListTests", function()
+--   local neotest = require("neotest")
+--   local tree = neotest.run.get_tree()
+--   if not tree then
+--     print("No tests loaded.")
+--     return
+--   end
+--
+--   tree:visit(function(node)
+--     if node.type == "test" then
+--       print(node.name)
+--     end
+--   end)
+-- end, {})
+-- map("n", "<leader>tL", "<cmd>ListTests<CR>", {desc = "List all tests", noremap = false})
+
+-- FIXME: Doesn't run an exact test
+-- vim.keymap.set("n", "<leader>tq", function()
+--   vim.ui.input({ prompt = "Exact test name: " }, function(input)
+--     if not input or input == "" then
+--       print("❌ No test name entered.")
+--       return
+--     end
+--
+--     local neotest = require("neotest")
+--     local positions = neotest.run.get_tree()
+--     if not positions then
+--       print("❌ No test tree loaded. Try opening a test file first.")
+--       return
+--     end
+--
+--     local found = nil
+--     positions:visit(function(node)
+--       if node.type == "test" and node.name == input then
+--         found = node
+--       end
+--     end)
+--
+--     if found then
+--       neotest.run.run(found)
+--     else
+--       print("❌ Test name not found: " .. input)
+--     end
+--   end)
+-- end, { desc = "Run test by name", noremap = true, silent = true })
+
+
+-- DAP Keymaps
+map("n", "<leader>dv", "<Cmd>DapViewToggle<CR>", {desc = "Toggle DAP view", noremap = true})
+-- FIXME: Not working
+-- map("n", "F5",
+--   local dap = require("dap")
+--   if dap.session() == nil and (vim.bo.filetype == "cpp" or vim.bo.filetype == "c") then
+--     -- Only call this on C++ and C files
+--     require("ctest-telescope").pick_test_and_debug()
+--   else
+--     dap.continue()
+--   end
+-- end, { desc = "Debug: Start/Continue" })
 
 -- Searching keymaps
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })

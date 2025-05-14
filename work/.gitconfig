@@ -8,15 +8,20 @@
 ; 	tool = vscode
 [diff]
     tool = nvimdiff
+
 [difftool "nvimdiff"]
 	cmd = "nvim -d $LOCAL $REMOTE $MERGED"
 ; [difftool "vscode"]
 ; 	cmd = code --wait --diff $LOCAL $REMOTE
+
 [merge]
-	tool = nvimdiff
+  tool = nvimdiff
   conflict-style = diff3
 ; [mergetool "vscode"]
 ;   cmd = code --wait $MERGED
+
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [rebasetool]
     tool = nvimdiff
 [alias]
