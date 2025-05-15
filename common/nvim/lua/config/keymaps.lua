@@ -53,7 +53,7 @@ map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers 
 -- TODO: Add commenting stuff
 map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
 -- map("t", "<M-/>", "<cmd>close<CR>")
--- map({"n", "v", "i"}, "<M-/>", "<cmd>gcc<CR>", { desc = "Toggle comment", remap=false})
+map({"n", "v", "i"}, "<M-c>", "<cmd>gcc<CR>", { desc = "Toggle comment", remap=false})
 
 -- File explorer keymaps
 map("n", "<M-e>", function()
