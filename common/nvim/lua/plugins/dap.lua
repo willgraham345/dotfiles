@@ -10,7 +10,7 @@ return {
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
     dependencies = {
-      -- "rcarriga/nvim-dap-ui",
+      "rcarriga/nvim-dap-ui",
       "igorlfs/nvim-dap-view",
       -- virtual text for the debugger
       {
@@ -64,32 +64,31 @@ return {
       end
     end,
   },
-  -- Turned off dap-ui, mostly for speed
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  --   dependencies = { "nvim-neotest/nvim-nio" },
-  --   -- stylua: ignore
-  --   keys = {
-  --     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-  --     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-  --   },
-  --   opts = {},
-  --   -- The config calls this plugin automatically when the debugger is called
-  --   config = function(_, opts)
-  --     local dap = require("dap")
-  --     local dapui = require("dapui")
-  --     dapui.setup(opts)
-  --     dap.listeners.after.event_initialized["dapui_config"] = function()
-  --       dapui.open({})
-  --     end
-  --     dap.listeners.before.event_terminated["dapui_config"] = function()
-  --       dapui.close({})
-  --     end
-  --     dap.listeners.before.event_exited["dapui_config"] = function()
-  --       dapui.close({})
-  --     end
-  --   end,
-  -- },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "nvim-neotest/nvim-nio" },
+    -- stylua: ignore
+    keys = {
+      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+    },
+    opts = {},
+    -- The config calls this plugin automatically when the debugger is called
+    config = function(_, opts)
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup(opts)
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open({})
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close({})
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close({})
+      end
+    end,
+  },
   -- Alternative dap-ui setup
   -- {
   --   "rcarriga/nvim-dap-ui",

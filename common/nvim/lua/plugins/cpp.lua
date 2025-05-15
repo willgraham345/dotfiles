@@ -29,7 +29,7 @@ return {
             position = "belowright", -- "vertical", "horizontal", "leftabove", "aboveleft", "rightbelow", "belowright", "topleft", "botright", use `:h vertical` for example to see help on them
             size = 10,
             encoding = "utf-8", -- if encoding is not "utf-8", it will be converted to "utf-8" using `vim.fn.iconv`
-            auto_close_when_success = false, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
+            auto_close_when_success = true, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
           },
           toggleterm = {
             direction = "float", -- 'vertical' | 'horizontal' | 'tab' | 'float'
@@ -80,7 +80,7 @@ return {
             position = "bottom", --FIXME: Not going to bottom
             size = 10,
             encoding = "utf-8",
-            auto_close_when_success = false,
+            auto_close_when_success = true,
           },
           toggleterm = {
             direction = 'vertical',

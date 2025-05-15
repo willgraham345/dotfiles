@@ -143,6 +143,7 @@ map({"n", "v"}, "<leader>ccm", "<cmd>ClangdMemoryUsage<CR>", { desc = "Clangd Me
 map({"n", "v"}, "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
 
 -- Test keymaps
+map("n", "<leader>tc", "<cmd>ConfigureGtest<CR>", {desc = "Configure Gtest", noremap = true })
 map("n", "<leader>tR", function()
   vim.ui.input({ prompt = "Test name to run: " }, function(input)
     if input and input ~= "" then

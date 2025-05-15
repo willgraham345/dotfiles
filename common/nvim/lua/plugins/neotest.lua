@@ -17,22 +17,10 @@ return {
       "nvim-neotest/nvim-nio",
       "orjangj/neotest-ctest",
     },
-    opts = {
-      discovery = {
-        enabled = false,
-        concurrent = false
-      },
-      running = {
-        concurrent = false
-      },
-      summary = {
-        animated = false
-      }
-
-    },
     opts = function(_, opts)
       local utils = require("neotest-gtest.utils")
       local lib = require("neotest.lib")
+      -- cpp adapter
       table.insert(
         opts.adapters,
         -- require("rustaceanvim.neotest").setup({}),
@@ -51,20 +39,35 @@ return {
           debug_adapter = "codelldb",
           -- fun(string) -> bool: takes a file path as string and returns true if it contains
           -- tests
+          -- is_test_file = function(file)
+          --   -- by default, returns true if the file stem starts with test_ or ends with _test
+          --   -- the extension must be cpp/cppm/cc/cxx/c++
+          --   local filename = file:match("([^/\\]+)$") or file
+          --   if filename:match("$Test") then
+          --     return true
+          --   end
+          --   return filename:match("^test.+$") ~= nil
+          --   -- if string.find(file, "test") then -- Example: Check if "test" is in the file path
+          --   --     return true
+          --   -- end
+          --   -- return false
+          --
+          -- end,
           is_test_file = function(file)
-            -- by default, returns true if the file stem starts with test_ or ends with _test
-            -- the extension must be cpp/cppm/cc/cxx/c++
-            local filename = file:match("([^/\\]+)$") or file
-            return filename:match("^test.+$") ~= nil
-            -- if string.find(file, "test") then -- Example: Check if "test" is in the file path
-            --     return true
-            -- end
-            -- return false
-
+            -- 1) isolate basename
+            if string.find(file, "test") then
+              --or make it fall back to the orignal path if there isn't a "/" in the string
+              file:gsub(".+/", "")
+              if string.find(file, "test_")  or string.find(file, "Test.cpp") or string.find(file, "test") then
+                return true
+                -- return string.match(file, "test/") or string.match(file, "tests/")
+              end
+            end
+            return false
           end,
           history_size = 3,
           parsing_throttle_ms = 10,
-          mappings = {configure = "C"},
+          mappings = {configure = "c"},
           summary_view = {
             header_length = 80,
                 shell_palette = {
@@ -76,34 +79,55 @@ return {
               },
           },
           extra_args = {},
-
-          -- filter_dir is uncommented, gave me wierd issues
+          
+          --FIXME: Not doing test directory finding correctly, handled in the is_test_file() instead
+          ---@async
+          ---@param name string Name of directory
+          ---@param rel_path string Path to directory, relative to root
+          ---@param root string Root directory of project
+          ---@return boolean
           -- filter_dir = function(name, rel_path, root)
-          --   -- 1. explicitly skip any dir named "ground" or "external"
-          --   if name == "ground" or name == "external" then
-          --     return false
-          --   end
+          --   local full_path = root .. "/" .. rel_path
           --
-          --   -- 2. otherwise defer to Neotest’s default discovery filter
-          --   --    (so you still get .gitignore, node_modules, hidden, etc. behavior)
-          --   return default_filter_dir(name, rel_path, root)
-          -- end,
-
+          --   print("full_path")
+          --   print(full_path)
+          --   if root:match("test") or root:match("tests") then
+          --     print("matched dir")
+          --     if full_path:match("^unit_tests") then
+          --       print("matched dir")
+          --       return true
+          --   else
+          --     print("false dir")
+          --     return false
+          --     end
+          --   else
+          --     print("node mods")
+          --     return name ~= "node_modules"
+          --   end
+          -- end
         })
-      )
-      if not opts.discovery then
-        opts.discovery = {}
-      end
-      if not opts.running then
-        opts.running = {}
-      end
-      opts.discovery = {
-        enabled = false,
-        concurrent = 1
-      }
-      opts.running = {
-        concurrent = true
-      }
+    )
+            -- table.insert(
+            --   opts.adapters,
+            --   require("rustaceanvim.neotest")
+    -- FIXME: Not as clean as it once was
+    table.insert(
+      opts.adapters,
+      require("rustaceanvim.neotest")
+    )
+    if not opts.discovery then
+      opts.discovery = {}
+    end
+    if not opts.running then
+      opts.running = {}
+    end
+    opts.discovery = {
+      enabled = false,
+      concurrent = 1
+    }
+    opts.running = {
+      concurrent = true
+    }
 
     end,
   },
