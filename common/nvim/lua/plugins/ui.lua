@@ -147,7 +147,11 @@ return {
               -- Configuration here, or leave empty to use defaults
           })
       end
-  }
+  },
+  {
+    'echasnovski/mini.comment',
+    version = false
+  },
   --   {
   --   "echasnovski/mini.surround",
   --   keys = function(_, keys)

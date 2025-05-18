@@ -1,4 +1,15 @@
 {
+    "Dashed line": {
+        "prefix": "dashed-line",
+        "body": [
+            "{",
+            "\tstyle: {",
+            "\t\tstroke-dash: 3",
+            "\t}",
+            "}",
+        ],
+        "description": "Inserts stuff for a dashed line"
+    },
     "rectangle": {
         "prefix": "rectangle",
         "body": [
@@ -395,5 +406,16 @@
             "}"
         ],
         "description": "Inserts a Filled Circle Arrowhead"
+    },
+    "Dashed line": {
+        "prefix": "dashed-line",
+        "body": [
+            "{",
+            "\tstyle: {",
+            "\t\tstroke-dash: 3",
+            "\t}",
+            "}",
+        ],
+        "description": "Inserts stuff for a dashed line"
     }
 }

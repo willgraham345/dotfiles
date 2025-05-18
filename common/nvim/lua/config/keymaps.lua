@@ -53,7 +53,10 @@ map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers 
 -- TODO: Add commenting stuff
 map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
 -- map("t", "<M-/>", "<cmd>close<CR>")
-map({"n", "v", "i"}, "<M-c>", "<cmd>gcc<CR>", { desc = "Toggle comment", remap=false})
+map({"n", "v", "i"}, "<M-c>", function()
+  return require("ts_context_commentstring.internal").calculate_commentstring()
+  end,
+  { desc = "Toggle comment", remap=true})
 
 -- File explorer keymaps
 map("n", "<M-e>", function()
@@ -62,7 +65,7 @@ end, { desc = "Neotree focus" })
 map("n", "<M-E>", function()
   Snacks.explorer({ cwd = LazyVim.root() })
 end, { desc = "Neotree focus to CWD" })
--- map("n", "<leader>co", "<cmd>Outline<CR>", {desc = "Toggle Outline", noremap = true})
+map("n", "<leader>cs", "<cmd>Outline<CR>", {desc = "Toggle Outline", noremap = true})
 
 -- Movement keymaps
 -- vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
@@ -136,10 +139,10 @@ map("n", "<leader>ma", "<cmd>CMakeTargetSettings<CR>", { noremap = true, desc = 
 map("n", "<leader>cJ", function()
   require("yaml-companion").open_ui_select()
 end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
-map({"n", "v"}, "<leader>cct", "<cmd>ClangdAST<CR>", { desc = "Clangd AST" })
-map({"n", "v"}, "<leader>cci", "<cmd>ClangdSymbolInfo<CR>", { desc = "Clangd Symbol Info" })
-map({"n", "v"}, "<leader>cch", "<cmd>ClangdTypeHierarchy<CR>", { desc = "Clangd Type Hierarchy" })
-map({"n", "v"}, "<leader>ccm", "<cmd>ClangdMemoryUsage<CR>", { desc = "Clangd Memory Usage" })
+map({"n", "v"}, "<leader>mct", "<cmd>ClangdAST<CR>", { desc = "Clangd AST" })
+map({"n", "v"}, "<leader>mci", "<cmd>ClangdSymbolInfo<CR>", { desc = "Clangd Symbol Info" })
+map({"n", "v"}, "<leader>mch", "<cmd>ClangdTypeHierarchy<CR>", { desc = "Clangd Type Hierarchy" })
+map({"n", "v"}, "<leader>mcm", "<cmd>ClangdMemoryUsage<CR>", { desc = "Clangd Memory Usage" })
 map({"n", "v"}, "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
 
 -- Test keymaps

@@ -70,7 +70,7 @@ require('image').setup({
     }
   }
 })
-print(require("image").is_enabled()) -- bool
+-- print(require("image").is_enabled()) -- bool
 
 -- require("image").setup({
 --   backend = "kitty",

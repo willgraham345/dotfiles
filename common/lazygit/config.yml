@@ -1,10 +1,11 @@
 gui:
   scrollHeight: 20
+  # Uncomment below for split view
   # sidePanelWidth: 0.15
-  mainPanelSplitMode: flexible
-  expandFocusedSidePanel: true
+  # mainPanelSplitMode: flexible
+  # portraitMode: always
   # enlargedSideViewLocation: top
-  portraitMode: always
+  expandFocusedSidePanel: true
   nerdFontsVersion: "3"
   # dracula theme, it's mid at best
   # theme:

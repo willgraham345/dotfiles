@@ -18,6 +18,12 @@ return {
     cmd = { "Git", "G" },
     lazy = false,
   },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = {},
+    lazy = false
+  }
+  
   -- {
   -- Only supports GitHub for now :(
   --   "pwntester/octo.nvim",

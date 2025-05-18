@@ -5,7 +5,7 @@ return {
     event = "LazyFile",
     opts = {
       keywords = {
-        WILL = { icon = ",", color = "info" }
+        WILL = { icon = ",", color = "warning" }
       }
     },
     -- stylua: ignore

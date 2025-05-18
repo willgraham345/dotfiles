@@ -48,7 +48,7 @@
   diffFilter = delta --color-only --features=interactive
 [delta]
   navigate = true
-  side-by-side = true
+  ; side-by-side = true
   light = false
   true-color = always
   features = colibri

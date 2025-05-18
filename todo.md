@@ -2,21 +2,18 @@
 
 ## nvim
 
-- [ ] whichkey icon and group setup
-- [ ] See if outline has a "freeze" toggle
-- [ ] Finish up cmake setup
-  - [ ] Add a cmake kit to zshrc and write it to .config somewhere
-  - [ ] Add configuration to use Ninja
-  - [ ] Add configuration to use ctest
-- [ ] Fix cpp snippets, they're not working
-- [ ] Add keybind that lets me vertically split from fzf
+- [ ] Set up image/diagram nvim on cmd wsl
+- [ ] whichkey icon and group setup #nice_to_have
+- [ ] See if outline has a "freeze" toggle #nice_to_have
+- [ ] Fix cpp snippets, they're not working #nice_to_have
+- [ ] Add keybind that lets me vertically split from fzf #nice_to_have
 
 ## other
 
-- [ ] Change ~ and \` in oryx config
+- [ ] Change ~ and \` in oryx config #high_priority
 - [ ] Better filtering for obsidian breadcrumb group relationships
 - [ ] Fix query for dataviewJS within a project
-- [ ] Add better dataviewJS for command and code queries
+- [ ] Add better dataviewJS for command and code queries #high_priority
   - [ ] Sort by tag group and tag subgroups (maybe choose depth at which to search)
 
 # DONE
@@ -54,3 +51,7 @@
   - [x] Make keymap to delete the matching "([{" on end of a string
   - [x] Add "[," for next comma
 - [x] Neotest setup
+- [x] Finish up cmake setup
+  - [x] Add a cmake kit to zshrc and write it to .config somewhere
+  - [x] Add configuration to use Ninja
+  - [x] Add configuration to use ctest
