@@ -16,6 +16,25 @@
 --     vim.cmd("cd " .. arg)
 --   end
 -- end
+-- Detect toolchains
+_G.HAS_RUST = vim.fn.executable("rustc") == 1
+_G.HAS_CPP = vim.fn.executable("g++") == 1 or vim.fn.executable("clang++") == 1
+
+-- Optional: Print diagnostics
+if HAS_RUST then
+  print("[init] Rust toolchain detected")
+else
+  print("[init] Rust toolchain not found")
+end
+
+if HAS_CPP then
+  print("[init] C++ toolchain detected")
+else
+  print("[init] C++ toolchain not found")
+end
+
+-- Now you can use HAS_RUST and HAS_CPP in plugin specs or other Lua config
+
 require("config.lazy")
 -- Set colorscheme
 
