@@ -1,4 +1,4 @@
-if !_G.HAS_CPP then return {} else
+if _G.HAS_CPP then 
 local osys = require("cmake-tools.osys")
 return {
   {
@@ -132,4 +132,5 @@ return {
     },
   },
 }
+else return {}
 end

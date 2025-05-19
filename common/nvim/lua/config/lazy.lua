@@ -18,10 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 -- dependency checks
 _G.HAS_RUST = vim.fn.executable("rustc") == 1
 _G.HAS_CPP = vim.fn.executable("g++") == 1 or vim.fn.executable("clang++") == 1
-local log = require("plenary.log")
-log.set_level(log.levels.WARN)
-log.debug("_G.HAS_RUST: %s", tostring(_G.HAS_RUST))
-log.debug("_G.HAS_CPP: %s", tostring(_G.HAS_CPP))
+-- FIXME: Causing errors (plenary not installed or something)
+-- local log = require("plenary.log")
+-- log.set_level(log.levels.WARN)
+-- log.debug("_G.HAS_RUST: %s", tostring(_G.HAS_RUST))
+-- log.debug("_G.HAS_CPP: %s", tostring(_G.HAS_CPP))
 
 require("lazy").setup({
   rocks = {
