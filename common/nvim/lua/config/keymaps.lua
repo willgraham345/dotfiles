@@ -65,7 +65,6 @@ end, { desc = "Neotree focus" })
 map("n", "<M-E>", function()
   Snacks.explorer({ cwd = LazyVim.root() })
 end, { desc = "Neotree focus to CWD" })
-map("n", "<leader>cs", "<cmd>Outline<CR>", {desc = "Toggle Outline", noremap = true})
 
 -- Movement keymaps
 -- vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })

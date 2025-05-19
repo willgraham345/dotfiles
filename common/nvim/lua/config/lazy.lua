@@ -14,6 +14,15 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
+-- dependency checks
+_G.HAS_RUST = vim.fn.executable("rustc") == 1
+_G.HAS_CPP = vim.fn.executable("g++") == 1 or vim.fn.executable("clang++") == 1
+local log = require("plenary.log")
+log.set_level(log.levels.WARN)
+log.debug("_G.HAS_RUST: %s", tostring(_G.HAS_RUST))
+log.debug("_G.HAS_CPP: %s", tostring(_G.HAS_CPP))
+
 require("lazy").setup({
   rocks = {
     hererocks = true,
@@ -56,22 +65,23 @@ require("lazy").setup({
   },
 })
 
-require('image').setup({
-  integrations = {
-    markdown = {
-      resolve_image_path = function(document_path, image_path, fallback)
-        -- document_path is the path to the file that contains the image
-        -- image_path is the potentially relative path to the image. for
-        -- markdown it's `![](this text)`
-
-        -- you can call the fallback function to get the default behavior
-        return fallback(document_path, image_path)
-      end,
-    }
-  }
-})
+-- FIXME: See if this will work when using a kitty terminal
+-- require('image').setup({
+--   integrations = {
+--     markdown = {
+--       resolve_image_path = function(document_path, image_path, fallback)
+--         -- document_path is the path to the file that contains the image
+--         -- image_path is the potentially relative path to the image. for
+--         -- markdown it's `![](this text)`
+--
+--         -- you can call the fallback function to get the default behavior
+--         return fallback(document_path, image_path)
+--       end,
+--     }
+--   }
+-- })
 -- print(require("image").is_enabled()) -- bool
-
+-- FIXME: Similar to issue above with image.nvim, and needs to be used on kitty
 -- require("image").setup({
 --   backend = "kitty",
 --   processor = "magick_cli", -- or "magick_rock"
