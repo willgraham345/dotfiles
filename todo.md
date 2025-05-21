@@ -1,16 +1,24 @@
 # TODO
 
-## nvim
+## nvim/keyboard
 
+- [ ] Change ~ and \` in oryx config #high_priority
+  - [ ] Look into using the two thumbkeys
 - [ ] Set up image/diagram nvim on cmd wsl
 - [ ] whichkey icon and group setup #nice_to_have
 - [ ] See if outline has a "freeze" toggle #nice_to_have
 - [ ] Fix cpp snippets, they're not working #nice_to_have
 - [ ] Add keybind that lets me vertically split from fzf #nice_to_have
 
+## obsidian
+
+- [ ] Set up BibLib with current citations
+- [ ] Start onto cybersecurity
+
 ## other
 
-- [ ] Change ~ and \` in oryx config #high_priority
+- [ ] Look into [task-warrior](https://github.com/GothenburgBitFactory/taskwarrior?tab=readme-ov-file)
+- [ ] Add `$BROWSWER` variable into personal `.zshrc`
 - [ ] Better filtering for obsidian breadcrumb group relationships
 - [ ] Fix query for dataviewJS within a project
 - [ ] Add better dataviewJS for command and code queries #high_priority

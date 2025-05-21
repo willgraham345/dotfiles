@@ -53,10 +53,6 @@ map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers 
 -- TODO: Add commenting stuff
 map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
 -- map("t", "<M-/>", "<cmd>close<CR>")
-map({"n", "v", "i"}, "<M-c>", function()
-  return require("ts_context_commentstring.internal").calculate_commentstring()
-  end,
-  { desc = "Toggle comment", remap=true})
 
 -- File explorer keymaps
 map("n", "<M-e>", function()

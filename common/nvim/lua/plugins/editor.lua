@@ -5,7 +5,8 @@ return {
     event = "LazyFile",
     opts = {
       keywords = {
-        WILL = { icon = ",", color = "warning" }
+        WILL = { icon = "󰓾", color = "warning" },
+        EPIC = { icon = "", color = "error" }
       }
     },
     -- stylua: ignore
@@ -13,9 +14,10 @@ return {
       { "]t", false },
       { "[t", false },
       { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {EPIC,WILL,TODO,FIX,FIXME}}<cr>", desc = "Epic/Will/Todo/Fix/Fixme (Trouble)" },
       { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,WILL,FIX,FIXME,<cr>", desc = "Todo/Fix/Fixme" },
+      { "<leader>sT", "<cmd>TodoTelescope keywords=EPIC,WILL,TODO,FIX,FIXME,<cr>", desc = "Epic/Will/Todo/Fix/Fixme" },
+      { "<leader>xw", "<cmd>Trouble todo toggle filter = {tag = {EPIC,WILL}}<cr>", desc = "Will todo filter"}
     },
   },
   {

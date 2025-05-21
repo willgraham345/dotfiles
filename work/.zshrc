@@ -167,6 +167,7 @@ wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
 ### PATH Edits ###
 # Add snap to path
 export PATH=$PATH:/snap/bin
+export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 # Add .local/bin and rust
 export PATH=/home/will/.local/bin:/opt/nvim:$PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

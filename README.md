@@ -43,6 +43,7 @@ Potential (mermaidcli stuff)
 - npm (not sure that I need this one, doesn't work with )
   - mermaid.cli (install locally rather than globally)
 - kitty
+- [navi](https://github.com/denisidoro/navi?tab=readme-ov-file)
 - luajit
 - libmagickwand-dev
 - luarocks

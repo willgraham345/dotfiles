@@ -1,7 +1,3 @@
-local d2 = {
-  'terrastruct/d2-vim',
-  ft = {'d2', 'markdown'}
-}
 vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 local diagnostics = vim.g.lazyvim_rust_diagnostics
 return
@@ -146,9 +142,4 @@ return
       }
     }
   },
-  {
-    -- Don't delete, this works with the thing up top to implmeent d2 graphs lsp
-    d2
-  }
-
 }

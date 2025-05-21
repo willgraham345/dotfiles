@@ -127,14 +127,15 @@ return {
       },
     },
   },
+-- FIXME: Needs to either be added or completely removed
   {
     "ellisonleao/glow.nvim",
     -- config = true,
     cmd = "Glow",
     config = function()
-      require("glow").setup({
-        pager = true,
-      })
+      -- require("glow").setup({
+      --   pager = true,
+      -- })
     end,
   },
   {
@@ -150,7 +151,15 @@ return {
   },
   {
     'echasnovski/mini.comment',
-    version = false
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        comment = '<M-c>',
+        comment_line = '<M-c>',
+        comment_visual = '<M-c>',
+        -- textobject = '<M-C>'
+      }
+    }
   },
   --   {
   --   "echasnovski/mini.surround",

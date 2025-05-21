@@ -10,8 +10,17 @@ return {
           sidebar = {
             -- custom settings here
             -- e.g. hide_cursor = false
-            cursor_follow = false,
-          }
+            cursor_follow = true,
+            on_open_make_windows_equal = false,
+            -- show_details_pop_up = true,
+            auto_resize = {
+              enabled = false,
+            },
+          keymaps = {
+             ["tr"] = "toggle-auto-resize",
+            ["<Tab>"] = "toggle-fold",
+            }
+          },
         }
       )
       vim.keymap.set("n", "<space>cs", "<cmd>SymbolsToggle<CR>")
@@ -23,29 +32,31 @@ return {
     opts = {
       modes = {
         lsp = {
-          mode = "diagnostics",
-          preview = {
-            type = "float",
-            relative = "editor",
-            border = "rounded",
-            title = "LSP Symbol",
-            title_pos = "center",
-            position = { 0, -2 },
-            size = { width = 0.3, height = 0.3 },
-            zindex = 200,
-          },
-          -- win = { position = "right" },
+          -- mode = "diagnostics",
+          -- preview = {
+          --   type = "float",
+          --   relative = "editor",
+          --   border = "rounded",
+          --   title = "LSP Symbol",
+          --   title_pos = "center",
+          --   position = { 0, -2 },
+          --   size = { width = 0.3, height = 0.3 },
+          --   zindex = 200,
+          -- },
+          -- -- win = { position = "right" },
         },
       },
     },
-    cmd = { "Trouble" },
+    -- cmd = { "Trouble" },
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle <cr>", desc = "Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      -- { "<leader>xx", "<cmd>Trouble diagnostics toggle win.position=right<cr>", desc = "Diagnostics (Trouble)" },
+      -- { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0< win.position=right cr>", desc = "Buffer Diagnostics (Trouble)" },
       { "<leader>cs", false },
-      { "<leader>cS", "<cmd>Trouble lsp toggle<cr>", desc = "LSP references/definitions/... (Trouble)" },
-      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+      -- { "<leader>cS", "<cmd>Trouble lsp toggle<cr>", desc = "LSP references/definitions/... (Trouble)" },
+      -- { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      -- { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
       {
         "[q",
         function()
