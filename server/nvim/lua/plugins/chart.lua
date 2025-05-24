@@ -1,0 +1,1 @@
+../../../common/nvim/lua/plugins/chart.lua

@@ -5,6 +5,7 @@ DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
 COMMON_DIR=$(pwd)/common
 WORK_DIR=$(pwd)/work
 PERSONAL_DIR=$(pwd)/personal
+SERVER_DIR=$(pwd)/server
 
 # Define the files and directories to symlink
 declare -A LINKS
@@ -32,6 +33,19 @@ if [[ "$1" == "--personal" ]]; then
   MODE="work"
   LINKS["$HOME/.gitconfig"]="$PERSONAL_DIR/.gitconfig"
   LINKS["$HOME/.zshrc"]="$PERSONAL_DIR/.zshrc"
+fi
+
+if [["$1" == "--server" ]]; then
+  MODE="server"
+  # Use some common config...
+  LINKS["$HOME/.config/ohmyposh"]="$COMMON_DIR/ohmyposh"
+  LINKS["$HOME/.config/tmux"]="$COMMON_DIR/tmux"
+  LINKS["$HOME/.config/.delta-themes.gitconfig"]="$DOTFILES_DIR/.delta-themes.gitconfig"
+
+
+  # Server-specific config
+  LINKS["$HOME/.config/nvim"]="$SERVER_DIR/nvim"
+
 fi
 
 

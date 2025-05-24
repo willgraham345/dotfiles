@@ -2,10 +2,8 @@
 
 ## nvim/keyboard
 
-- [ ] Set up rustaceanvim use the `--nocapture` arg with the dap
 - [ ] Set up image/diagram nvim on cmd wsl
 - [ ] whichkey icon and group setup #nice_to_have
-- [ ] See if outline has a "freeze" toggle #nice_to_have
 - [ ] Fix cpp snippets, they're not working #nice_to_have
 - [ ] Add keybind that lets me vertically split from fzf #nice_to_have
 
@@ -16,6 +14,7 @@
 
 ## other
 
+- [ ] zeillij?
 - [ ] Look into [task-warrior](https://github.com/GothenburgBitFactory/taskwarrior?tab=readme-ov-file)
 - [ ] Add `$BROWSWER` variable into personal `.zshrc`
 - [ ] Better filtering for obsidian breadcrumb group relationships
@@ -64,3 +63,8 @@
   - [x] Add configuration to use ctest
 - [x] Change ~ and \` in oryx config #high_priority
   - [x] Look into using the two thumbkeys
+- [x] Set up rustaceanvim use the `--nocapture` arg with the dap
+
+# Depracated
+
+- [ ] See if outline has a "freeze" toggle #nice_to_have

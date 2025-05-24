@@ -1,0 +1,1 @@
+../../../common/nvim/lua/plugins/venv-selector.lua

@@ -1,5 +1,1 @@
-return {
-  {
-    "mg979/vim-visual-multi",
-  },
-}
+../../../common/nvim/lua/plugins/vim-visual-multi.lua

@@ -1,6 +1,1 @@
-return {
-  { "snacks.nvim", opts = {
-    scroll = { enabled = false },
-  } },
-  -- { "echasnovski/mini.pairs", enabled = false },
-}
+../../../common/nvim/lua/plugins/disabled.lua
