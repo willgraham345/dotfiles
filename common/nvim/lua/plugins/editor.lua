@@ -6,7 +6,8 @@ return {
     opts = {
       keywords = {
         WILL = { icon = "󰓾", color = "warning" },
-        EPIC = { icon = "", color = "error" }
+        EPIC = { icon = "", color = "error" },
+        QUES = { icon = "", color = "hint" }
       }
     },
     -- stylua: ignore
@@ -14,10 +15,10 @@ return {
       { "]t", false },
       { "[t", false },
       { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {EPIC,WILL,TODO,FIX,FIXME}}<cr>", desc = "Epic/Will/Todo/Fix/Fixme (Trouble)" },
+      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {EPIC,WILL,QUES,TODO,FIX,FIXME}}<cr>", desc = "Epic/Will/Question/Todo/Fix/Fixme (Trouble)" },
       { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-      { "<leader>sT", "<cmd>TodoTelescope keywords=EPIC,WILL,TODO,FIX,FIXME,<cr>", desc = "Epic/Will/Todo/Fix/Fixme" },
-      { "<leader>xw", "<cmd>Trouble todo toggle filter = {tag = {EPIC,WILL}}<cr>", desc = "Will todo filter"}
+      { "<leader>sT", "<cmd>TodoTelescope keywords=EPIC,WILL,QUES,TODO,FIX,FIXME<cr>", desc = "Epic/Will/Question/Todo/Fix/Fixme" },
+      { "<leader>xw", "<cmd>Trouble todo toggle filter = {tag = {EPIC,WILL,QUES}}<cr>", desc = "Will todo filter"}
     },
   },
   {

@@ -2,8 +2,7 @@
 
 ## nvim/keyboard
 
-- [ ] Change ~ and \` in oryx config #high_priority
-  - [ ] Look into using the two thumbkeys
+- [ ] Set up rustaceanvim use the `--nocapture` arg with the dap
 - [ ] Set up image/diagram nvim on cmd wsl
 - [ ] whichkey icon and group setup #nice_to_have
 - [ ] See if outline has a "freeze" toggle #nice_to_have
@@ -63,3 +62,5 @@
   - [x] Add a cmake kit to zshrc and write it to .config somewhere
   - [x] Add configuration to use Ninja
   - [x] Add configuration to use ctest
+- [x] Change ~ and \` in oryx config #high_priority
+  - [x] Look into using the two thumbkeys

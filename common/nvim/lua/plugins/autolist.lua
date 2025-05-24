@@ -1,7 +1,11 @@
 return {
   "gaoDean/autolist.nvim",
+  dependencies = {
+    "terrastruct/d2"
+  },
   ft = {
     "markdown",
+    "d2",
     "text",
     "tex",
     "plaintex",
