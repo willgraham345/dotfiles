@@ -7,6 +7,7 @@ return {
         r.DefaultFilters,
         r.AsciiSymbols,
         {
+          -- TODO: Add unfold by default (https://github.com/oskarrrrrrr/symbols.nvim/issues/14)
           sidebar = {
             -- custom settings here
             -- e.g. hide_cursor = false

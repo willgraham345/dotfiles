@@ -12,6 +12,7 @@
 ## obsidian
 
 - [ ] Set up BibLib with current citations
+- [ ] Set up PDF++ quoting system
 - [ ] Start onto cybersecurity
 
 ## other
