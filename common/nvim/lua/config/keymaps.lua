@@ -48,6 +48,21 @@ end, { desc = "Rename bufferline tab" })
 map("n", "<M-q>", ":tabclose<CR>", { desc = "Close tab", remap = false })
 map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", { desc = "Delete buffers to the Right" })
 map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Delete buffers to the Left" })
+map("n", "<leader>bv", function()
+  local visible_bufs = {}
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    visible_bufs[buf] = true
+  end
+
+  -- Iterate over all buffers and delete the ones not in visible_bufs
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and not visible_bufs[buf] then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+
+end, {desc = "Delete all hidden buffers"})
 
 -- Terminal/comment keymaps
 -- TODO: Add commenting stuff
@@ -55,11 +70,11 @@ map("n", "<M-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end,
 -- map("t", "<M-/>", "<cmd>close<CR>")
 
 -- File explorer keymaps
-map("n", "<M-e>", function()
-  Snacks.explorer({ focus })
+map("n", "<M-f>", function()
+  require('mini.files').open(vim.api.nvim_buf_get_name(0))
 end, { desc = "Neotree focus" })
-map("n", "<M-E>", function()
-  Snacks.explorer({ cwd = LazyVim.root() })
+map("n", "<M-r>", function()
+  require('mini.files').open(nil, false)
 end, { desc = "Neotree focus to CWD" })
 
 -- Movement keymaps
@@ -128,6 +143,7 @@ map("n", "<leader>mm", "<cmd>CMakeBuild<CR>", { noremap = true, desc = "CMake Bu
 map("n", "<leader>mt", "<cmd>CMakeSelectBuildTarget<CR>", { noremap = true, desc = "Pick Build target" })
 map("n", "<leader>ml", "<cmd>CMakeSelectLaunchTarget<CR>", { noremap = true, desc = "Pick Launch target" })
 map("n", "<leader>ma", "<cmd>CMakeTargetSettings<CR>", { noremap = true, desc = "Target Settings (gtest_filter)" })
+map("n", "<leader>mC", "<cmd>CMakeClean<CR>", { noremap = true, desc = "CMake Clean"})
 -- map("n", "<leader>mt", "<cmd>CMakeRunTest<CR>", { noremap = true, desc = "CMake Run Test" })
 
 -- LSP keymaps
@@ -217,6 +233,17 @@ vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("n", "<leader>s/", LazyVim.pick("files", { root = false }), { desc = "Grep (cwd)", noremap = true })
 vim.keymap.del("n", "<leader>sg")
 vim.keymap.del("n", "<leader>sG")
+
+
+-- Refactoring keymaps
+vim.keymap.set({ "n", "x" }, "<leader>re", function() return require('refactoring').refactor('Extract Function') end, { desc = "Extract function", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rf", function() return require('refactoring').refactor('Extract Function To File') end, { desc = "Extract function to file", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rv", function() return require('refactoring').refactor('Extract Variable') end, { desc = "Extract variable", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rI", function() return require('refactoring').refactor('Inline Function') end, { desc = "Inline function", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>ri", function() return require('refactoring').refactor('Inline Variable') end, { desc = "Inline variable", expr = true })
+
+vim.keymap.set({ "n", "x" }, "<leader>rbb", function() return require('refactoring').refactor('Extract Block') end, { desc = "Extract block", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rbf", function() return require('refactoring').refactor('Extract Block To File') end, { desc = "Extract block to file", expr = true })
 
 ------------------
 -- Will Functions
