@@ -3,7 +3,6 @@ local osys = require("cmake-tools.osys")
 return {
   {
     -- TODO: Find a way to make this global default
-    --
     -- cmake_generate_options = {
     --   "-B",
     --   "build/",
@@ -12,6 +11,7 @@ return {
     --   "-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
     --   "-Wno-dev",
     -- },
+     
     "Civitasv/cmake-tools.nvim",
     opts = {
       cmake_build_directory = function()
@@ -78,7 +78,7 @@ return {
         default_opts = {
           quickfix = {
             show = "always",
-            position = "bottom", --FIXME: Not going to bottom
+            position = "belowright", --FIXME: Not going to bottom
             size = 10,
             encoding = "utf-8",
             auto_close_when_success = true,
@@ -88,8 +88,20 @@ return {
             close_on_exit = false,
             auto_scroll = true,
             singleton = true
-          }
-        }
+          },
+          overseer = {
+            new_task_opts = {
+                strategy = {
+                    "toggleterm",
+                    direction = "horizontal",
+                    auto_scroll = true,
+                    quit_on_exit = "success"
+                  }
+              },
+            on_new_task = function(task)
+            end,
+          },
+        },
       },
       cmake_dap_configuration = { --debug settings for cmake
         name = "cpp",

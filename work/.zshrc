@@ -125,7 +125,8 @@ d2p(){
 }
 d2pz(){
   base="${1%.d2}"  # Remove .d2 if present
-  d2 --scale 2.25 --watch --browser=0 "$base.d2" "$base.svg"
+  scale="${2}"
+  d2 --scale "$scale" --watch --browser=0 "$base.d2" "$base.svg"
 }
 alias z.="cd .."
 alias z..="cd ../../"

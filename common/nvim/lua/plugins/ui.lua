@@ -66,7 +66,7 @@ return {
       local opts = {
         theme = "doom",
         hide = {
-            statuslin = false
+            statusline = false
           },
         config = {
         picker = {
@@ -206,7 +206,7 @@ return {
           width_preview = 70,
         },
         mappings = {
-          close       = 'q',
+          close       = '<Esc>',
           go_in       = 'l',
           go_in_plus  = '<CR>',
           go_out      = 'h',

@@ -144,6 +144,8 @@ map("n", "<leader>mt", "<cmd>CMakeSelectBuildTarget<CR>", { noremap = true, desc
 map("n", "<leader>ml", "<cmd>CMakeSelectLaunchTarget<CR>", { noremap = true, desc = "Pick Launch target" })
 map("n", "<leader>ma", "<cmd>CMakeTargetSettings<CR>", { noremap = true, desc = "Target Settings (gtest_filter)" })
 map("n", "<leader>mC", "<cmd>CMakeClean<CR>", { noremap = true, desc = "CMake Clean"})
+map("n", "<leader>mD", "<cmd>CMakeDebug<CR>", { noremap = true, desc = "CMake Debug"})
+map("n", "<leader>md", "<cmd>CMakeDebugCurrentFile<CR>", { noremap = true, desc = "CMake Debug Current File"})
 -- map("n", "<leader>mt", "<cmd>CMakeRunTest<CR>", { noremap = true, desc = "CMake Run Test" })
 
 -- LSP keymaps

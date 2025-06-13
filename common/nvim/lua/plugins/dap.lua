@@ -12,6 +12,7 @@ return {
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "igorlfs/nvim-dap-view",
+      "jbyuki/one-small-step-for-vimkind",
       -- virtual text for the debugger
       {
         "theHamsta/nvim-dap-virtual-text",
@@ -89,16 +90,6 @@ return {
       end
     end,
   },
-  -- Alternative dap-ui setup
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  -- -- virtual text for the debugger
-  --   {
-  --     "theHamsta/nvim-dap-virtual-text",
-  --     opts = {},
-  --   },
-  --   opts = nil
-  -- }
   -- FIXME: Not able to find mason-lspconfig.mappings.server
   {
     "jay-babu/mason-nvim-dap.nvim",

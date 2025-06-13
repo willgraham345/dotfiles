@@ -15,7 +15,7 @@ return {
             on_open_make_windows_equal = false,
             -- show_details_pop_up = true,
             auto_resize = {
-              enabled = false,
+              enabled = true,
             },
           keymaps = {
              ["tr"] = "toggle-auto-resize",

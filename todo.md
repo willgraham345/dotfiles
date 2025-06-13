@@ -2,7 +2,6 @@
 
 ## nvim/keyboard
 
-- [ ] Move tab to pinky/ring finger, and scroll to somewhere else #oryx
 - [ ] whichkey icon and group setup #nice_to_have
 - [ ] Fix cpp snippets, they're not working #nice_to_have
 - [ ] Add keybind that lets me vertically split from fzf #nice_to_have
@@ -10,8 +9,8 @@
 
 ## obsidian
 
+- [ ] Set up anki quizzing from Obsidian work
 - [ ] Fix queries (maybe make a base?) for the task/lists within a project #high_priority
-- [ ] Set up BibLib with current citations
 - [ ] Set up PDF++ quoting system
 - [ ] Start onto cybersecurity
 
@@ -67,3 +66,4 @@
   - [x] Look into using the two thumbkeys
 - [x] Set up rustaceanvim use the `--nocapture` arg with the dap
 - [x] Set up mini.files (enter to open and close file/preview)
+- [x] Set up BibLib with current citations
