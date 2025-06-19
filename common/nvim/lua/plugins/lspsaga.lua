@@ -1,0 +1,39 @@
+return {}
+-- return {
+--   "nvimdev/lspsaga.nvim",
+--   event = 'BufRead',
+--   dependencies = {
+--     'nvim-treesitter/nvim-treesitter',
+--     'nvim-tree/nvim-web-devicons',
+--   },
+--   config = function()
+--     require('lspsaga').setup({
+--       lightbulb = {
+--         enable = false,
+--         enable_in_insert = false,
+--         sign = false,
+--         sign_priority = 0,
+--         virtual_text = false,
+--       },
+--       code_action_prompt = {
+--         enable = false
+--       },
+--       symbol_in_winbar = {
+--         enable = false,
+--         separator = " ",
+--         hide_keyword = true,
+--         show_file = true,
+--         folder_level = 2,
+--         respect_root = false,
+--         color_mode = true,
+--       },
+--     })
+--       -- vim.keymap.set({"n", "v"}, "<leader>cs", "<cmd>Lspsaga outline<CR>", { desc = "Lsp outline" })
+--       vim.keymap.set({"n", "v"}, "<leader>la", "<cmd>Lspsaga code_action<CR>", {desc = "Lsp code action"})
+--       vim.keymap.set("n", "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", {desc = "Lsp peek definition"})
+--       vim.keymap.set("n", "<leader>lt", "<cmd>Lspsaga peek_type_definition<CR>", {desc = "Lsp peek type definition"})
+--       vim.keymap.set("n", "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", {desc = "Lsp incoming calls"})
+--       vim.keymap.set("n", "<leader>lo", "<cmd>Lspsaga outgoing_calls<CR>", {desc = "Lsp outgoing calls"})
+--
+--   end
+-- }

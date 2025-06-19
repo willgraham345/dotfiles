@@ -6,6 +6,7 @@
 -- Will keymaps
 ------------------
 vim.keymap.del({ "n", "t" }, "<C-/>")
+vim.keymap.del("n", "<leader>l")
 vim.keymap.del("n", "[t")
 vim.keymap.del("n", "]t")
 vim.keymap.del("n", "<leader>br") -- Deletes the initial
@@ -24,12 +25,10 @@ vim.keymap.del("n", "<leader>bl")
 local map = vim.keymap.set
 map("n", "<M-w>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
 map("n", "<M-v>", "<C-w>v", { noremap = true, desc = "Splits the current window" })
-map("n", "<M-d>", function()
-  Snacks.bufdelete()
-end, { desc = "Deletes buffer in one command" })
-map("n", "<M-m>", function()
-  Snacks.zen.zoom()
-end, { desc = "Maximize window" })
+map("n", "<M-d>", function() Snacks.bufdelete() end, { desc = "Deletes buffer in one command" })
+-- map("n", "<M-z>", function()
+  -- Snacks.zen.zoom()
+-- end, { desc = "Maximize window" })
 map("n", "]T", function()
   require("todo-comments").jump_next()
 end, { desc = "Next todo comment", silent = false })
@@ -76,6 +75,7 @@ end, { desc = "Neotree focus" })
 map("n", "<M-r>", function()
   require('mini.files').open(nil, false)
 end, { desc = "Neotree focus to CWD" })
+map("n", "<M-m>", "<cmd>MarksListAll<CR>", { noremap = true, desc = "List all marks", silent=false})
 
 -- Movement keymaps
 -- vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
@@ -146,6 +146,10 @@ map("n", "<leader>ma", "<cmd>CMakeTargetSettings<CR>", { noremap = true, desc = 
 map("n", "<leader>mC", "<cmd>CMakeClean<CR>", { noremap = true, desc = "CMake Clean"})
 map("n", "<leader>mD", "<cmd>CMakeDebug<CR>", { noremap = true, desc = "CMake Debug"})
 map("n", "<leader>md", "<cmd>CMakeDebugCurrentFile<CR>", { noremap = true, desc = "CMake Debug Current File"})
+map({"n", "v"}, "<F9>", function() require("dap").step_into() end, {desc = "Step Into" })
+map({"n", "v"}, "<F8>", function() require("dap").step_out() end, {desc = "Step Out" })
+map({"n", "v"}, "<F5>", function() require("dap").run_last() end, {desc = "Run Last" })
+map({"n", "v"}, "<leader>dC", function() require("dap").run_to_cursor() end, {desc = "Run to Cursor"})
 -- map("n", "<leader>mt", "<cmd>CMakeRunTest<CR>", { noremap = true, desc = "CMake Run Test" })
 
 -- LSP keymaps
@@ -157,6 +161,7 @@ map({"n", "v"}, "<leader>mci", "<cmd>ClangdSymbolInfo<CR>", { desc = "Clangd Sym
 map({"n", "v"}, "<leader>mch", "<cmd>ClangdTypeHierarchy<CR>", { desc = "Clangd Type Hierarchy" })
 map({"n", "v"}, "<leader>mcm", "<cmd>ClangdMemoryUsage<CR>", { desc = "Clangd Memory Usage" })
 map({"n", "v"}, "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
+map("n", "<leader>uu", function() require("symbol-usage").toggle_globally() end, {desc="Toggle Symbol Usage", noremap = true}) --TODO: Add toggle ui integration with which-key
 
 -- Test keymaps
 map("n", "<leader>tc", "<cmd>ConfigureGtest<CR>", {desc = "Configure Gtest", noremap = true })

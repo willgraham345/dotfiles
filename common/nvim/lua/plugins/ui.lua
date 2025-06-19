@@ -205,6 +205,7 @@ return {
           width_focus = 40,
           width_preview = 70,
         },
+      --TODO: Figure out how to add arrows to this to let me use left hand as well
         mappings = {
           close       = '<Esc>',
           go_in       = 'l',
@@ -216,7 +217,7 @@ return {
           reset       = '<BS>',
           reveal_cwd  = '@',
           show_help   = 'g?',
-          synchronize = '=',
+          synchronize = '<Space>',
           trim_left   = '<',
           trim_right  = '>',
         },
