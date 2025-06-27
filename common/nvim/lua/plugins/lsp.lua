@@ -6,7 +6,15 @@ return
     "neovim/nvim-lspconfig",
     dependencies = {
       "mason.nvim",
-      "simrat39/rust-tools.nvim"
+      "simrat39/rust-tools.nvim",
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim"
+        },
+        opts = { lsp = { auto_attach = true } }
+      },
     },
     opts = {
       inlay_hints = {
