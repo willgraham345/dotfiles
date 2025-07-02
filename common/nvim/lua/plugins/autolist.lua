@@ -1,11 +1,7 @@
 return {
   "gaoDean/autolist.nvim",
-  dependencies = {
-    "terrastruct/d2"
-  },
   ft = {
     "markdown",
-    "d2",
     "text",
     "tex",
     "plaintex",
@@ -14,8 +10,9 @@ return {
   config = function()
     require("autolist").setup()
 
-    vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
-    vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
+    -- WARNING: If you set tab here, it messes with pretty much every tab you'll ever use :(
+    -- vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
+    -- vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
     -- vim.keymap.set("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- an example of using <c-t> to indent
     vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
     vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")

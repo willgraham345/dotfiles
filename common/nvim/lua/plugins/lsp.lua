@@ -13,7 +13,8 @@ return
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim"
         },
-        opts = { lsp = { auto_attach = true } }
+        opts = { window = { size = "90%",},
+            lsp = { auto_attach = true } }
       },
     },
     opts = {
@@ -142,7 +143,7 @@ return
           enable = true,
           additional_vim_regex_highlighting=false,
         },
-      ident = {enable = true},
+      indent = {enable = true, disable = { "markdown_inline"} },
       rainbow = {
           enable = true,
           extended_mode = true,

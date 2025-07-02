@@ -37,6 +37,7 @@ C-Space + I
 - lazydocker [lazydocker](https://github.com/jesseduffield/lazydocker)
 - ripgrep
 - libreadline-dev
+- [vet](https://github.com/vet-run/vet?utm_source=tldrnewsletter)
 
 Potential (mermaidcli stuff)
 

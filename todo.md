@@ -2,6 +2,7 @@
 
 ## nvim/keyboard
 
+- [ ] Modify the dapui.setup (:h dapui.setup()) to have smaller values for everything other than watch and stacks...
 - [ ] whichkey icon and group setup #nice_to_have
 - [ ] Fix cpp snippets, they're not working #nice_to_have
 - [ ] Add keybind that lets me vertically split from fzf #nice_to_have

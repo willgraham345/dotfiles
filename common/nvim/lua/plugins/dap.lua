@@ -73,7 +73,36 @@ return {
       { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
       { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
     },
-    opts = {},
+    opts = {
+      layouts = { {
+          elements = { {
+              id = "watches",
+              size = 0.1
+            }, {
+              id = "breakpoints",
+              size = 0.2
+            }, {
+              id = "stacks",
+              size = 0.2
+            }, {
+              id = "scopes",
+              size = 0.5
+            } },
+          position = "left",
+          size = 40
+        }, {
+          elements = { {
+              id = "repl",
+              size = 0.75
+            }, {
+              id = "console",
+              size = 0.25
+            } },
+          position = "bottom",
+          size = 10
+        } },
+
+    },
     -- The config calls this plugin automatically when the debugger is called
     config = function(_, opts)
       local dap = require("dap")
