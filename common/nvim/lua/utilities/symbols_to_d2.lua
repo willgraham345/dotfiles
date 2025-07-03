@@ -3,24 +3,24 @@
 
 -- Configuration: Set to true to enable detailed debug notifications.
 -- This can also be overridden by setting vim.g.symbols_to_d2_debug_enabled in your init.lua.
-local DEBUG_MODE = false -- Changed to true by default
+local DEBUG_MODE = true -- Changed to true by default
 
 local M = {}
 
 -- List of common symbol types that symbols.nvim might output.
 -- This helps in identifying the symbol type keyword at the beginning of a line.
--- Only 'class', 'fun', and 'field' are processed for D2 output.
+-- Only 'class', 'struct', 'fun', 'fn', 'field', 'var', and 'enum' are processed for D2 output.
 local SYMBOL_TYPES = {
   "class",
+  "struct", -- FIXME: Isn't pullint non-keyword args. Fields are not counted.
   "fun",
+  -- "fn", -- FIXME: Doesn't behave like it should...
   "field",
-  -- Add any other types you might encounter that you want to parse,
-  -- but remember only 'class', 'fun', 'field' will be formatted specifically.
-  -- Other parsed types will default to a simple D2 node if they make it through.
+  -- "var", -- FIXME: Not sure if this is doing anything
+  "enum", -- FIXME: Isn't pulling the next tabbed things. Fields are not counted
 }
 
 -- Create a pattern for matching any of the defined symbol types
--- This will be like "(class|fun|field)"
 local SYMBOL_TYPE_PATTERN = table.concat(SYMBOL_TYPES, "|")
 
 -- Helper function to parse symbols.nvim-like output
@@ -133,7 +133,7 @@ local function parse_symbols_output(lines)
       end
     end
 
-    -- IMPORTANT: Filter based on the allowed types (class, fun, field)
+    -- IMPORTANT: Filter based on the allowed types (class, struct, fun, fn, field, var, enum)
     -- If symbol_type is still nil or not in our SYMBOL_TYPES list, skip this line.
     local is_allowed_type = false
     for _, allowed_type in ipairs(SYMBOL_TYPES) do
@@ -205,12 +205,10 @@ local function parse_symbols_output(lines)
       )
     end
 
-    -- --- START OF CHANGE ---
     -- Generate D2 ID based only on the sanitized symbol name.
     -- WARNING: This can lead to non-unique D2 IDs if multiple symbols have the same name.
     -- D2 requires unique IDs. If you encounter errors, consider re-enabling a unique suffix (e.g., line number).
     local d2_id = symbol_name:gsub("[^a-zA-Z0-9_]", "_"):lower()
-    -- --- END OF CHANGE ---
 
     -- Ensure ID starts with a letter or underscore if it doesn't already
     if not d2_id:match("^[a-zA-Z_]") then
@@ -276,24 +274,23 @@ local function generate_d2(node, level)
     )
   end
 
-  if node.type == "class" then
+  -- Handle 'class', 'struct', and 'enum' types as D2 class shapes
+  if node.type == "class" or node.type == "struct" or node.type == "enum" then
     table.insert(d2_output, string.format("%s%s: {", indent_str, d2_id))
-    table.insert(d2_output, string.format('%s  label: "%s"', indent_str, display_name)) -- Just class name
+    table.insert(d2_output, string.format('%s  label: "%s"', indent_str, display_name)) -- Just class/struct/enum name
     table.insert(d2_output, string.format("%s  shape: class", indent_str)) -- Add shape
     for _, child in ipairs(node.children) do
-      -- Children of a class (fun, field) are rendered directly inside
-      if child.type == "fun" then
+      -- Children of these containers are rendered directly inside
+      if child.type == "fun" or child.type == "fn" then -- Handle 'fun' and 'fn'
         table.insert(d2_output, string.format("%s  %s()", indent_str, child.name))
-      elseif child.type == "field" then
+      elseif child.type == "field" or child.type == "var" then -- Handle 'field' and 'var'
         table.insert(d2_output, string.format("%s  %s", indent_str, child.name))
       else
-        -- If other types of children exist (e.g., from a broader SYMBOL_TYPES list),
-        -- they won't be rendered in the specific ( ) or no-parenthesis format.
-        -- For this specific request, we only expect fun/field as children.
+        -- If other types of children exist, they will be skipped based on this specific request.
         if DEBUG_MODE then
           vim.notify(
             string.format(
-              "DEBUG: generate_d2: Skipping non-fun/field child of class: '%s' (type: %s)",
+              "DEBUG: generate_d2: Skipping non-fun/fn/field/var child of class/struct/enum: '%s' (type: %s)",
               child.name,
               child.type
             ),
@@ -304,22 +301,20 @@ local function generate_d2(node, level)
     end
     table.insert(d2_output, string.format("%s}", indent_str))
   else
-    -- If a 'fun' or 'field' node is somehow at the root level (not a child of a class),
-    -- it won't be rendered by this logic. The user's example implies they are always nested.
-    -- If other types (e.g., 'file', 'namespace') were allowed in SYMBOL_TYPES and reached here,
-    -- they would be rendered as simple nodes. With the current strict filtering, this block
-    -- should ideally not be reached for top-level 'fun'/'field' or other unhandled types.
+    -- This block handles types that are not 'class', 'struct', or 'enum' and are not children
+    -- of those types (e.g., if 'fun' or 'field' somehow appear at the root level).
+    -- Based on the requested output, these should not generate D2.
     if DEBUG_MODE then
       vim.notify(
         string.format(
-          "DEBUG: generate_d2: Skipping node '%s' (type: %s) as it's not a 'class' container.",
+          "DEBUG: generate_d2: Skipping node '%s' (type: %s) as it's not a 'class', 'struct', or 'enum' container.",
           display_name,
           node.type
         ),
         vim.log.levels.DEBUG
       )
     end
-    return "" -- Do not generate D2 for standalone fun/field nodes, or other unhandled types.
+    return "" -- Do not generate D2 for standalone fun/fn/field/var nodes, or other unhandled types.
   end
 
   return table.concat(d2_output, "\n")
@@ -340,7 +335,10 @@ local function copy_to_clipboard(text)
       vim.log.levels.ERROR
     )
   end
-  print("Finished text:" .. text)
+  if DEBUG_MODE then
+    -- Using print for final debug output to avoid notification clutter
+    print("DEBUG: Final D2 text generated:\n" .. text)
+  end
 end
 
 --- Main function to be called from Neovim.
