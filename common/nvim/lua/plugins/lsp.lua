@@ -26,12 +26,13 @@ return
         signs = false
       },
       servers = {
-        pyright = {},
         bacon_ls = {
           enabled = diagnostics == "bacon-ls",
         },
-        rust_analyzer = { enabled = false, },
-        neocmake = {}
+        lua_ls = {},
+        neocmake = {},
+        pyright = {},
+        rust_analyzer = { enabled = false, }
       },
       clangd = {
         keys = {

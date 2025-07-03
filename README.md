@@ -38,17 +38,13 @@ C-Space + I
 - ripgrep
 - libreadline-dev
 - [vet](https://github.com/vet-run/vet?utm_source=tldrnewsletter)
-
-Potential (mermaidcli stuff)
-
-- npm (not sure that I need this one, doesn't work with )
-  - mermaid.cli (install locally rather than globally)
-- kitty
+  npm
+- mermaid.cli (install locally rather than globally)
 - [navi](https://github.com/denisidoro/navi?tab=readme-ov-file)
+- In-depth CLI cheatsheet
 - luajit
 - libmagickwand-dev
-- luarocks
-  - luarocks install magick
+- cargo
 
 ## Language Specifics
 
