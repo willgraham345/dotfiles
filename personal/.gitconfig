@@ -1,3 +1,5 @@
+[include]
+  path = ~/.config/.delta-themes.gitconfig
 [user]
 	name = "Will Graham"
 	email = "willgraham345@gmail.com"
@@ -5,28 +7,53 @@
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
-[diff]
-	tool = vscode
-[merge]
-	tool = vscode
-[merge "tool"]
-	cmd = code --wait $MERGED
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
-[core]
-	editor = code --wait
-	pager = delta
-[rebase]
-	autosquash = true
 
+[diff]
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+	cmd = "nvim -d $LOCAL $REMOTE $MERGED"
+; [difftool "vscode"]
+; 	cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  tool = nvimdiff
+  conflict-style = diff3
+; [mergetool "vscode"]
+;   cmd = code --wait $MERGED
+
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[rebasetool]
+    tool = nvimdiff
 [alias]
-	ff = "! git rebase -i --autosquash\"`git merge-base develop HEAD`\""
+	ff = "! git rebase -i \"`git merge-base develop HEAD`\""
 	forkpoint = merge-base HEAD develop
 	uts = "! GIT_COMMITTER_DATE=\"`date`\" && git commit --amend --no-edit"
 	suir = "submodule update --init --recursive"
-	srr = "submodule sync --recursive"
+  srr = "submodule sync --recursive"
+  tree = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  trees = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+  lg = trees
+
+[safe]
+	directory = .
+[core]
+	editor = nvim
+	pager = delta
+  excludesfile = ~/.gitignore-excludesfile
+[rebase]
+	autosquash = true
 [interactive]
-  diffFilter = delta --color-only
+  diffFilter = delta --color-only --features=interactive
 [delta]
   navigate = true
-  side-by-side = true
+  ; side-by-side = true
+  light = false
+  true-color = always
+  features = colibri
+[pager]
+  blame = delta
+  diff = delta
+  reflog = delta
+  show = delta

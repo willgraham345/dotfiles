@@ -4,8 +4,10 @@
 	name = Will Graham
 	email = will.graham@sdl.usu.edu
 	signingkey = 0CBBB7AB5017FE81169D3025CDE4078BBAC821F8
-; [diff]
-; 	tool = vscode
+[commit]
+	gpgsign = true
+
+; COMMON STUFF
 [diff]
     tool = nvimdiff
 
@@ -40,8 +42,6 @@
 	editor = nvim
 	pager = delta
   excludesfile = ~/.gitignore-excludesfile
-[commit]
-	gpgsign = true
 [rebase]
 	autosquash = true
 [interactive]
