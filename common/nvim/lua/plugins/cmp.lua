@@ -56,9 +56,9 @@ return {
         list = {
           selection = {
             preselect = true,
-            auto_insert = true
-          }
-        }
+            auto_insert = false,
+          },
+        },
       },
 
       -- experimental signature help support
@@ -72,39 +72,43 @@ return {
 
       -- FIXME: Still trying to suggest on command line
       cmdline = {
-        keymap = { preset = 'inherit' },
+        keymap = { preset = "inherit" },
         completion = { menu = { auto_show = true } },
       },
 
       keymap = {
-        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        ['<C-e>'] = { 'hide', 'fallback' },
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<CR>"] = { "hide", "fallback" },
         -- ['<CR>'] = nil,
 
-        ['<Tab>'] = {
+        ["<Tab>"] = {
           function(cmp)
-            if cmp.snippet_active() then return cmp.accept()
-            else return cmp.select_and_accept() end
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
           end,
-          'snippet_forward',
-          'fallback'
+          "snippet_forward",
+          "fallback",
         },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-        ['<Up>'] = { 'select_prev', 'fallback' },
-        ['<Down>'] = { 'select_next', 'fallback' },
-        ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
-        ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+        ["<C-n>"] = { "select_next", "fallback_to_mappings" },
 
-        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
-        ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
       },
 
       term = {
         enabled = false,
-        keymap = { preset = 'inherit' }, -- Inherits from top level `keymap` config when not set
+        keymap = { preset = "inherit" }, -- Inherits from top level `keymap` config when not set
         sources = {},
         completion = {
           trigger = {
@@ -124,57 +128,57 @@ return {
           menu = { auto_show = nil },
           -- Displays a preview of the selected item on the current line
           ghost_text = { enabled = nil },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 
   -- FIXME: cmp not working (not sure if this is what is handling the cmp, might be blink)
---   {
---   "hrsh7th/nvim-cmp",
---   optional = true,
---   dependencies = { "saadparwaiz1/cmp_luasnip",
---     "hrsh7th/cmp-nvim-lsp",
---     "hrsh7th/cmp-buffer",
---     "hrsh7th/cmp-path",
---   },
---   opts = function(_, opts)
---     local cmp = require("cmp")
---     local defaults = require("cmp.config.default")()
---     local auto_select = false
---     opts.snippet = {
---       expand = function(args)
---         require("luasnip").lsp_expand(args.body)
---       end,
---     }
---     opts.completion = {
---         completeopt = "menu,menyuone,noinsert" .. (auto_select and "" or ",noselect")
---       }
---     opts.preselect = cmp.PreselectMode.None
---     opts.mapping = vim.tbl_extend("force", opts.mapping, {
---       ["<C-y>"] = cmp.mapping.confirm({ select = true }),
---       ["<CR>"] = function(fallback)
---           cmp.abort()
---           fallback()
---         end,
---       -- ["<C-l>"] = cmp.mapping(function()
---       --   if luasnip.expand_or_locally_jumpable() then
---       --     luasnip.expand_or_jump()
---       --   end
---       -- end, { "i", "s" }),
---       -- ["<C-h>"] = cmp.mapping(function()
---       --   if luasnip.locally_jumpable(-1) then
---       --     luasnip.jump(-1)
---       --   end
---       -- end, { "i", "s" }),
---     })
---
---     table.insert(opts.sources, { name = "luasnip" })
---   end,
---   -- stylua: ignore
---   -- keys = {
---     -- { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
---     -- { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
---   -- }
--- }
+  --   {
+  --   "hrsh7th/nvim-cmp",
+  --   optional = true,
+  --   dependencies = { "saadparwaiz1/cmp_luasnip",
+  --     "hrsh7th/cmp-nvim-lsp",
+  --     "hrsh7th/cmp-buffer",
+  --     "hrsh7th/cmp-path",
+  --   },
+  --   opts = function(_, opts)
+  --     local cmp = require("cmp")
+  --     local defaults = require("cmp.config.default")()
+  --     local auto_select = false
+  --     opts.snippet = {
+  --       expand = function(args)
+  --         require("luasnip").lsp_expand(args.body)
+  --       end,
+  --     }
+  --     opts.completion = {
+  --         completeopt = "menu,menyuone,noinsert" .. (auto_select and "" or ",noselect")
+  --       }
+  --     opts.preselect = cmp.PreselectMode.None
+  --     opts.mapping = vim.tbl_extend("force", opts.mapping, {
+  --       ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+  --       ["<CR>"] = function(fallback)
+  --           cmp.abort()
+  --           fallback()
+  --         end,
+  --       -- ["<C-l>"] = cmp.mapping(function()
+  --       --   if luasnip.expand_or_locally_jumpable() then
+  --       --     luasnip.expand_or_jump()
+  --       --   end
+  --       -- end, { "i", "s" }),
+  --       -- ["<C-h>"] = cmp.mapping(function()
+  --       --   if luasnip.locally_jumpable(-1) then
+  --       --     luasnip.jump(-1)
+  --       --   end
+  --       -- end, { "i", "s" }),
+  --     })
+  --
+  --     table.insert(opts.sources, { name = "luasnip" })
+  --   end,
+  --   -- stylua: ignore
+  --   -- keys = {
+  --     -- { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+  --     -- { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+  --   -- }
+  -- }
 }
