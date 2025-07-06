@@ -1,7 +1,6 @@
 vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 local diagnostics = vim.g.lazyvim_rust_diagnostics
-return
-{
+return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -11,19 +10,18 @@ return
         "SmiteshP/nvim-navbuddy",
         dependencies = {
           "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim"
+          "MunifTanjim/nui.nvim",
         },
-        opts = { window = { size = "90%",},
-            lsp = { auto_attach = true } }
+        opts = { window = { size = "90%" }, lsp = { auto_attach = true } },
       },
     },
     opts = {
       inlay_hints = {
-        enabled = true
+        enabled = true,
       },
       diagnostics = {
         virtual_text = false,
-        signs = false
+        signs = false,
       },
       servers = {
         bacon_ls = {
@@ -32,7 +30,7 @@ return
         lua_ls = {},
         neocmake = {},
         pyright = {},
-        rust_analyzer = { enabled = false, }
+        rust_analyzer = { enabled = false },
       },
       clangd = {
         keys = {
@@ -68,7 +66,6 @@ return
           completeUnimported = true,
           clangdFileStatus = true,
         },
-
       },
       setup = {
         clangd = function(_, opts)
@@ -89,7 +86,7 @@ return
         vim.list_extend(opts.ensure_installed, { "bacon" })
       end
       PATH = "append" -- This makes mason defualt to locally installed packages
-    end
+    end,
   },
   {
     "Saecki/crates.nvim",
@@ -141,15 +138,15 @@ return
       },
       auto_install = true,
       highlight = {
-          enable = true,
-          additional_vim_regex_highlighting=false,
-        },
-      indent = {enable = true, disable = { "markdown_inline"} },
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = { enable = true, disable = { "markdown_inline" } },
       rainbow = {
-          enable = true,
-          extended_mode = true,
-          max_file_lines = 3000,
-      }
-    }
+        enable = true,
+        extended_mode = true,
+        max_file_lines = 3000,
+      },
+    },
   },
 }

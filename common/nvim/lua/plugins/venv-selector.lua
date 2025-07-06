@@ -16,4 +16,14 @@ return {
       { "<leader>vc", "<cmd>VenvSelectCached<cr>", { desc = "Select a cached venv", noremap = true } },
     },
   },
+  -- {
+  --   "petobens/poet-v",
+  --   opts = {},
+  -- },
+  {
+    "karloskar/poetry-nvim",
+    config = function()
+      require("poetry-nvim").setup()
+    end,
+  },
 }

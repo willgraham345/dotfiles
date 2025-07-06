@@ -1,9 +1,4 @@
 return {
-  -- {
-  --   "mfussenegger/nvim-dap",
-  --   dependencies = {"williamboman/mason.nvim"},
-  --   opts = {}
-  -- },
   {
     "mfussenegger/nvim-dap",
     recommended = true,
@@ -74,34 +69,44 @@ return {
       { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
     },
     opts = {
-      layouts = { {
-          elements = { {
+      layouts = {
+        {
+          elements = {
+            {
               id = "watches",
-              size = 0.1
-            }, {
+              size = 0.1,
+            },
+            {
               id = "breakpoints",
-              size = 0.2
-            }, {
+              size = 0.2,
+            },
+            {
               id = "stacks",
-              size = 0.2
-            }, {
+              size = 0.2,
+            },
+            {
               id = "scopes",
-              size = 0.5
-            } },
+              size = 0.5,
+            },
+          },
           position = "left",
-          size = 40
-        }, {
-          elements = { {
+          size = 40,
+        },
+        {
+          elements = {
+            {
               id = "repl",
-              size = 0.75
-            }, {
+              size = 0.75,
+            },
+            {
               id = "console",
-              size = 0.25
-            } },
+              size = 0.25,
+            },
+          },
           position = "bottom",
-          size = 10
-        } },
-
+          size = 10,
+        },
+      },
     },
     -- The config calls this plugin automatically when the debugger is called
     config = function(_, opts)
@@ -122,7 +127,7 @@ return {
   -- FIXME: Not able to find mason-lspconfig.mappings.server
   {
     "jay-babu/mason-nvim-dap.nvim",
-    dependencies = { "mason.nvim", "mfussenegger/nvim-dap"},
+    dependencies = { "mason.nvim", "mfussenegger/nvim-dap" },
     cmd = { "DapInstall", "DapUninstall" },
     opts = {
       -- Makes a best effort to setup the various debuggers with
