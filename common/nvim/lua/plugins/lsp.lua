@@ -80,8 +80,11 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
+      -- TODO: Add logic for global flags on langauges to install
       vim.list_extend(opts.ensure_installed, { "codelldb" })
       vim.list_extend(opts.ensure_installed, { "cmakelang", "cmakelint" })
+      vim.list_extend(opts.ensure_installed, { "pyright", "black", "debugpy" })
+      vim.list_extend(opts.ensure_installed, { "stylua" })
       if diagnostics == "bacon-ls" then
         vim.list_extend(opts.ensure_installed, { "bacon" })
       end
