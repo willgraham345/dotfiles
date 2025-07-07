@@ -9,6 +9,12 @@
 
 With both the personal and work, these are set up for Linux. The idea is to run a script that will set up symplink from the home directory (or `.config/`) to the Dotfiles repo. Execute a script to setup.
 
+## WSL
+
+- Make sure to have WSL in mirrored mode
+- Make sure to use or not use system d in building/linking
+-
+
 ## Neovim
 
 Install Neovim using homebrew to get the latest version
@@ -18,6 +24,12 @@ Install Neovim using homebrew to get the latest version
 Keybindings should be set up to be similar, don't worry too much about this. Only use vscode when you really need to.
 
 ## Tmux
+
+- Clone tpm (tmux plugin manager) before using tmux
+
+```shell
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
 Make sure to fetch the plugins for tmux, can be done by pressing
 
