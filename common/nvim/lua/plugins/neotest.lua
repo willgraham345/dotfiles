@@ -79,9 +79,21 @@ return {
           return vim.bo.filetype == "python"
         end,
         concurrent = 1,
+        -- filter_dir = function(name, rel_path, root)
+        --   local current_file = vim.api.nvim_buf_get_name(0)
+        --   if current_file == "" then
+        --     return false
+        --   end
+        --   local current_file_dir = vim.fn.expand("%:p:h")
+        --   local dir_to_check = root .. "/" .. rel_path
+        --   return vim.fs.normalize(current_file_dir) == vim.fs.normalize(dir_to_check)
+        -- end,
       },
       running = {
-        concurrent = false,
+        concurrent = true,
+      },
+      summary = {
+        animated = false,
       },
       quickfix = {
         open = function()
@@ -167,7 +179,10 @@ return {
         end
         opts.adapters = adapters
       end
-      if not vim.tbl_isempty(vim.fn.glob("**/*.cpp", true, true)) or not vim.tbl_isempty(vim.fn.glob("**/*.hpp", true, true)) then
+      if
+        not vim.tbl_isempty(vim.fn.glob("**/*.cpp", true, true))
+        or not vim.tbl_isempty(vim.fn.glob("**/*.hpp", true, true))
+      then
         table.insert(opts.adapters, require("neotest-gtest").setup(gtest_config))
       end
       require("neotest").setup(opts)
