@@ -3,29 +3,26 @@ return {
     "oskarrrrrrr/symbols.nvim",
     config = function()
       local r = require("symbols.recipes")
-      require("symbols").setup(
-        r.DefaultFilters,
-        r.AsciiSymbols,
-        {
-          -- TODO: Add unfold by default (https://github.com/oskarrrrrrr/symbols.nvim/issues/14)
-          sidebar = {
-            -- custom settings here
-            -- e.g. hide_cursor = false
-            cursor_follow = true,
-            on_open_make_windows_equal = false,
-            -- show_details_pop_up = true,
-            auto_resize = {
-              enabled = true,
-            },
-          keymaps = {
-             ["tr"] = "toggle-auto-resize",
-            ["<Tab>"] = "toggle-fold",
-            }
+      require("symbols").setup(r.DefaultFilters, r.AsciiSymbols, {
+        -- TODO: Add unfold by default (https://github.com/oskarrrrrrr/symbols.nvim/issues/14)
+        sidebar = {
+          -- custom settings here
+          -- e.g. hide_cursor = false
+          cursor_follow = true,
+          on_open_make_windows_equal = false,
+          -- show_details_pop_up = true,
+          auto_resize = {
+            enabled = true,
           },
-        }
-      )
+          wrap = true,
+          keymaps = {
+            ["tr"] = "toggle-auto-resize",
+            ["<Tab>"] = "toggle-fold",
+          },
+        },
+      })
       vim.keymap.set("n", "<space>cs", "<cmd>SymbolsToggle<CR>")
-    end
+    end,
   },
   {
     -- Default trouble.nvim install, without cS turned on...
