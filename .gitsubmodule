@@ -1,0 +1,15 @@
+[submodule "submodules/tmux/plugins/tpm"]
+    path = submodules/tmux/plugins/tpm
+    url = https://github.com/tmux-plugins/tpm
+
+[submodule "submodules/tmux/plugins/tmux-resurrect"]
+    path = submodules/tmux/plugins/tmux-resurrect
+    url = https://github.com/tmux-plugins/tmux-resurrect
+
+[submodule "submodules/tmux/plugins/tmux-sensible"]
+    path = submodules/tmux/plugins/tmux-sensible
+    url = https://github.com/tmux-plugins/tmux-sensible
+
+[submodule "submodules/tmux/plugins/tmux-yank"]
+    path = submodules/tmux/plugins/tmux-yank
+    url = https://github.com/tmux-plugins/tmux-yank
