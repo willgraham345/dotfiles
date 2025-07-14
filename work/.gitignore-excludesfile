@@ -4,3 +4,5 @@ venv/
 venv-will/*
 venv-will/
 .poetry/*
+todo*
+todo.*

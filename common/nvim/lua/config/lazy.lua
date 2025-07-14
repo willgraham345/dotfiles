@@ -14,7 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 -- dependency checks
 _G.HAS_RUST = vim.fn.executable("rustc") == 1
 _G.HAS_CPP = vim.fn.executable("g++") == 1 or vim.fn.executable("clang++") == 1
@@ -25,11 +24,11 @@ _G.HAS_CPP = vim.fn.executable("g++") == 1 or vim.fn.executable("clang++") == 1
 -- log.debug("_G.HAS_CPP: %s", tostring(_G.HAS_CPP))
 
 require("lazy").setup({
-  rocks = {
-    hererocks = true,
-  },
+  -- rocks = {
+  --   hererocks = true,
+  -- },
   spec = {
-    {"3rd/image.nvim", opts = {}},
+    { "3rd/image.nvim", opts = {} },
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "sonokai" } },
     -- import/override with your plugins
@@ -143,6 +142,5 @@ require("lazy").setup({
 --     -- },
 --   },
 -- })
-
 
 -- Example from https://github.com/tanvirtin/vgit.nvim
