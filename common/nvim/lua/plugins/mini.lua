@@ -48,6 +48,7 @@ return {
     },
   },
   {
+    -- See autocmds for additional mappings
     "echasnovski/mini.files",
     opts = {
       windows = {
@@ -67,7 +68,7 @@ return {
         reset = "<BS>",
         reveal_cwd = "@",
         show_help = "g?",
-        synchronize = "<Space>",
+        synchronize = "r",
         trim_left = "<",
         trim_right = ">",
       },

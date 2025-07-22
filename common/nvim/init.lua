@@ -1,5 +1,5 @@
 require("config.lazy")
--- require("snacks").explorer()
+
 vim.cmd("colorscheme sonokai")
 local symbols_to_d2 = require("utilities.symbols_to_d2")
 

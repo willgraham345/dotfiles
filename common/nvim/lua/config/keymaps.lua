@@ -52,6 +52,12 @@ vim.keymap.set("n", "<leader><Tab>r", function()
     vim.cmd("BufferLineTabRename " .. input)
   end
 end, { desc = "Rename bufferline tab" })
+vim.keymap.set("n", "<C-w>r", function()
+  local input = vim.fn.input("New tab name: ")
+  if input ~= "" then
+    vim.cmd("BufferLineTabRename " .. input)
+  end
+end, { desc = "Rename bufferline tab" })
 
 map("n", "<M-q>", ":tabclose<CR>", { desc = "Close tab", remap = false })
 map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", { desc = "Delete buffers to the Right" })

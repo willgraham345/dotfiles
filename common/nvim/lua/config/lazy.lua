@@ -121,6 +121,7 @@ require("lazy").setup({
 --   hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
 -- })
 
+-- FIXME: Diagram stuff, not required
 -- require("diagram").setup({
 --   integrations = {
 --     require("diagram.integrations.markdown"),
@@ -142,5 +143,4 @@ require("lazy").setup({
 --     -- },
 --   },
 -- })
-
 -- Example from https://github.com/tanvirtin/vgit.nvim

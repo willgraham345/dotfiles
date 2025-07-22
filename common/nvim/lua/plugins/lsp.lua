@@ -31,6 +31,21 @@ return {
         neocmake = {},
         pyright = {},
         rust_analyzer = { enabled = false },
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
+        },
       },
       clangd = {
         keys = {
@@ -85,6 +100,8 @@ return {
       vim.list_extend(opts.ensure_installed, { "cmakelang", "cmakelint" })
       vim.list_extend(opts.ensure_installed, { "pyright", "black", "debugpy" })
       vim.list_extend(opts.ensure_installed, { "stylua" })
+      vim.list_extend(opts.ensure_installed, { "json-lsp" })
+      vim.list_extend(opts.ensure_installed, { "prettier" })
       if diagnostics == "bacon-ls" then
         vim.list_extend(opts.ensure_installed, { "bacon" })
       end

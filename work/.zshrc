@@ -200,3 +200,4 @@ eval "$(oh-my-posh init zsh --config "~/.config/ohmyposh/powerlevel10k_rainbow.o
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
+alias pdf2code='source ~/pdf2code/.venv/bin/activate && python ~/pdf2code/pdf2code_v2.py'

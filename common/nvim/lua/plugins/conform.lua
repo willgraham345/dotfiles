@@ -21,6 +21,7 @@ return {
           ["python"] = { "isort", "black" },
           ["rust"] = { "rustfmt" },
           ["cpp"] = { "clang_format" },
+          ["json"] = { "prettier" },
         },
         formatters = {
           injected = { options = { ignore_errors = true } },
