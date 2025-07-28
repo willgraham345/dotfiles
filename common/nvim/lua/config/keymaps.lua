@@ -86,9 +86,12 @@ end, { desc = "Terminal (Root Dir)" })
 
 -- File explorer keymaps
 map("n", "<M-f>", function()
-  require("mini.files").open(vim.api.nvim_buf_get_name(0))
+  require("mini.files").open(MiniFiles.get_latest_path())
 end, { desc = "Neotree focus" })
 map("n", "<M-g>", function()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0))
+end, { desc = "Neotree focus" })
+map("n", "<M-r>", function()
   require("mini.files").open(nil, false)
 end, { desc = "Neotree focus to CWD" })
 map("n", "<M-m>", "<cmd>MarksListAll<CR>", { noremap = true, desc = "List all marks", silent = false })
@@ -116,6 +119,23 @@ map("n", "<leader>gM", "<cmd>Git mergetool -y<CR>", { noremap = true, desc = "St
 map("n", "<leader>gt", "<cmd>Gvdiffsplit!<CR>", { noremap = true, desc = "Start fugitive 3 way diff" })
 map("n", "g2o", "<cmd>diffget //2<CR>", { noremap = true, desc = "Get changes from left window" })
 map("n", "g3o", "<cmd>diffget //3<CR>", { noremap = true, desc = "Get changes from right window" })
+local function diffview_open_with_input()
+  -- Prompt the user for input. The second argument is a default value (empty string here).
+  local user_input = vim.fn.input("DiffviewOpen (commit/branch/ref): ", "")
+
+  -- Check if the user provided input (didn't press Esc or leave it empty)
+  if user_input then
+    -- Execute the DiffviewOpen command with the user's input
+    vim.cmd("DiffviewOpen " .. user_input)
+  end
+end
+
+-- Set up the keybinding
+vim.keymap.set("n", "<leader>go", diffview_open_with_input, {
+  noremap = true,
+  silent = true,
+  desc = "Diffview: Open with user input (commit/branch/ref)",
+})
 -- Mergetool stuff
 --   ╔═══════╦═══════╦════════╗
 -- ║       ║       ║        ║

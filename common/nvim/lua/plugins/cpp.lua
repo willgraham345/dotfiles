@@ -13,7 +13,28 @@ return {
     -- },
      
     "Civitasv/cmake-tools.nvim",
+      -- FIXME: This function is broken, not 100% sure what it's actually doing...
+    -- lazy = true,
+    -- init = function()
+    --   local loaded = false
+    --   local function check()
+    --     local cwd = vim.uv.cwd()
+    --     if vim.fn.filereadable(cwd .. "/CMakeLists.txt") == 1 then
+    --       require("lazy").load({ plugins = { "cmake-tools.nvim" } })
+    --       loaded = true
+    --     end
+    --   end
+    --   check()
+    --   vim.api.nvim_create_autocmd("DirChanged", {
+    --     callback = function()
+    --       if not loaded then
+    --         check()
+    --       end
+    --     end,
+    --   })
+    -- end,
     opts = {
+      cmake_command = "cmake",
       cmake_build_directory = function()
         -- if osys.iswin32 then
         --   return "out\\${variant:buildType}"
@@ -23,8 +44,8 @@ return {
       cmake_generate_options = {"-DCMAKE_EXPORT_COMPILE_COMMANDS=1", "-Wno-dev","-G Ninja"},
       cmake_executor = { -- executor to use
         name = "quickfix", -- name of the executor
-        opts = {}, -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
-        default_opts = { -- a list of default and possible values for executors
+        -- opts = {}, -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
+        opts = { -- a list of default and possible values for executors
           quickfix = {
             show = "always", -- "always", "only_on_error"
             position = "belowright", -- "vertical", "horizontal", "leftabove", "aboveleft", "rightbelow", "belowright", "topleft", "botright", use `:h vertical` for example to see help on them
@@ -74,11 +95,11 @@ return {
       },
       cmake_runner = {
         name = "terminal",
-        opts = {},
-        default_opts = {
+        -- opts = {},
+        opts = {
           quickfix = {
             show = "always",
-            position = "belowright", --FIXME: Not going to bottom
+            position = "belowright",
             size = 10,
             encoding = "utf-8",
             auto_close_when_success = true,

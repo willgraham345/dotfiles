@@ -21,11 +21,11 @@ return {
   {
     "sindrets/diffview.nvim",
     dependencies = {},
-    lazy = false
-  }
-  
+    lazy = false,
+  },
+
   -- {
-  -- Only supports GitHub for now :(
+  -- FIXME: Only supports GitHub for now :(
   --   "pwntester/octo.nvim",
   --   dependencies = {
   --     "nvim-lua/plenary.nvim",
