@@ -1,8 +1,5 @@
 # Usage notes
 
-
-
-
 # 💤 LazyVim Links
 
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).

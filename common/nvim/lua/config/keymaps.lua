@@ -12,17 +12,13 @@ vim.keymap.del("n", "]t")
 vim.keymap.del("n", "<leader>br") -- Deletes the initial
 vim.keymap.del("n", "<leader>bl")
 -- vim.keymap.del("n", "<leader>cs") -- aerial remove
--- TODO: Remove the "[[" and "]]" commands from snacks, hand those to aerial
--- config = function(_, opts)
---   require("snacks").words.disable({
---
---   })(opts)
---   vim.keymap.del({ "n", "t" }, "[[")
---   vim.keymap.del({ "n", "t" }, "]]")
--- end,
+local map = vim.keymap.set
+
+-- Vim keymaps
+map("n", "<BS><BS>", "<Cmd>FzfLua commands<CR>", { noremap = true, desc = "Search commands" })
+map("n", "<BS>h", "<Cmd>FzfLua help_tags<CR>", { noremap = true, desc = "Search commands" })
 
 -- Window keymaps
-local map = vim.keymap.set
 map("n", "<M-w>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
 map("n", "<M-v>", function()
   vim.cmd("vert split")
@@ -58,6 +54,7 @@ vim.keymap.set("n", "<C-w>r", function()
     vim.cmd("BufferLineTabRename " .. input)
   end
 end, { desc = "Rename bufferline tab" })
+map("n", "<C-w>t", "<Cmd>tabnew<CR>", { desc = "New tab" })
 
 map("n", "<M-q>", ":tabclose<CR>", { desc = "Close tab", remap = false })
 map("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", { desc = "Delete buffers to the Right" })
@@ -204,6 +201,7 @@ map({ "n", "v" }, "<leader>mci", "<cmd>ClangdSymbolInfo<CR>", { desc = "Clangd S
 map({ "n", "v" }, "<leader>mch", "<cmd>ClangdTypeHierarchy<CR>", { desc = "Clangd Type Hierarchy" })
 map({ "n", "v" }, "<leader>mcm", "<cmd>ClangdMemoryUsage<CR>", { desc = "Clangd Memory Usage" })
 map({ "n", "v" }, "<leader>cL", "<cmd>LspInfo<CR>", { desc = "Lsp info cmd" })
+map({ "n", "v" }, "<leader>ct", "<cmd>TSPlayground<CR>", { desc = "Output AST" })
 map("n", "<leader>uu", function()
   require("symbol-usage").toggle_globally()
 end, { desc = "Toggle Symbol Usage", noremap = true }) --TODO: Add toggle ui integration with which-key

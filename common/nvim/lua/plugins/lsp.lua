@@ -169,4 +169,23 @@ return {
       },
     },
   },
+  {
+    "nvim-treesitter/playground",
+    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- Make sure nvim-treesitter is loaded first
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        playground = {
+          enable = true,
+          disable = {},
+          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+          persist_queries = false, -- Whether the query persists across vim sessions
+          keybindings = {
+            toggle_query_editor = "o",
+            toggle_hl_groups = "i",
+            toggle_injected_languages = "t",
+          },
+        },
+      })
+    end,
+  },
 }
