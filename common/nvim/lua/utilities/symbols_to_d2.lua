@@ -7,6 +7,55 @@ local DEBUG_MODE = true -- Changed to true by default
 
 local M = {}
 
+-- A simple logger module to replace debug statements.
+local logger = {}
+local enabled = true
+local level = "DEBUG" -- Default log level
+local levels = {
+  DEBUG = 1,
+  INFO = 2,
+  WARN = 3,
+  ERROR = 4,
+}
+
+--- Logs a message if logging is enabled and the message's level is sufficient.
+--- @param msg_level string The level of the message (e.g., "DEBUG", "INFO").
+--- @param msg string The message to log.
+local function log(msg_level, msg)
+  if enabled and levels[msg_level] and levels[msg_level] >= levels[level] then
+    vim.api.nvim_echo({ { "[" .. msg_level .. "] " .. msg, "None" } }, true, {})
+  end
+end
+
+logger.debug = function(msg)
+  log("DEBUG", msg)
+end
+logger.info = function(msg)
+  log("INFO", msg)
+end
+logger.warn = function(msg)
+  log("WARN", msg)
+end
+logger.error = function(msg)
+  log("ERROR", msg)
+end
+
+--- Sets the minimum log level to display.
+--- @param l string The new log level (e.g., "DEBUG", "INFO", "WARN", "ERROR").
+logger.set_level = function(l)
+  level = l
+end
+
+--- Enables the logger.
+logger.enable = function()
+  enabled = true
+end
+
+--- Disables the logger.
+logger.disable = function()
+  enabled = false
+end
+
 -- List of common symbol types that symbols.nvim might output.
 -- This helps in identifying the symbol type keyword at the beginning of a line.
 -- Only 'class', 'struct', 'fun', 'fn', 'field', 'var', and 'enum' are processed for D2 output.
@@ -27,37 +76,26 @@ local SYMBOL_TYPE_PATTERN = table.concat(SYMBOL_TYPES, "|")
 -- Assumes each line represents a symbol with an indentation indicating its level.
 -- It now handles leading non-alphanumeric characters and looks for keyword types.
 local function parse_symbols_output(lines)
-  if DEBUG_MODE then
-    vim.notify("DEBUG: Starting parse_symbols_output function.", vim.log.levels.DEBUG)
-  end
+  logger.debug("Starting parse_symbols_output function.")
   local root = { name = "root", type = "root", children = {}, indent = -1 }
   local indent_stack = { { -1, root } }
 
   for line_num, line in ipairs(lines) do
-    if DEBUG_MODE then
-      vim.notify(string.format("DEBUG: Processing line %d: '%s'", line_num, line), vim.log.levels.DEBUG)
-    end
+    logger.debug(string.format("Processing line %d: '%s'", line_num, line))
     line = line:gsub("%s+$", "") -- Trim trailing whitespace
     if #line == 0 then
-      if DEBUG_MODE then
-        vim.notify(string.format("DEBUG: Line %d is empty, skipping.", line_num), vim.log.levels.DEBUG)
-      end
+      logger.debug(string.format("Line %d is empty, skipping.", line_num))
       goto continue -- Skip empty lines
     end
 
     local current_indent = #line - #line:gsub("^%s*", "")
     local content_raw = line:gsub("^%s*", "") -- Remove leading whitespace (but keep tree chars for now)
-    if DEBUG_MODE then
-      vim.notify(
-        string.format("DEBUG: Line %d - Indent: %d, Raw Content: '%s'", line_num, current_indent, content_raw),
-        vim.log.levels.DEBUG
-      )
-    end
+    logger.debug(string.format("Line %d - Indent: %d, Raw Content: '%s'", line_num, current_indent, content_raw))
 
     local symbol_type = nil
     local symbol_name = nil
 
-    local best_match_start_idx = math.huge -- Initialize with a very large number
+    local best_match_start_idx = math.huge
     local best_match_type_keyword = nil
 
     -- First, find the earliest occurrence of any SYMBOL_TYPE keyword in the raw content
@@ -76,18 +114,15 @@ local function parse_symbols_output(lines)
     if best_match_type_keyword then
       -- If a keyword was found, clean the content from its start index
       content_for_parsing = content_raw:sub(best_match_start_idx)
-      if DEBUG_MODE then
-        vim.notify(
-          string.format(
-            "DEBUG: Line %d - Cleaned from keyword '%s' (idx %d): '%s'",
-            line_num,
-            best_match_type_keyword,
-            best_match_start_idx,
-            content_for_parsing
-          ),
-          vim.log.levels.DEBUG
+      logger.debug(
+        string.format(
+          "Line %d - Cleaned from keyword '%s' (idx %d): '%s'",
+          line_num,
+          best_match_type_keyword,
+          best_match_start_idx,
+          content_for_parsing
         )
-      end
+      )
 
       -- Now, try to extract type and name based on the found keyword
       -- The pattern now assumes the type_keyword is at the very beginning of content_for_parsing
@@ -95,13 +130,8 @@ local function parse_symbols_output(lines)
       local name_part = content_for_parsing:match(pattern)
       if name_part then
         symbol_type = best_match_type_keyword
-        symbol_name = name_part:gsub("^%s*", ""):gsub("%s*$", "") -- Trim spaces around the name
-        if DEBUG_MODE then
-          vim.notify(
-            string.format("DEBUG: Line %d - Matched keyword '%s'. Name: '%s'", line_num, symbol_type, symbol_name),
-            vim.log.levels.DEBUG
-          )
-        end
+        symbol_name = name_part:gsub("^%s*", ""):gsub("%s*$", "")
+        logger.debug(string.format("Line %d - Matched keyword '%s'. Name: '%s'", line_num, symbol_type, symbol_name))
       end
     end
 
@@ -116,17 +146,14 @@ local function parse_symbols_output(lines)
           if bracketed_type:lower() == allowed_type:lower() then
             symbol_type = allowed_type
             symbol_name = bracketed_name:gsub("^%s*", ""):gsub("%s*$", "")
-            if DEBUG_MODE then
-              vim.notify(
-                string.format(
-                  "DEBUG: Line %d - Matched bracketed pattern. Type: '%s', Name: '%s'",
-                  line_num,
-                  symbol_type,
-                  symbol_name
-                ),
-                vim.log.levels.DEBUG
+            logger.debug(
+              string.format(
+                "Line %d - Matched bracketed pattern. Type: '%s', Name: '%s'",
+                line_num,
+                symbol_type,
+                symbol_name
               )
-            end
+            )
             break
           end
         end
@@ -144,66 +171,43 @@ local function parse_symbols_output(lines)
     end
 
     if not is_allowed_type then
-      if DEBUG_MODE then
-        vim.notify(
-          string.format(
-            "DEBUG: Line %d - Skipping, type '%s' not in allowed list or not recognized.",
-            line_num,
-            symbol_type or "nil"
-          ),
-          vim.log.levels.DEBUG
+      logger.debug(
+        string.format(
+          "Line %d - Skipping, type '%s' not in allowed list or not recognized.",
+          line_num,
+          symbol_type or "nil"
         )
-      end
+      )
       goto continue
     end
 
     if #symbol_name == 0 then
-      vim.notify(
-        string.format("Warning: Could not parse symbol name from line %d: '%s'. Skipping.", line_num, line),
-        vim.log.levels.WARN
-      )
+      logger.warn(string.format("Could not parse symbol name from line %d: '%s'. Skipping.", line_num, line))
       goto continue
     end
 
-    if DEBUG_MODE then
-      vim.notify(
-        string.format("DEBUG: Line %d - Final Parsed Type: '%s', Name: '%s'", line_num, symbol_type, symbol_name),
-        vim.log.levels.DEBUG
-      )
-    end
+    logger.debug(string.format("Line %d - Final Parsed Type: '%s', Name: '%s'", line_num, symbol_type, symbol_name))
 
-    -- Find the correct parent based on indentation
     local prev_stack_size = #indent_stack
     while #indent_stack > 0 and indent_stack[#indent_stack][1] >= current_indent do
       table.remove(indent_stack)
     end
-    if DEBUG_MODE then
-      vim.notify(
-        string.format(
-          "DEBUG: Line %d - Indent stack size changed from %d to %d after popping.",
-          line_num,
-          prev_stack_size,
-          #indent_stack
-        ),
-        vim.log.levels.DEBUG
+    logger.debug(
+      string.format(
+        "Line %d - Indent stack size changed from %d to %d after popping.",
+        line_num,
+        prev_stack_size,
+        #indent_stack
       )
-    end
+    )
 
     if #indent_stack == 0 then
-      vim.notify(
-        string.format("Error: Invalid indentation at line %d: '%s'. Cannot find parent.", line_num, line),
-        vim.log.levels.ERROR
-      )
+      logger.error(string.format("Invalid indentation at line %d: '%s'. Cannot find parent.", line_num, line))
       goto continue
     end
 
     local parent_indent, parent_node = unpack(indent_stack[#indent_stack])
-    if DEBUG_MODE then
-      vim.notify(
-        string.format("DEBUG: Line %d - Parent found: '%s' (indent %d)", line_num, parent_node.name, parent_indent),
-        vim.log.levels.DEBUG
-      )
-    end
+    logger.debug(string.format("Line %d - Parent found: '%s' (indent %d)", line_num, parent_node.name, parent_indent))
 
     -- Generate D2 ID based only on the sanitized symbol name.
     -- WARNING: This can lead to non-unique D2 IDs if multiple symbols have the same name.
@@ -213,9 +217,6 @@ local function parse_symbols_output(lines)
     -- Ensure ID starts with a letter or underscore if it doesn't already
     if not d2_id:match("^[a-zA-Z_]") then
       d2_id = "_" .. d2_id
-    end
-    if DEBUG_MODE then
-      vim.notify(string.format("DEBUG: Line %d - Generated D2 ID: '%s'", line_num, d2_id), vim.log.levels.DEBUG)
     end
 
     local node = {
@@ -238,14 +239,13 @@ local function parse_symbols_output(lines)
         ),
         vim.log.levels.DEBUG
       )
+    logger.debug(string.format("Line %d - Generated D2 ID: '%s'", line_num, d2_id))
     end
 
     ::continue::
   end
-  if DEBUG_MODE then
-    vim.notify("DEBUG: Finished parse_symbols_output function.", vim.log.levels.DEBUG)
-  end
   return root
+  logger.debug("Finished parse_symbols_output function.")
 end
 
 -- Helper function to recursively generate D2 syntax
@@ -255,9 +255,7 @@ local function generate_d2(node, level)
   local indent_str = string.rep("  ", level)
 
   if node.type == "root" then
-    if DEBUG_MODE then
-      vim.notify("DEBUG: generate_d2: Processing root node.", vim.log.levels.DEBUG)
-    end
+    logger.debug("generate_d2: Processing root node.")
     for _, child in ipairs(node.children) do
       table.insert(d2_output, generate_d2(child, level))
     end
@@ -267,12 +265,7 @@ local function generate_d2(node, level)
   local d2_id = node.id
   local display_name = node.name
   local d2_type_prefix = node.type:gsub(" ", "_")
-  if DEBUG_MODE then
-    vim.notify(
-      string.format("DEBUG: generate_d2: Processing node '%s' (ID: %s) at level %d.", display_name, d2_id, level),
-      vim.log.levels.DEBUG
-    )
-  end
+  logger.debug(string.format("generate_d2: Processing node '%s' (ID: %s) at level %d.", display_name, d2_id, level))
 
   -- Handle 'class', 'struct', and 'enum' types as D2 class shapes
   if node.type == "class" or node.type == "struct" or node.type == "enum" then
@@ -287,16 +280,13 @@ local function generate_d2(node, level)
         table.insert(d2_output, string.format("%s  %s", indent_str, child.name))
       else
         -- If other types of children exist, they will be skipped based on this specific request.
-        if DEBUG_MODE then
-          vim.notify(
-            string.format(
-              "DEBUG: generate_d2: Skipping non-fun/fn/field/var child of class/struct/enum: '%s' (type: %s)",
-              child.name,
-              child.type
-            ),
-            vim.log.levels.DEBUG
+        logger.debug(
+          string.format(
+            "generate_d2: Skipping non-fun/fn/field/var child of class/struct/enum: '%s' (type: %s)",
+            child.name,
+            child.type
           )
-        end
+        )
       end
     end
     table.insert(d2_output, string.format("%s}", indent_str))
@@ -304,17 +294,14 @@ local function generate_d2(node, level)
     -- This block handles types that are not 'class', 'struct', or 'enum' and are not children
     -- of those types (e.g., if 'fun' or 'field' somehow appear at the root level).
     -- Based on the requested output, these should not generate D2.
-    if DEBUG_MODE then
-      vim.notify(
-        string.format(
-          "DEBUG: generate_d2: Skipping node '%s' (type: %s) as it's not a 'class', 'struct', or 'enum' container.",
-          display_name,
-          node.type
-        ),
-        vim.log.levels.DEBUG
+    logger.debug(
+      string.format(
+        "generate_d2: Skipping node '%s' (type: %s) as it's not a 'class', 'struct', or 'enum' container.",
+        display_name,
+        node.type
       )
-    end
     return "" -- Do not generate D2 for standalone fun/fn/field/var nodes, or other unhandled types.
+    )
   end
 
   return table.concat(d2_output, "\n")
@@ -322,9 +309,7 @@ end
 
 -- Helper function to copy text to Neovim's clipboard register
 local function copy_to_clipboard(text)
-  if DEBUG_MODE then
-    vim.notify("DEBUG: Attempting to copy to clipboard.", vim.log.levels.DEBUG)
-  end
+  logger.debug("Attempting to copy to clipboard.")
   local success, err = pcall(vim.fn.setreg, "+", text)
   if success then
     vim.notify("D2 diagram text copied to clipboard!", vim.log.levels.INFO)
@@ -335,23 +320,14 @@ local function copy_to_clipboard(text)
       vim.log.levels.ERROR
     )
   end
-  if DEBUG_MODE then
-    -- Using print for final debug output to avoid notification clutter
-    print("DEBUG: Final D2 text generated:\n" .. text)
-  end
+  -- Using print for final debug output to avoid notification clutter
+  print("Final D2 text generated:\n" .. text)
 end
 
 --- Main function to be called from Neovim.
 --- It automatically finds the symbols.nvim buffer and processes its content.
 function M.convert_symbols_buffer_to_d2()
-  -- Check for global override for DEBUG_MODE
-  if vim.g.symbols_to_d2_debug_enabled ~= nil then
-    DEBUG_MODE = vim.g.symbols_to_d2_debug_enabled
-  end
-
-  if DEBUG_MODE then
-    vim.notify("DEBUG: convert_symbols_buffer_to_d2 function called.", vim.log.levels.DEBUG)
-  end
+  logger.debug("convert_symbols_buffer_to_d2 function called.")
   local symbols_buf_id = nil
   local symbols_buf_name = "symbols.nvim" -- Common name for symbols.nvim buffer
 
@@ -360,21 +336,11 @@ function M.convert_symbols_buffer_to_d2()
     if vim.api.nvim_buf_is_valid(buf_id) then
       local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
       local buf_name = vim.api.nvim_buf_get_name(buf_id)
-      if DEBUG_MODE then
-        vim.notify(
-          string.format("DEBUG: Checking buffer ID %d: filetype='%s', name='%s'", buf_id, filetype, buf_name),
-          vim.log.levels.DEBUG
-        )
-      end
+      logger.debug(string.format("Checking buffer ID %d: filetype='%s', name='%s'", buf_id, filetype, buf_name))
 
       if filetype == "SymbolsSidebar" or buf_name == symbols_buf_name then
         symbols_buf_id = buf_id
-        if DEBUG_MODE then
-          vim.notify(
-            string.format("DEBUG: Found symbols.nvim buffer with ID: %d", symbols_buf_id),
-            vim.log.levels.DEBUG
-          )
-        end
+        logger.debug(string.format("Found symbols.nvim buffer with ID: %d", symbols_buf_id))
         break
       end
     end
@@ -387,9 +353,7 @@ function M.convert_symbols_buffer_to_d2()
 
   -- Get all lines from the symbols.nvim buffer
   local raw_lines = vim.api.nvim_buf_get_lines(symbols_buf_id, 0, -1, false)
-  if DEBUG_MODE then
-    vim.notify(string.format("DEBUG: Read %d raw lines from symbols.nvim buffer.", #raw_lines), vim.log.levels.DEBUG)
-  end
+  logger.debug(string.format("Read %d raw lines from symbols.nvim buffer.", #raw_lines))
 
   local lines = {}
   -- Filter out potential empty lines or lines that are just whitespace
@@ -398,9 +362,7 @@ function M.convert_symbols_buffer_to_d2()
       table.insert(lines, line)
     end
   end
-  if DEBUG_MODE then
-    vim.notify(string.format("DEBUG: Filtered down to %d non-empty lines.", #lines), vim.log.levels.DEBUG)
-  end
+  logger.debug(string.format("Filtered down to %d non-empty lines.", #lines))
 
   if #lines == 0 then
     vim.notify("symbols.nvim buffer is empty or contains no valid symbols.", vim.log.levels.INFO)
@@ -410,9 +372,7 @@ function M.convert_symbols_buffer_to_d2()
   local parsed_tree = parse_symbols_output(lines)
   local d2_diagram = generate_d2(parsed_tree)
   copy_to_clipboard(d2_diagram)
-  if DEBUG_MODE then
-    vim.notify("DEBUG: convert_symbols_buffer_to_d2 function finished.", vim.log.levels.DEBUG)
-  end
+  logger.debug("convert_symbols_buffer_to_d2 function finished.")
 end
 
 return M
