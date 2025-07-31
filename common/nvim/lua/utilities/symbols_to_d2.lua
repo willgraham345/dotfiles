@@ -1,10 +1,6 @@
 -- lua/my_utils/symbols_to_d2.lua
 -- Neovim Lua Module to Convert symbols.nvim Output to D2 Diagrams and copy to clipboard.
 
--- Configuration: Set to true to enable detailed debug notifications.
--- This can also be overridden by setting vim.g.symbols_to_d2_debug_enabled in your init.lua.
-local DEBUG_MODE = true -- Changed to true by default
-
 local M = {}
 
 -- A simple logger module to replace debug statements.
@@ -42,31 +38,37 @@ end
 
 --- Sets the minimum log level to display.
 --- @param l string The new log level (e.g., "DEBUG", "INFO", "WARN", "ERROR").
-logger.set_level = function(l)
+local function set_level(l)
   level = l
 end
 
 --- Enables the logger.
-logger.enable = function()
+local function enable_logger()
   enabled = true
 end
 
 --- Disables the logger.
-logger.disable = function()
+local function disable_logger()
   enabled = false
 end
 
 -- List of common symbol types that symbols.nvim might output.
--- This helps in identifying the symbol type keyword at the beginning of a line.
--- Only 'class', 'struct', 'fun', 'fn', 'field', 'var', and 'enum' are processed for D2 output.
+-- These are the "normal" types that are not language-specific interfaces.
 local SYMBOL_TYPES = {
   "class",
-  "struct", -- FIXME: Isn't pullint non-keyword args. Fields are not counted.
+  "struct",
   "fun",
-  -- "fn", -- FIXME: Doesn't behave like it should...
+  "fn",
   "field",
-  -- "var", -- FIXME: Not sure if this is doing anything
-  "enum", -- FIXME: Isn't pulling the next tabbed things. Fields are not counted
+  "var",
+  "enum",
+}
+
+-- New, separate lists for language-specific interface keywords.
+-- This makes the parsing logic more explicit and modular.
+local LANGUAGE_INTERFACES = {
+  cpp = { "virtual" },
+  rust = { "trait" },
 }
 
 -- Create a pattern for matching any of the defined symbol types
@@ -79,6 +81,8 @@ local function parse_symbols_output(lines)
   logger.debug("Starting parse_symbols_output function.")
   local root = { name = "root", type = "root", children = {}, indent = -1 }
   local indent_stack = { { -1, root } }
+  -- New table to store interface relationships for later processing
+  local interface_implementations = {}
 
   for line_num, line in ipairs(lines) do
     logger.debug(string.format("Processing line %d: '%s'", line_num, line))
@@ -98,9 +102,8 @@ local function parse_symbols_output(lines)
     local best_match_start_idx = math.huge
     local best_match_type_keyword = nil
 
-    -- First, find the earliest occurrence of any SYMBOL_TYPE keyword in the raw content
+    -- Check for normal symbol types first
     for _, type_keyword in ipairs(SYMBOL_TYPES) do
-      -- Use plain string.find for literal match, not pattern matching
       local start_idx = content_raw:find(type_keyword, 1, true)
       if start_idx then
         if start_idx < best_match_start_idx then
@@ -110,9 +113,23 @@ local function parse_symbols_output(lines)
       end
     end
 
+    -- If no normal symbol type was found, check for language-specific interfaces
+    if not best_match_type_keyword then
+      for lang, keywords in pairs(LANGUAGE_INTERFACES) do
+        for _, type_keyword in ipairs(keywords) do
+          local start_idx = content_raw:find(type_keyword, 1, true)
+          if start_idx then
+            if start_idx < best_match_start_idx then
+              best_match_start_idx = start_idx
+              best_match_type_keyword = type_keyword
+            end
+          end
+        end
+      end
+    end
+
     local content_for_parsing = content_raw
     if best_match_type_keyword then
-      -- If a keyword was found, clean the content from its start index
       content_for_parsing = content_raw:sub(best_match_start_idx)
       logger.debug(
         string.format(
@@ -124,8 +141,6 @@ local function parse_symbols_output(lines)
         )
       )
 
-      -- Now, try to extract type and name based on the found keyword
-      -- The pattern now assumes the type_keyword is at the very beginning of content_for_parsing
       local pattern = "^" .. best_match_type_keyword .. "(%s*(.*))$"
       local name_part = content_for_parsing:match(pattern)
       if name_part then
@@ -135,14 +150,22 @@ local function parse_symbols_output(lines)
       end
     end
 
-    -- Fallback: Attempt to match the bracketed format if keyword pattern failed.
-    -- This handles cases like "[class] MyClass" that might still appear.
     if not symbol_type then
       local bracketed_type, bracketed_name =
         content_raw:match("^[^\128-\191\224-\239\240-\244a-zA-Z0-9_]*%[(.-)%]%s*(.*)$")
       if bracketed_type then
-        -- Check if the bracketed type is one of our allowed types
-        for _, allowed_type in ipairs(SYMBOL_TYPES) do
+        -- Check if the bracketed type is one of our allowed types (including interfaces)
+        local all_allowed_types = {}
+        for _, v in ipairs(SYMBOL_TYPES) do
+          table.insert(all_allowed_types, v)
+        end
+        for _, v in pairs(LANGUAGE_INTERFACES) do
+          for _, keyword in ipairs(v) do
+            table.insert(all_allowed_types, keyword)
+          end
+        end
+
+        for _, allowed_type in ipairs(all_allowed_types) do
           if bracketed_type:lower() == allowed_type:lower() then
             symbol_type = allowed_type
             symbol_name = bracketed_name:gsub("^%s*", ""):gsub("%s*$", "")
@@ -160,10 +183,17 @@ local function parse_symbols_output(lines)
       end
     end
 
-    -- IMPORTANT: Filter based on the allowed types (class, struct, fun, fn, field, var, enum)
-    -- If symbol_type is still nil or not in our SYMBOL_TYPES list, skip this line.
     local is_allowed_type = false
-    for _, allowed_type in ipairs(SYMBOL_TYPES) do
+    local all_allowed_types = {}
+    for _, v in ipairs(SYMBOL_TYPES) do
+      table.insert(all_allowed_types, v)
+    end
+    for _, v in pairs(LANGUAGE_INTERFACES) do
+      for _, keyword in ipairs(v) do
+        table.insert(all_allowed_types, keyword)
+      end
+    end
+    for _, allowed_type in ipairs(all_allowed_types) do
       if symbol_type == allowed_type then
         is_allowed_type = true
         break
@@ -189,7 +219,8 @@ local function parse_symbols_output(lines)
     logger.debug(string.format("Line %d - Final Parsed Type: '%s', Name: '%s'", line_num, symbol_type, symbol_name))
 
     local prev_stack_size = #indent_stack
-    while #indent_stack > 0 and indent_stack[#indent_stack][1] >= current_indent do
+    -- Defensive check to prevent comparing a nil value.
+    while #indent_stack > 0 and indent_stack[#indent_stack] and indent_stack[#indent_stack][1] >= current_indent do
       table.remove(indent_stack)
     end
     logger.debug(
@@ -209,47 +240,72 @@ local function parse_symbols_output(lines)
     local parent_indent, parent_node = unpack(indent_stack[#indent_stack])
     logger.debug(string.format("Line %d - Parent found: '%s' (indent %d)", line_num, parent_node.name, parent_indent))
 
-    -- Generate D2 ID based only on the sanitized symbol name.
-    -- WARNING: This can lead to non-unique D2 IDs if multiple symbols have the same name.
-    -- D2 requires unique IDs. If you encounter errors, consider re-enabling a unique suffix (e.g., line number).
     local d2_id = symbol_name:gsub("[^a-zA-Z0-9_]", "_"):lower()
-
-    -- Ensure ID starts with a letter or underscore if it doesn't already
     if not d2_id:match("^[a-zA-Z_]") then
       d2_id = "_" .. d2_id
     end
+    -- Add line number to guarantee unique D2 IDs
+    d2_id = d2_id .. "_" .. line_num
+    logger.debug(string.format("Line %d - Generated D2 ID: '%s'", line_num, d2_id))
 
-    local node = {
-      name = symbol_name,
-      type = symbol_type,
-      children = {},
-      indent = current_indent,
-      id = d2_id,
-    }
-    table.insert(parent_node.children, node)
-    table.insert(indent_stack, { current_indent, node })
-    if DEBUG_MODE then
-      vim.notify(
-        string.format(
-          "DEBUG: Line %d - Node '%s' added as child of '%s'. Stack size: %d",
-          line_num,
-          node.name,
-          parent_node.name,
-          #indent_stack
-        ),
-        vim.log.levels.DEBUG
-      )
-      logger.debug(string.format("Line %d - Generated D2 ID: '%s'", line_num, d2_id))
+    -- Check for interface types and store them separately
+    local is_interface_type = false
+    for _, keywords in pairs(LANGUAGE_INTERFACES) do
+      for _, keyword in ipairs(keywords) do
+        if symbol_type == keyword then
+          is_interface_type = true
+          break
+        end
+      end
+      if is_interface_type then
+        break
+      end
+    end
+
+    if is_interface_type then
+      -- The parent is the class/struct that implements this interface.
+      local implementing_id = parent_node.id
+      -- Create a unique ID for the interface node itself, based on its name.
+      local interface_id = symbol_name:gsub("[^a-zA-Z0-9_]", "_"):lower() .. "_interface"
+
+      -- If the interface doesn't exist in our table, create a new entry for it.
+      if not interface_implementations[interface_id] then
+        interface_implementations[interface_id] = { name = symbol_name, implementors = {} }
+      end
+      -- Add the implementing class/struct to the list of implementors for this interface.
+      table.insert(interface_implementations[interface_id].implementors, implementing_id)
+
+      -- Add the interface method itself to its parent node (the class/struct)
+      -- for display inside the class shape.
+      local node = {
+        name = symbol_name,
+        type = symbol_type,
+        children = {},
+        indent = current_indent,
+        id = d2_id,
+      }
+      table.insert(parent_node.children, node)
+      table.insert(indent_stack, { current_indent, node })
+    else
+      local node = {
+        name = symbol_name,
+        type = symbol_type,
+        children = {},
+        indent = current_indent,
+        id = d2_id,
+      }
+      table.insert(parent_node.children, node)
+      table.insert(indent_stack, { current_indent, node })
     end
 
     ::continue::
   end
   logger.debug("Finished parse_symbols_output function.")
-  return root
+  return root, interface_implementations
 end
 
 -- Helper function to recursively generate D2 syntax
-local function generate_d2(node, level)
+local function generate_d2(node, level, all_interfaces)
   level = level or 0
   local d2_output = {}
   local indent_str = string.rep("  ", level)
@@ -257,29 +313,39 @@ local function generate_d2(node, level)
   if node.type == "root" then
     logger.debug("generate_d2: Processing root node.")
     for _, child in ipairs(node.children) do
-      table.insert(d2_output, generate_d2(child, level))
+      table.insert(d2_output, generate_d2(child, level, all_interfaces))
     end
+
+    -- Add the interfaces at the end of the root level
+    for interface_id, interface_data in pairs(all_interfaces) do
+      local display_name = string.format("%s\n<interface>", interface_data.name)
+      table.insert(d2_output, string.format("%s%s: {", indent_str, interface_id))
+      table.insert(d2_output, string.format('%s  label: "%s"', indent_str, display_name))
+      table.insert(d2_output, string.format("%s  shape: class", indent_str))
+      table.insert(d2_output, string.format("%s}", indent_str))
+      -- Add connections from implementors to the interface
+      for _, implementor_id in ipairs(interface_data.implementors) do
+        table.insert(d2_output, string.format('%s%s -> %s: "implements"', indent_str, implementor_id, interface_id))
+      end
+    end
+
     return table.concat(d2_output, "\n")
   end
 
   local d2_id = node.id
   local display_name = node.name
-  local d2_type_prefix = node.type:gsub(" ", "_")
   logger.debug(string.format("generate_d2: Processing node '%s' (ID: %s) at level %d.", display_name, d2_id, level))
 
-  -- Handle 'class', 'struct', and 'enum' types as D2 class shapes
   if node.type == "class" or node.type == "struct" or node.type == "enum" then
     table.insert(d2_output, string.format("%s%s: {", indent_str, d2_id))
-    table.insert(d2_output, string.format('%s  label: "%s"', indent_str, display_name)) -- Just class/struct/enum name
-    table.insert(d2_output, string.format("%s  shape: class", indent_str)) -- Add shape
+    table.insert(d2_output, string.format('%s  label: "%s"', indent_str, display_name))
+    table.insert(d2_output, string.format("%s  shape: class", indent_str))
     for _, child in ipairs(node.children) do
-      -- Children of these containers are rendered directly inside
-      if child.type == "fun" or child.type == "fn" then -- Handle 'fun' and 'fn'
+      if child.type == "fun" or child.type == "fn" or child.type == "virtual" or child.type == "trait" then
         table.insert(d2_output, string.format("%s  %s()", indent_str, child.name))
-      elseif child.type == "field" or child.type == "var" then -- Handle 'field' and 'var'
+      elseif child.type == "field" or child.type == "var" then
         table.insert(d2_output, string.format("%s  %s", indent_str, child.name))
       else
-        -- If other types of children exist, they will be skipped based on this specific request.
         logger.debug(
           string.format(
             "generate_d2: Skipping non-fun/fn/field/var child of class/struct/enum: '%s' (type: %s)",
@@ -291,9 +357,6 @@ local function generate_d2(node, level)
     end
     table.insert(d2_output, string.format("%s}", indent_str))
   else
-    -- This block handles types that are not 'class', 'struct', or 'enum' and are not children
-    -- of those types (e.g., if 'fun' or 'field' somehow appear at the root level).
-    -- Based on the requested output, these should not generate D2.
     logger.debug(
       string.format(
         "generate_d2: Skipping node '%s' (type: %s) as it's not a 'class', 'struct', or 'enum' container.",
@@ -301,7 +364,7 @@ local function generate_d2(node, level)
         node.type
       )
     )
-    return "" -- Do not generate D2 for standalone fun/fn/field/var nodes, or other unhandled types.
+    return ""
   end
 
   return table.concat(d2_output, "\n")
@@ -320,8 +383,8 @@ local function copy_to_clipboard(text)
       vim.log.levels.ERROR
     )
   end
-  -- Using print for final debug output to avoid notification clutter
-  print("Final D2 text generated:\n" .. text)
+  -- Using the logger for the final debug output
+  logger.debug("Final D2 text generated:\n" .. text)
 end
 
 --- Main function to be called from Neovim.
@@ -329,9 +392,8 @@ end
 function M.convert_symbols_buffer_to_d2()
   logger.debug("convert_symbols_buffer_to_d2 function called.")
   local symbols_buf_id = nil
-  local symbols_buf_name = "symbols.nvim" -- Common name for symbols.nvim buffer
+  local symbols_buf_name = "symbols.nvim"
 
-  -- Iterate through all buffers to find the symbols.nvim buffer
   for _, buf_id in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_valid(buf_id) then
       local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
@@ -351,14 +413,12 @@ function M.convert_symbols_buffer_to_d2()
     return
   end
 
-  -- Get all lines from the symbols.nvim buffer
   local raw_lines = vim.api.nvim_buf_get_lines(symbols_buf_id, 0, -1, false)
   logger.debug(string.format("Read %d raw lines from symbols.nvim buffer.", #raw_lines))
 
   local lines = {}
-  -- Filter out potential empty lines or lines that are just whitespace
   for _, line in ipairs(raw_lines) do
-    if line:match("%S") then -- Check if line contains any non-whitespace characters
+    if line:match("%S") then
       table.insert(lines, line)
     end
   end
@@ -369,10 +429,30 @@ function M.convert_symbols_buffer_to_d2()
     return
   end
 
-  local parsed_tree = parse_symbols_output(lines)
-  local d2_diagram = generate_d2(parsed_tree)
+  local parsed_tree, interface_implementations = parse_symbols_output(lines)
+  local d2_diagram = generate_d2(parsed_tree, nil, interface_implementations)
   copy_to_clipboard(d2_diagram)
   logger.debug("convert_symbols_buffer_to_d2 function finished.")
+end
+
+--- Enables the debug mode, setting the logger's level to DEBUG.
+function M.enable_debug_mode()
+  enable_logger()
+  set_level("DEBUG")
+  vim.notify("Debug mode enabled!", vim.log.levels.INFO)
+end
+
+--- Disables the debug mode.
+function M.disable_debug_mode()
+  disable_logger()
+  vim.notify("Debug mode disabled.", vim.log.levels.INFO)
+end
+
+--- Sets the minimum log level to display while in debug mode.
+--- @param level_str string The new log level (e.g., "DEBUG", "INFO", "WARN", "ERROR").
+function M.set_debug_level(level_str)
+  set_level(level_str)
+  vim.notify("Log level set to: " .. level_str, vim.log.levels.INFO)
 end
 
 return M
