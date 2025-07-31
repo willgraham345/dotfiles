@@ -239,13 +239,13 @@ local function parse_symbols_output(lines)
         ),
         vim.log.levels.DEBUG
       )
-    logger.debug(string.format("Line %d - Generated D2 ID: '%s'", line_num, d2_id))
+      logger.debug(string.format("Line %d - Generated D2 ID: '%s'", line_num, d2_id))
     end
 
     ::continue::
   end
-  return root
   logger.debug("Finished parse_symbols_output function.")
+  return root
 end
 
 -- Helper function to recursively generate D2 syntax
@@ -300,8 +300,8 @@ local function generate_d2(node, level)
         display_name,
         node.type
       )
-    return "" -- Do not generate D2 for standalone fun/fn/field/var nodes, or other unhandled types.
     )
+    return "" -- Do not generate D2 for standalone fun/fn/field/var nodes, or other unhandled types.
   end
 
   return table.concat(d2_output, "\n")
