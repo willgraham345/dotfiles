@@ -3,6 +3,7 @@
 # Set the path to your Dotfiles repository
 DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
 COMMON_DIR=$(pwd)/common
+SUBMODULES_DIR=$(pwd)/submomdules
 WORK_DIR=$(pwd)/work
 PERSONAL_DIR=$(pwd)/personal
 
@@ -12,7 +13,8 @@ declare -A LINKS
 if [[ "$1" == "--common" ]]; then
   MODE="shell"
   LINKS["$HOME/.config/ohmyposh"]="$COMMON_DIR/ohmyposh"
-  LINKS["$HOME/.config/tmux"]="$COMMON_DIR/tmux"
+  LINKS["$HOME/.config/tmux"]="$COMMON_DIR/tmux" # Doesn't take care of of the plugins stuff, needs additional link
+  LINKS["$HOME/.tmux"]="$SUBMODULES_DIR/tmux" # Takes care of the plugins stuff
   LINKS["$HOME/.config/nvim"]="$COMMON_DIR/nvim"
   LINKS["$HOME/.config/lazygit"]="$COMMON_DIR/lazygit"
   LINKS["$HOME/.config/lazydocker"]="$COMMON_DIR/lazygit"
