@@ -98,8 +98,8 @@ map("n", "<M-m>", "<cmd>MarksListAll<CR>", { noremap = true, desc = "List all ma
 
 -- Movement keymaps
 -- vim.keymap.set("n", "<A-T>", "tabclose<CR>", { noremap = true, silent = true, desc = "Close current tab" })
-map({ "n" }, "<M-l>", "5zl", { desc = "Scroll right" })
-map({ "n" }, "<M-h>", "5zh", { desc = "Scroll left" })
+map({ "n" }, "<M-l>", "15zl", { desc = "Scroll right" })
+map({ "n" }, "<M-h>", "15zh", { desc = "Scroll left" })
 map({ "n", "i" }, "<C-ScrollWheelUp>", "5zl", { desc = "Scroll right" })
 map({ "n", "i" }, "<C-ScrollWheelDown>", "5zh", { desc = "Scroll left" })
 
