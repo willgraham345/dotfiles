@@ -1,4 +1,4 @@
--- ~/.config/nvim/ftplugin/markdown.lua
+-- ~/.config/nvim/ftplugin/d2.lua
 -- Insert mode: Shift+Tab to de-indent
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { buffer = true, desc = "De-indent in markdown" })
 -- Normal mode: Shift+Tab to unindent line
