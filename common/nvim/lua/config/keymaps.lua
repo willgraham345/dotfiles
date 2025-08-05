@@ -17,9 +17,9 @@ local map = vim.keymap.set
 -- Vim keymaps
 map({ "n", "v" }, "<BS><BS>", ":", { noremap = true, desc = "Start cmd dialog" })
 map({ "n", "v" }, "<BS>l", ":lua ", { noremap = true, desc = "Start lua command" })
-map({ "n", "v" }, "<BS>k", ":<C-p>", { noremap = true, desc = "Start lua command" })
+map({ "n", "v" }, "<BS>k", ":<C-p>", { noremap = true, desc = "Previous command" })
 map({ "n", "v" }, "<BS>c", "<Cmd>FzfLua commands<CR>", { noremap = true, desc = "Search commands" })
-map({ "n", "v" }, "<BS>h", "<Cmd>FzfLua help_tags<CR>", { noremap = true, desc = "Search commands" })
+map({ "n", "v" }, "<BS>h", "<Cmd>FzfLua help_tags<CR>", { noremap = true, desc = "Search help" })
 
 -- Window keymaps
 map("n", "<M-w>", "<C-w>q", { noremap = true, desc = "Kills the current window" })
