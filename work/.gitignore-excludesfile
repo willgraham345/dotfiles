@@ -1,8 +1,7 @@
 *.solution.toml
-venv/*
-venv/
-venv-will/*
-venv-will/
-.poetry/*
-todo*
-todo.*
+**/venv/
+**/.venv/
+**/venv-will/
+**/.poetry/
+**/todo*
+**/todo.*
