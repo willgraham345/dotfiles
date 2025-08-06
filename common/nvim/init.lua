@@ -2,6 +2,7 @@ require("config.lazy")
 
 vim.cmd("colorscheme sonokai")
 local symbols_to_d2 = require("utilities.symbols_to_d2")
+require("plugins.scripts.scripts") -- Adds scripts to neovim
 
 -- Create a custom Neovim command
 vim.api.nvim_create_user_command(

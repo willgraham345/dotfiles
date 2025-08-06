@@ -163,14 +163,16 @@ map("n", "<leader>xc", "<cmd>cexpr []<CR>", { noremap = true, desc = "Clear the 
 map("n", "<leader>cD", "<cmd>DocsViewToggle<CR>", { noremap = true, desc = "Toggle docs to the right" })
 
 -- Task runner and CMake keymaps (work in progress)
-vim.api.nvim_set_keymap("n", "<F6>", "<cmd><cr>", { noremap = true, silent = true })
-map("n", "<leader>cj", function()
-  local schema = require("yaml-companion").get_buf_schema(0)
-  if schema.result[1].name == "none" then
-    return ""
-  end
-  return schema.result[1].name
-end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
+
+-- FIXME: Not working
+-- vim.api.nvim_set_keymap("n", "<F6>", "<cmd><cr>", { noremap = true, silent = true })
+-- map("n", "<leader>cj", function()
+--   local schema = require("yaml-companion").get_buf_schema(0)
+--   if schema.result[1].name == "none" then
+--     return ""
+--   end
+--   return schema.result[1].name
+-- end, { noremap = true, desc = "Shows current yaml/json schema loaded" })
 vim.api.nvim_set_keymap("n", "<F6>", "<cmd>OverseerRun CMake Configure<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>OverseerRun CMake Build<CR>", { noremap = true, silent = true })
 map("n", "<leader>ms", "<cmd>CMakeSettings<CR>", { noremap = true, desc = "CMake Settings" })
