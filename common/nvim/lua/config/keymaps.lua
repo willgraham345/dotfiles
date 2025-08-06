@@ -137,7 +137,7 @@ vim.keymap.set("n", "<leader>go", diffview_open_with_input, {
   desc = "Diffview: Open with user input (commit/branch/ref)",
 })
 -- Mergetool stuff
---   ╔═══════╦═══════╦════════╗
+-- ╔═══════╦═══════╦════════╗
 -- ║       ║       ║        ║
 -- ║ LOCAL ║ MERGED║ REMOTE ║
 -- ║       ║       ║        ║
