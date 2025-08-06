@@ -14,6 +14,7 @@ wk.add({
   { "<leader>t", group = "Test" },
   { "<leader>u", group = "Usage" },
   { "<leader>x", group = "Trouble/Quickfix" },
+  { "<leader>v", group = "Python venv" },
   { "<leader><Tab>", group = "Tab" },
   { "<BS>", group = "Commands", mode = { "n", "v" } },
   -- Window and Tab keymaps (no common prefix, so list them individually)

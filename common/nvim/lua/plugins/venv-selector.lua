@@ -11,9 +11,9 @@ return {
     -- event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
     keys = {
       -- Keymap to open VenvSelector to pick a venv.
-      { "<leader>vs", "<cmd>VenvSelect<cr>", { desc = "Select a venv", noremap = true } },
+      { "<leader>vss", "<cmd>VenvSelect<cr>", { desc = "Select a venv", noremap = true } },
       -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-      { "<leader>vc", "<cmd>VenvSelectCached<cr>", { desc = "Select a cached venv", noremap = true } },
+      { "<leader>vsc", "<cmd>VenvSelectCached<cr>", { desc = "Select a cached venv", noremap = true } },
     },
   },
   -- {
@@ -25,5 +25,16 @@ return {
     config = function()
       require("poetry-nvim").setup()
     end,
+  },
+  {
+    "benomahony/uv.nvim",
+    opts = {
+      picker_integration = true,
+      keymaps = {
+        prefix = "<leader>v",
+        -- Disable following keymaps
+        run_selection = false,
+      },
+    },
   },
 }

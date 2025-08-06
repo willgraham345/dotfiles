@@ -50,7 +50,8 @@ C-Space + I
 - ripgrep
 - libreadline-dev
 - [vet](https://github.com/vet-run/vet?utm_source=tldrnewsletter)
-  npm
+- npm
+  - wsl-open (really good replacement for xdg-open)
 - mermaid.cli (install locally rather than globally)
 - [navi](https://github.com/denisidoro/navi?tab=readme-ov-file)
 - In-depth CLI cheatsheet
