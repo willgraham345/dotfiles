@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## File defining symlinks necessary to set up dotfiles in a nice way for Will Graham
+
 # Set the path to your Dotfiles repository
 DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
 COMMON_DIR=$(pwd)/common
@@ -28,12 +30,22 @@ if [[ "$1" == "--work" ]]; then
   LINKS["$HOME/.gitconfig"]="$WORK_DIR/.gitconfig"
   LINKS["$HOME/.zshrc"]="$WORK_DIR/.zshrc"
   LINKS["$HOME/.gitignore-excludesfile"]="$WORK_DIR/.gitignore-excludesfile"
+  
+  # Creates symlink to wsl.conf
+  if [[ "$2" == --wsl-cfg ]]; then
+    LINKS["/etc/wsl.conf"]="$WORK_DIR/wsl.conf"
+  fi
 fi
 
 if [[ "$1" == "--personal" ]]; then
   MODE="work"
   LINKS["$HOME/.gitconfig"]="$PERSONAL_DIR/.gitconfig"
   LINKS["$HOME/.zshrc"]="$PERSONAL_DIR/.zshrc"
+  
+  # Creates symlink to wsl.conf
+  if [[ "$2" == --wsl-cfg ]]; then
+    LINKS["/etc/wsl.conf"]="$PERSONAL_DIR/wsl.conf"
+  fi
 fi
 
 
