@@ -86,10 +86,10 @@ end, { desc = "Terminal (Root Dir)" })
 
 -- File explorer keymaps
 map("n", "<M-f>", function()
-  require("mini.files").open(MiniFiles.get_latest_path())
+  require("mini.files").open(vim.api.nvim_buf_get_name(0))
 end, { desc = "Neotree focus" })
 map("n", "<M-g>", function()
-  require("mini.files").open(vim.api.nvim_buf_get_name(0))
+  require("mini.files").open(MiniFiles.get_latest_path())
 end, { desc = "Neotree focus" })
 map("n", "<M-r>", function()
   require("mini.files").open(nil, false)

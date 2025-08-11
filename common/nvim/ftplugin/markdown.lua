@@ -1,6 +1,6 @@
 -- ~/.config/nvim/ftplugin/markdown.lua
 -- Insert mode: Tab to indent
-vim.keymap.set("i", "<Tab>", "<Tab>", { buffer = true, desc = "Indent in markdown" })
+vim.keymap.set("i", "<Tab>", "<C-t>", { buffer = true, desc = "Indent in markdown" })
 
 -- Normal mode: Tab to indent line
 vim.keymap.set("n", "<Tab>", ">>", { buffer = true, desc = "Normal indent in markdown" })
