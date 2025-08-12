@@ -4,9 +4,11 @@
 
 ## nvim/keyboard
 
-- [ ] whichkey icon and group setup #nice_to_have
-- [ ] Fix cpp snippets, they're not working #nice_to_have
+- [ ] whichkey icon and group setup #nice_to_have @priority(low)
+- [ ] Fix cpp snippets, they're not working @priority(lowe;)
 - [ ] Set up image/diagram nvim on cmd wsl @priority(low)
+- [ ] Update personal zshrc to match work zshrc. @priority(medium)
+- [x] Set up Navi cheatsheets
 
 ## obsidian
 

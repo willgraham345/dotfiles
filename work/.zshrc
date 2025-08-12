@@ -173,6 +173,10 @@ alias ls="exa"
 alias ll="exa -alh"
 alias tree="exa --tree"
 
+# Navi CLI tool config
+export NAVI_PATH="~/.config/navi:~/.local/share/navi/cheats"
+# eval "$(navi widget zsh)"
+
 ##### SDL VPN stuff ##### 
 export QT_X11_NO_MITSHM=1
 export DISPLAY=:0
