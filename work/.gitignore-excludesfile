@@ -3,5 +3,4 @@
 **/.venv/
 **/venv-will/
 **/.poetry/
-**/todo*
-**/todo.*
+~/repos/**/todo.*

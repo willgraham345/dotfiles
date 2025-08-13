@@ -5,10 +5,12 @@
 ## nvim/keyboard
 
 - [ ] whichkey icon and group setup #nice_to_have @priority(low)
-- [ ] Fix cpp snippets, they're not working @priority(lowe;)
+- [ ] Change ctrl+click and ctrl+space on keyboard @priority(medium)
+- [ ] Fix cpp snippets, they're not working @priority(low)
 - [ ] Set up image/diagram nvim on cmd wsl @priority(low)
 - [ ] Update personal zshrc to match work zshrc. @priority(medium)
-- [x] Set up Navi cheatsheets
+- [ ] Start porting over Obsidian commands into Navi Cheatsheets @priority(medium)
+- [ ] Set up [macro saver](https://github.com/kr40/nvim-macros) @priority(high)
 
 ## obsidian
 
@@ -26,6 +28,8 @@
 
 ## Archive
 
+- [x] Set up Navi cheatsheets
+- [x] Find a way to avoid ignoring todo.md files for the dotfiles repo, but not other repos else @priority(medium)
 - [x] Modify the dapui.setup (:h dapui.setup()) to have smaller values for everything other than watch and stacks... @done(07/15/25 13:59)
 - [x] Add keybind that lets me vertically split from fzf #nice_to_have @done(07/15/25 13:58)
 - [x] Fix queries (maybe make a base?) for the task/lists within a project (waiting until bases is out) @done(07/16/25 09:34)
