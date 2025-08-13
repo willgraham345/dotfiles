@@ -24,6 +24,7 @@ if [[ "$1" == "--common" ]]; then
   LINKS["$HOME/.config/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
   LINKS["$HOME/.config/.delta-themes.gitconfig"]="$DOTFILES_DIR/.delta-themes.gitconfig"
   LINKS["$HOME/.config/navi"]="$COMMON_DIR/navi"
+  LINKS["$HOME/.config/yazi"]="$COMMON_DIR/yazi"
 fi
 
 if [[ "$1" == "--work" ]]; then

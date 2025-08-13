@@ -175,7 +175,16 @@ alias tree="exa --tree"
 
 # Navi CLI tool config
 export NAVI_PATH="~/.config/navi:~/.local/share/navi/cheats"
-# eval "$(navi widget zsh)"
+
+# yazi config
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+export YAZI_CONFIG_HOME="~/.config/yazi"
 
 ##### SDL VPN stuff ##### 
 export QT_X11_NO_MITSHM=1
