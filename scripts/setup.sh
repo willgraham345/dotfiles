@@ -32,6 +32,7 @@ if [[ "$1" == "--work" ]]; then
   LINKS["$HOME/.gitconfig"]="$WORK_DIR/.gitconfig"
   LINKS["$HOME/.zshrc"]="$WORK_DIR/.zshrc"
   LINKS["$HOME/.gitignore-excludesfile"]="$WORK_DIR/.gitignore-excludesfile"
+  LINKS["$HOME/.config/yazi"]="$COMMON_DIR/yazi"
   
   # Creates symlink to wsl.conf
   if [[ "$2" == --wsl-cfg ]]; then

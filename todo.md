@@ -11,9 +11,13 @@
 - [ ] Update personal zshrc to match work zshrc. @priority(medium)
 - [ ] Start porting over Obsidian commands into Navi Cheatsheets @priority(medium)
 - [ ] Set up [macro saver](https://github.com/kr40/nvim-macros) @priority(high)
+- [ ] Set up mimeapps.list stuff @priority(high)
+- [ ] Set up chemoix for dotfiles @priority(low)
 
 ## obsidian
 
+- [ ] Fix the new project thing on Work/SDL @priority(high)
+  - Should automatically go to its own folder
 - [ ] Reformat generics in rust to make more sense @priority(high)
 - [ ] Better filtering for obsidian breadcrumb group relationships @priority(low)
 - [ ] Fix query for dataviewJS within a project @priority(medium)

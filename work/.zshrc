@@ -3,10 +3,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# if [[ -f "/opt/homebrew/bin/brew" ]] then
-#   # If you're using macOS, you'll want this enabled
-#   eval "$(/opt/homebrew/bin/brew shellenv)"
-# fi
+
+
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -150,9 +148,38 @@ alias z....="cd ../../../.."
 # TODO: fix the following line to jump into directory of a symlink
 # alias symdir='$(dirname $(readlinke "$1"))'
 
-alias cSDL="code '/mnt/c/Users/wgraham/Documents/Obsidian_vaults/Space Dynamics Lab'"
-alias cWORK="code '/mnt/c/Users/wgraham/Documents/Obsidian_vaults/Work'"
+declare -rx EVAL_CACHE_DIR="$HOME/.cache/eval"
+if [[ ! -d "$EVAL_CACHE_DIR" ]]; then
+    mkdir -p "$EVAL_CACHE_DIR"
+fi
 
+ # WSL  (from Michael)
+ if uname -r | grep -q "WSL"; then 
+    declare -xr ON_WSL=true 
+    export PATH="$PATH:/mnt/c/Windows/System32"  # Bunch of system-level binaries for windows
+    export PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0" 
+    # export PATH="$PATH:/mnt/c/Program Files/Git/cmd" 
+
+
+    # Sets up windows username constant
+    if [[ ! -f "$EVAL_CACHE_DIR/wsl_constants.bash" ]]; then 
+        echo "Performing WSL first time setup. . ." 
+        # shellcheck disable=SC2016 
+        echo "declare -xr WINDOWS_USERNAME=\"$(powershell.exe -Command 'echo $env:USERNAME' | tr -d '\r')\"" > "$EVAL_CACHE_DIR/wsl_constants.bash" 
+    fi
+
+    source "$EVAL_CACHE_DIR/wsl_constants.bash"
+
+    # Add specific programs I want to path...
+
+    # export PATH="$PATH:/mnt/c/users/$WINDOWS_USERNAME/AppData/Local/Mozilla Firefo
+    export PATH="$PATH:/mnt/c/users/$WINDOWS_USERNAME/AppData/Local/Programs/Microsoft VS Code/bin"
+    export PATH="$PATH:/mnt/c/Windows/SysWOW64/" # Added for explorer.exe
+    export PATH="$PATH:/mnt/c/Program Files/Google/Chrome/Application/"
+    # export BROWSER=firefox.exe 
+    # alias firefox firefox.exe 
+    # alias chrome chrome.exe
+ fi 
 # default editors and compilers
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -167,6 +194,8 @@ export CMAKE_GENERATOR="Ninja"
 export FZF_DEFAULT_COMMAND='fdfind --type file --no-hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--ansi"
+
+# xdg-open config
 
 # Exa config stuff
 alias ls="exa"
@@ -184,7 +213,8 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
-export YAZI_CONFIG_HOME="~/.config/yazi"
+export YAZI_CONFIG_HOME="~/.config/yazi/"
+# export YAZI_LOG=debug yazi
 
 ##### SDL VPN stuff ##### 
 export QT_X11_NO_MITSHM=1
@@ -205,12 +235,17 @@ export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 export PATH=/home/will/.local/bin:/opt/nvim:$PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source "$HOME/.cargo/env"
+# Dedupe path arg
+PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 
 
 ### oh-my-posh evaluation ###
 eval "$(oh-my-posh init zsh --config "~/.config/ohmyposh/powerlevel10k_rainbow.omp.json")"
 
+# Can remove later...
+alias pdf2code='source ~/pdf2code/.venv/bin/activate && python ~/pdf2code/pdf2code_v2.py'
+
+
 ### Zoxide ###
 # Zoxide Initialization (do not move away from being the last line)
 eval "$(zoxide init zsh)"
-alias pdf2code='source ~/pdf2code/.venv/bin/activate && python ~/pdf2code/pdf2code_v2.py'
