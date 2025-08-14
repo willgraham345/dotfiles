@@ -19,8 +19,9 @@ keymap = [
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
 
 	# Hopping
-	{ on = "k", run = "arrow prev", desc = "Previous file" },
-	{ on = "j", run = "arrow next", desc = "Next file" },
+	{ on = "k", run = "arrow prev",      desc = "Previous file" },
+	{ on = "j", run = "arrow next",      desc = "Next file" },
+  { on = "i", run = "plugin easyjump", desc = "easyjump"},
 
 	{ on = "<Up>",   run = "arrow prev", desc = "Previous file" },
 	{ on = "<Down>", run = "arrow next", desc = "Next file" },

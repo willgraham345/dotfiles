@@ -47,36 +47,38 @@ return {
       },
     },
   },
-  {
-    -- See autocmds for additional mappings
-    "echasnovski/mini.files",
-    opts = {
-      windows = {
-        preview = true,
-        width_focus = 40,
-        width_preview = 70,
-      },
-      --TODO: Figure out how to add arrows to this to let me use left hand as well
-      mappings = {
-        close = "<Esc>",
-        go_in = "l",
-        go_in_plus = "<CR>",
-        go_out = "h",
-        go_out_plus = "H",
-        mark_goto = "'",
-        mark_set = "m",
-        reset = "<BS>",
-        reveal_cwd = "@",
-        show_help = "g?",
-        synchronize = "r",
-        trim_left = "<",
-        trim_right = ">",
-      },
-      options = {
-        -- Whether to use for editing directories
-        -- Disabled by default in LazyVim because neo-tree is used for that
-        use_as_default_explorer = false,
-      },
-    },
-  },
+  ---@[deprecated] {use yz-file-mgr}
+  --
+  -- {
+  -- See autocmds for additional mappings
+  --   "echasnovski/mini.files",
+  --   opts = {
+  --     windows = {
+  --       preview = true,
+  --       width_focus = 40,
+  --       width_preview = 70,
+  --     },
+  --     --TODO: Figure out how to add arrows to this to let me use left hand as well
+  --     mappings = {
+  --       close = "<Esc>",
+  --       go_in = "l",
+  --       go_in_plus = "<CR>",
+  --       go_out = "h",
+  --       go_out_plus = "H",
+  --       mark_goto = "'",
+  --       mark_set = "m",
+  --       reset = "<BS>",
+  --       reveal_cwd = "@",
+  --       show_help = "g?",
+  --       synchronize = "r",
+  --       trim_left = "<",
+  --       trim_right = ">",
+  --     },
+  --     options = {
+  --       -- Whether to use for editing directories
+  --       -- Disabled by default in LazyVim because neo-tree is used for that
+  --       use_as_default_explorer = false,
+  --     },
+  --   },
+  -- },
 }

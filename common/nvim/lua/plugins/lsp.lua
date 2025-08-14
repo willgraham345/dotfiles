@@ -46,6 +46,7 @@ return {
             },
           },
         },
+        taplo = {},
       },
       clangd = {
         keys = {

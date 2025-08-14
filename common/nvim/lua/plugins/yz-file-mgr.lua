@@ -11,20 +11,20 @@ return {
       -- 👇 in this section, choose your own keymappings!
       {
         -- TODO: Make this into default file mgr
-        "<BS><Space>",
+        "<M-f>",
         mode = { "n", "v" },
         "<cmd>Yazi<cr>",
         desc = "Open yazi at the current file",
       },
       {
         -- Open in the current working directory
-        "<BS>g",
+        "<M-g>",
         "<cmd>Yazi cwd<cr>",
         desc = "Open the file manager in nvim's working directory",
       },
       {
         -- TODO: Make this alt+g or something like that
-        "<BS>f",
+        "<M-r>",
         "<cmd>Yazi toggle<cr>",
         desc = "Resume the last yazi session",
       },
@@ -33,6 +33,9 @@ return {
     opts = {
       -- if you want to open yazi instead of netrw, see below for more info
       open_for_directories = false,
+      open_multiple_tabs = true,
+      floating_window_scaling_factor = 0.5,
+      floating_window_border = false,
       keymaps = {
         show_help = "<f1>",
         open_file_in_vertical_split = "<c-x>",
