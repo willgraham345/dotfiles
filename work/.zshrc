@@ -178,7 +178,7 @@ fi
     # alias chrome chrome.exe
  fi 
 # default editors and compilers
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 export MAKEFLAGS="-j 16"
 export CC=gcc

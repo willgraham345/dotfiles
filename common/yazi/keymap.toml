@@ -88,9 +88,9 @@ keymap = [
 	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
 	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
 	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
-	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
-	{ on = "Z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
+	# { on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
+	{ on = "Z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+	{ on = "z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 
 	# Linemode
 	{ on = [ "M", "s" ], run = "linemode size",        desc = "Linemode: size" },
@@ -105,6 +105,11 @@ keymap = [
 	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
 	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy the filename" },
 	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+  # FIXME: Not working correctly, not sure why
+  # { on = [ "c", "y" ], run  = 'shell -- echo "$@" | xclip -i -selection clipboard -t text/uri-list', desc = "Yank to clipboard"},
+  # {on  = "y", run = [ 'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ], desc = "Yank (also to system clipboard)" },
+  # { on = "<C-y>", run  = 'shell "ya emit cd | tr -d "\r" | clip.exe"', desc = "Yank to clipboard"},
+  # { on = "<C-y>",      run = "plugin system-clipboard", desc = "Yank to clipboard"},
 
 	# Filter
 	{ on = "f", run = "filter --smart", desc = "Filter files" },
@@ -136,6 +141,7 @@ keymap = [
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
+	{ on = [ "g", "r" ],       run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"',           desc = "Go to root of current git repo" },
 
 	# Tabs
 	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
@@ -155,6 +161,14 @@ keymap = [
 
 	{ on = "{", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
 	{ on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
+
+  { on = ["<C-s>", "s"], run = "plugin projects save", desc = "Save current project" },
+  { on = ["<C-s>", "l"], run = "plugin projects load", desc = "Load project" },
+  { on = ["<C-s>", "L"], run = "plugin projects load_last", desc = "Load last project" },
+  { on = ["<C-s>", "d"], run = "plugin projects delete", desc = "Delete project" },
+  { on = ["<C-s>", "D"], run = "plugin projects delete_all", desc = "Delete all project" },
+  { on = ["<C-s>", "m"], run = "plugin projects 'merge current'", desc = "Merge current tab to other projects" },
+  { on = ["<C-s>", "M"], run = "plugin projects 'merge all'", desc = "Merge current project to other projects" },
 
 	# Tasks
 	{ on = "w", run = "tasks:show", desc = "Show task manager" },

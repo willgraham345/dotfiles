@@ -13,6 +13,7 @@
 - [ ] Set up [macro saver](https://github.com/kr40/nvim-macros) @priority(high)
 - [ ] Set up mimeapps.list stuff @priority(high)
 - [ ] Set up chemoix for dotfiles @priority(low)
+- [ ] Set up puml snippets @priority(low)
 
 ## obsidian
 
@@ -22,6 +23,8 @@
 - [ ] Better filtering for obsidian breadcrumb group relationships @priority(low)
 - [ ] Fix query for dataviewJS within a project @priority(medium)
   - [ ] Add better dataviewJS for command and code queries #high_priority @priority(low)
+    - [ ] Figure out how I want to handle the [E] tag group
+    - This thing could be a part of each [I]. Basically, all the [E]'s are children of the I's
 
 ## other
 
