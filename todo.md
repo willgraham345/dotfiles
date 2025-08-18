@@ -4,16 +4,16 @@
 
 ## nvim/keyboard
 
-- [ ] whichkey icon and group setup #nice_to_have @priority(low)
+- [ ] Set up mimeapps.list stuff @priority(medium)
+- [ ] Set up chemoix for dotfiles @priority(high)
+- [ ] Set up [macro saver](https://github.com/kr40/nvim-macros) @priority(high)
+- [ ] Set up puml snippets @priority(medium)
 - [ ] Change ctrl+click and ctrl+space on keyboard @priority(medium)
+- [ ] whichkey icon and group setup #nice_to_have @priority(low)
 - [ ] Fix cpp snippets, they're not working @priority(low)
 - [ ] Set up image/diagram nvim on cmd wsl @priority(low)
-- [ ] Update personal zshrc to match work zshrc. @priority(medium)
-- [ ] Start porting over Obsidian commands into Navi Cheatsheets @priority(medium)
-- [ ] Set up [macro saver](https://github.com/kr40/nvim-macros) @priority(high)
-- [ ] Set up mimeapps.list stuff @priority(high)
-- [ ] Set up chemoix for dotfiles @priority(low)
-- [ ] Set up puml snippets @priority(low)
+- [ ] Start porting over Obsidian commands into Navi Cheatsheets @priority(low)
+- [x] Update personal zshrc to match work zshrc. @priority(medium) @done(08/18/25 09:01)
 
 ## obsidian
 
