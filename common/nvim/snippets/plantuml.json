@@ -1,0 +1,85 @@
+{
+  "Import another diagram": {
+    "prefix": "import",
+    "body": ["!include ${1:path/to/other_diagram.puml}"],
+    "description": "Import another PlantUML diagram"
+  },
+  "Class definition": {
+    "prefix": "class",
+    "body": ["class ${1:ClassName} {", "    ${2:attribute}: ${3:Type}", "}"],
+    "description": "Define a PlantUML class"
+  },
+  "Interface definition": {
+    "prefix": "interface",
+    "body": [
+      "interface ${1:InterfaceName} {",
+      "    ${2:method}: ${3:ReturnType}",
+      "}"
+    ],
+    "description": "Define a PlantUML interface"
+  },
+  "Class implements interface": {
+    "prefix": "implements",
+    "body": ["${1:ClassName} ..|> ${2:InterfaceName}"],
+    "description": "Connect class to interface (implements)"
+  },
+  "Note for element": {
+    "prefix": "note",
+    "body": [
+      "note ${1:right|left|top|bottom} of ${2:ElementName}",
+      "    ${3:Note text}",
+      "end note"
+    ],
+    "description": "Attach a note to a class/interface"
+  },
+  "Inline note inside class": {
+    "prefix": "note-inline-class",
+    "body": [
+      "note ${1:right|left} of ${2:className}::${3:arg}",
+      "  ${4:note}",
+      "end note"
+    ],
+    "description": "Add a note inside a class"
+  },
+  "Enum definition": {
+    "prefix": "enum",
+    "body": ["enum ${1:EnumName} {", "    ${2:VALUE1}", "}"],
+    "description": "Define a PlantUML enum"
+  },
+  "Package definition": {
+    "prefix": "package",
+    "body": ["package \"${1:PackageName}\" {", "    ${2:ClassName}", "}"],
+    "description": "Define a package"
+  },
+  "Nested packages": {
+    "prefix": "package-nested",
+    "body": [
+      "package \"${1:System}\" {",
+      "    package \"${2:SubPackage}\" {",
+      "        class ${3:ClassName}",
+      "    }",
+      "}"
+    ],
+    "description": "Define nested packages"
+  },
+  "Layout direction": {
+    "prefix": "layout",
+    "body": ["${1:left to right|top to bottom} direction"],
+    "description": "Control diagram layout direction"
+  },
+  "Together grouping": {
+    "prefix": "together",
+    "body": ["together {", "    ${1:ClassA}", "    ${2:ClassB}", "}"],
+    "description": "Group elements together for layout"
+  },
+  "Hidden link for layout": {
+    "prefix": "hidden",
+    "body": ["${1:ClassA} -[hidden]-> ${2:ClassB}"],
+    "description": "Add a hidden link to adjust layout"
+  },
+  "Separator": {
+    "prefix": "separator",
+    "body": ["== ${1:Section Title} =="],
+    "description": "Add a labeled separator in diagram"
+  }
+}

@@ -3,7 +3,7 @@ return {
     "chrisgrieser/nvim-recorder",
     dependencies = "rcarriga/nvim-notify", -- optional
     opts = {
-      slots = { "a", "b", "c", "d", "e", "f", "g" },
+      slots = { "a", "b", "c", "d" },
       mapping = {
         startStopRecording = "q",
         playMacro = "Q",
