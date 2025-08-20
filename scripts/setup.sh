@@ -22,6 +22,7 @@ if [[ "$1" == "--common" ]]; then
   LINKS["$HOME/.config/lazydocker"]="$COMMON_DIR/lazygit"
   LINKS["$HOME/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
   LINKS["$HOME/.config/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
+  LINKS["$HOME/.config/.ripgreprc"]="$DOTFILES_DIR/.ripgreprc"
   LINKS["$HOME/.config/.delta-themes.gitconfig"]="$DOTFILES_DIR/.delta-themes.gitconfig"
   LINKS["$HOME/.config/navi"]="$COMMON_DIR/navi"
   LINKS["$HOME/.config/yazi"]="$COMMON_DIR/yazi"

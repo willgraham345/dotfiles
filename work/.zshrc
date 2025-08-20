@@ -211,7 +211,9 @@ function y() {
 	rm -f -- "$tmp"
 }
 export YAZI_CONFIG_HOME="~/.config/yazi/"
-# export YAZI_LOG=debug yazi
+
+# ripgrep config
+export RIPGREP_CONFIG_PATH="~/.config/.ripgreprc"
 
 ##### SDL VPN stuff ##### 
 export QT_X11_NO_MITSHM=1
