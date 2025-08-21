@@ -213,7 +213,7 @@ function y() {
 export YAZI_CONFIG_HOME="~/.config/yazi/"
 
 # ripgrep config
-export RIPGREP_CONFIG_PATH="~/.config/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 ##### SDL VPN stuff ##### 
 export QT_X11_NO_MITSHM=1
