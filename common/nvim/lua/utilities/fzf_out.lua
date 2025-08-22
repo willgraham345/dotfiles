@@ -1,3 +1,4 @@
+local M = {}
 function SaveLspDefintion()
   local fzf = require("fzf-lua")
   local defs = require("fzf-lua.providers.lsp").definitions ---@type fun(opts: fzf-lua.config.LspDefinitions.p?): thread?, string?, table?
@@ -22,3 +23,4 @@ function SaveLspDefintion()
 end
 
 vim.keymap.set("n", "<leader>vd", SaveLspDefintion, { desc = "Save lsp definition" })
+return M
