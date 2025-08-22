@@ -1,3 +1,9 @@
---hidden
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+# Color and case
 --color=always
 --smart-case
+
+# Search hidden files/directories
+# --hidden

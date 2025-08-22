@@ -48,7 +48,7 @@
   },
   "Package definition": {
     "prefix": "package",
-    "body": ["package \"${1:PackageName}\" {", "    ${2:ClassName}", "}"],
+    "body": ["package ${1:PackageName} {", "    ${2}", "}"],
     "description": "Define a package"
   },
   "Nested packages": {
@@ -81,5 +81,45 @@
     "prefix": "separator",
     "body": ["== ${1:Section Title} =="],
     "description": "Add a labeled separator in diagram"
+  },
+  "Detailed sequence participant": {
+    "prefix": "detailed sequence participant",
+    "body": [
+      "participant ${1:Participant} [",
+      "    =${2:title}",
+      "    ----",
+      "    \"\"${3:subtitle}\"\"",
+      "]"
+    ],
+    "description": "Add a multiline detailed sequence diagram participant"
+  },
+  "Sequence diagram numbering": {
+    "prefix": "sequence diagram numbering",
+    "body": "autonumber ${1:start} ${2:increment}",
+    "description": "Define the autonumbering scheme for a sequence diagram"
+  },
+  "Message grouping": {
+    "prefix": "sequence diagram grouping",
+    "body": [
+      "${1:alt|else|opt|loop|par|break|critical|group} ${2:secondaryLabelOrGroupName}",
+      "else ${3:otherCondition}",
+      "end"
+    ],
+    "description": "Group messages in a sequence diagram together, can be nested"
+  },
+  "Divide a sequence diagram small line": {
+    "prefix": "sequence diagram split with small line",
+    "body": "newpage",
+    "description": "Splits a sequence diagram with a small line across"
+  },
+  "Divide a sequence diagram block": {
+    "prefix": "sequence diagram split with large line",
+    "body": "== ${1:display} ==",
+    "description": "Splits a sequence diagram with a large line across"
+  },
+  "Delay in a sequence diagram": {
+    "prefix": "sequence diagram delay",
+    "body": "...${1:delay_length}...",
+    "description": "Show a delay in a sequence diagram"
   }
 }
