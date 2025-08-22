@@ -171,8 +171,8 @@ fi
 
     # export PATH="$PATH:/mnt/c/users/$WINDOWS_USERNAME/AppData/Local/Mozilla Firefo
     export PATH="$PATH:/mnt/c/users/$WINDOWS_USERNAME/AppData/Local/Programs/Microsoft VS Code/bin"
-    export PATH="$PATH:/mnt/c/Windows/SysWOW64/" # Added for explorer.exe
-    export PATH="$PATH:/mnt/c/Program Files/Google/Chrome/Application/"
+    export PATH="$PATH:/mnt/c/Windows/SysWOW64" # Added for explorer.exe
+    export PATH="$PATH:/mnt/c/Program Files/Google/Chrome/Application"
     # export BROWSER=firefox.exe 
     # alias firefox firefox.exe 
     # alias chrome chrome.exe
@@ -224,7 +224,7 @@ export PULSE_SERVER=/mnt/wslg/PulseServer
 #export DOCKER_HOST=tcp://localhost:2375 # This thing keeps breaking everything...
 export GPG_TTY=$(tty)
 export DOTFILE_DIR="/home/will/personal/Dotfiles"
-wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
+# wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
 
 ### PATH Edits ###
 # Add snap to path
