@@ -1,14 +1,12 @@
 ---
 - name: Prompt user for installation choice
   hosts: localhost
-  gather_facts: no
-  vars_prompt:
-    - name: selected_option
-      prompt: "Select an installation option: (1) Personal, (2) Work, (3) Server"
-      private: no
+  vars_files: vars/main.yml
 
+
+  # 1. Determine correct configuration to launch into (user prompt)
+  # 2. Ensure dependencies are met
   tasks:
-    #TODO: Check if this thing works at all, it came straight from ChatGPT
     - name: Include the appropriate playbook based on selection
       ansible.builtin.include_playbook: "{{ item }}"
       loop:

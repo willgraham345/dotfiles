@@ -4,9 +4,9 @@
 
 # Set the path to your Dotfiles repository
 DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
-COMMON_DIR=$(pwd)/common
+DOT_CONFIGS=$(pwd)/dot_config
 SUBMODULES_DIR=$(pwd)/submomdules
-WORK_DIR=$(pwd)/work
+WORK_DIR=$(pwd)/vars/work
 PERSONAL_DIR=$(pwd)/personal
 
 # Define the files and directories to symlink
@@ -14,18 +14,18 @@ declare -A LINKS
 # LINKS["$HOME/.tmux.conf"]="$DOTFILES_DIR/tmux/.tmux.conf"
 if [[ "$1" == "--common" ]]; then
   MODE="shell"
-  LINKS["$HOME/.config/ohmyposh"]="$COMMON_DIR/ohmyposh"
-  LINKS["$HOME/.config/tmux"]="$COMMON_DIR/tmux" # Doesn't take care of of the plugins stuff, needs additional link
+  LINKS["$HOME/.config/ohmyposh"]="$DOT_CONFIGS/ohmyposh"
+  LINKS["$HOME/.config/tmux"]="$DOT_CONFIGS/tmux" # Doesn't take care of of the plugins stuff, needs additional link
   LINKS["$HOME/.tmux"]="$SUBMODULES_DIR/tmux" # Takes care of the plugins stuff
-  LINKS["$HOME/.config/nvim"]="$COMMON_DIR/nvim"
-  LINKS["$HOME/.config/lazygit"]="$COMMON_DIR/lazygit"
-  LINKS["$HOME/.config/lazydocker"]="$COMMON_DIR/lazygit"
+  LINKS["$HOME/.config/nvim"]="$DOT_CONFIGS/nvim"
+  LINKS["$HOME/.config/lazygit"]="$DOT_CONFIGS/lazygit"
+  LINKS["$HOME/.config/lazydocker"]="$DOT_CONFIGS/lazygit"
   LINKS["$HOME/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
   LINKS["$HOME/.config/.gdbinit"]="$DOTFILES_DIR/.gdbinit"
-  LINKS["$HOME/.rgrc"]="$COMMON_DIR/ripgrep/.rgrc"
+  LINKS["$HOME/.rgrc"]="$DOT_CONFIGS/ripgrep/.rgrc"
   LINKS["$HOME/.config/.delta-themes.gitconfig"]="$DOTFILES_DIR/.delta-themes.gitconfig"
-  LINKS["$HOME/.config/navi"]="$COMMON_DIR/navi"
-  LINKS["$HOME/.config/yazi"]="$COMMON_DIR/yazi"
+  LINKS["$HOME/.config/navi"]="$DOT_CONFIGS/navi"
+  LINKS["$HOME/.config/yazi"]="$DOT_CONFIGS/yazi"
 fi
 
 if [[ "$1" == "--work" ]]; then

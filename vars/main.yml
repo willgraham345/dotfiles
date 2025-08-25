@@ -1,0 +1,72 @@
+---
+persist_source_packages_dir: '{{ ansible_facts.user_dir }}/src'
+
+# Build tools (via system package manager)
+build_tools:
+  system:
+    - build-essential
+    - git
+    # - pinentry-qt
+    # - pkg-config
+    - software-properties-common
+    # - unzip
+    # - zip
+  git_build:
+    # - name: mold
+    #   bin: mold
+    #   repo: git@github.com:rui314/mold.git
+    #   configure_flags: -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=c++
+    - name: ninja-build
+      bin: ninja
+      repo: git@github.com:ninja-build/ninja.git
+      configure_flags: -DCMAKE_BUILD_TYPE=Release -DCMAKE_GENERATOR="Unix Makefiles"
+        -DBUILD_TESTING=OFF
+
+# Package managers to install
+package_managers:
+  - name: npm
+    install_with: system
+    pkg_name: npm
+    # TODO: Add dependencies for mise (https://github.com/jdx/mise)
+  # - name: mise
+  #   install_with: cargo
+  #   pkg_name: mise
+  - name: pip
+    install_with: system
+    pkg_name: python3-pip
+  # - name: luarocks
+  #   install_with: system
+  #   pkg_name: luarocks
+
+# Executables from package managers
+managed_packages:
+  cargo:
+    - bat
+    - cargo-update
+    - eza
+    - fd-find
+    - git-delta
+    - mdbook
+    - mise
+    - ripgrep
+    - tree-sitter-cli
+  cargo_git:
+    - name: uv
+      url: https://github.com/astral-sh/uv
+  go:
+    - name: lefthook
+      url: github.com/evilmartians/lefthook
+      version: v1.12.2
+    - name: fzf
+      url: github.com/junegunn/fzf
+      version: v0.65.1
+  mise:
+    - name: chezmoi
+      version: latest
+    - name: python
+      version: latest
+  system:
+    - python3-venv
+    - tmux
+    - xsel
+    - zsh
