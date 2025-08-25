@@ -1,0 +1,6 @@
+{{ if ne .chezmoi.os "linux" }}
+.zsh/
+.zprofile
+.tmux.conf
+.zsh*
+{{ end }}

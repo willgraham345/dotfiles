@@ -1,0 +1,7 @@
+.cache/
+.cppcheck/
+.vscode/
+compile_commands.json
+.venv
+.null-ls*
+.nvim.lua

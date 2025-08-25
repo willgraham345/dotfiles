@@ -2,8 +2,8 @@
   path = ~/.config/.delta-themes.gitconfig
 [user]
 	name = Will Graham
-	email = will.graham@sdl.usu.edu
-	signingkey = 0CBBB7AB5017FE81169D3025CDE4078BBAC821F8
+	email = {{ .user.git.email | quote }}
+	signingkey =
 [commit]
 	gpgsign = true
 

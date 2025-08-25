@@ -1,5 +1,11 @@
 # Dotfile structure
 
+# Chezmoi
+
+- Only set up for Linux dev, either through WSL or native Linux
+
+# Pre-Chezmoi
+
 3 different folders contain the configuration for Will's dotfiles.
 
 - `personal/`
