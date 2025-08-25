@@ -1,6 +1,6 @@
-[submodule "submodules/tmux/plugins/tpm"]
+[submodule "dot_config/tmux/plugins/tpm"]
   path = submodules/tmux/plugins/tpm
   url = https://github.com/tmux-plugins/tpm
-[submodule "submodules/tmux/plugins/tmux-resurrect"]
+[submodule "dot_config/tmux/plugins/tmux-resurrect"]
   path = submodules/tmux/plugins/tmux-resurrect
   url = https://github.com/tmux-plugins/tmux-resurrect
