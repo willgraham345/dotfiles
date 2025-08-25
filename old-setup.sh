@@ -7,7 +7,7 @@ DOTFILES_DIR=$(pwd) # Change this if your repo is elsewhere
 DOT_CONFIGS=$(pwd)/dot_config
 SUBMODULES_DIR=$(pwd)/submomdules
 WORK_DIR=$(pwd)/vars/work
-PERSONAL_DIR=$(pwd)/personal
+PERSONAL_DIR=$(pwd)/vars/personal
 
 # Define the files and directories to symlink
 declare -A LINKS
